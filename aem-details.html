@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Advanced Emission Model (AEM) – Tools Style</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+    :root {
+      --bg-gradient-start: #0a2e23;
+      --bg-gradient-end: #14533a;
+      --accent-green: #4ade80;
+      --accent-hover: #22c55e;
+      --glass-bg: rgba(255, 255, 255, 0.05);
+      --glass-border: rgba(255, 255, 255, 0.1);
+      --text-primary: #ffffff;
+      --text-secondary: #a7f3d0;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, var(--bg-gradient-start), var(--bg-gradient-end));
+      color: var(--text-primary);
+      min-height: 100vh; display: flex; flex-direction: column; overflow-x: hidden; position: relative;
+    }
+    body::before {
+      content: ''; position: absolute; top: -10%; left: -10%; width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(74, 222, 128, 0.15) 0%, transparent 70%);
+      border-radius: 50%; filter: blur(80px); z-index: -1; animation: float 20s infinite ease-in-out;
+    }
+    @keyframes float { 0% { transform: translate(0, 0); } 50% { transform: translate(50px, 30px); } 100% { transform: translate(0, 0); } }
+    .skip-link{position:absolute;left:-999px;top:0;background:#fff;color:#000;padding:8px 12px;border-radius:4px}
+    .skip-link:focus{left:8px}
+    .topbar{position:sticky;top:0;z-index:1000;background:rgba(10,46,35,0.8);backdrop-filter:saturate(160%) blur(10px);border-bottom:1px solid var(--glass-border)}
+    .topbar-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;gap:12px;padding:10px 16px}
+    .brand{color:var(--text-primary);text-decoration:none;font-weight:700;letter-spacing:.2px}
+    .menu-toggle{margin-left:auto;font-size:1.6rem;line-height:1;background:transparent;color:var(--text-primary);border:0;cursor:pointer;padding:4px 8px}
+    nav.primary .menu{list-style:none;display:none;flex-direction:column;gap:0;width:100%;background:transparent;margin-top:8px}
+    nav.primary .menu.open{display:flex}
+    nav.primary .menu a{display:block;color:var(--text-primary);text-decoration:none;padding:10px 12px;border-radius:8px}
+    nav.primary .menu a:hover,nav.primary .menu a:focus{background:rgba(255,255,255,.12);outline:none}
+    nav.primary .menu li.active>a,nav.primary .menu a[aria-current="page"]{background:rgba(74,222,128,.2);font-weight:600}
+    @media (min-width:768px){ .menu-toggle{display:none} .topbar-inner{display:grid;grid-template-columns:auto 1fr;align-items:center} nav.primary{justify-self:end} nav.primary .menu{display:flex !important;flex-direction:row;align-items:center;gap:8px;background:transparent;margin-top:0} nav.primary .menu a{padding:8px 10px} }
+    header { text-align: center; padding: 80px 24px 30px; }
+    h1 { font-size: clamp(2rem, 8vw, 3.5rem); font-weight: 700; letter-spacing: -0.05rem; margin-bottom: 16px; background: linear-gradient(to right, #fff, var(--accent-green)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; line-height: 1.1; }
+    p.subtitle { font-size: clamp(1rem, 4vw, 1.1rem); color: var(--text-secondary); max-width: 1200px; margin: 0 auto; line-height: 1.6; }
+    .grid { max-width: 1200px; margin: 0 auto; padding: 20px; display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; width: 100%; }
+    .card { background: var(--glass-bg); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid var(--glass-border); border-radius: 20px; padding: clamp(20px, 5vw, 28px); transition: transform 0.3s ease, box-shadow 0.3s ease, border-color .3s ease; display: flex; flex-direction: column; }
+    .card:hover { transform: translateY(-4px); box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3); border-color: rgba(74, 222, 128, 0.3); }
+    .card-icon { font-size: 30px; color: var(--accent-green); margin-bottom: 18px; background: rgba(74, 222, 128, 0.1); width: 52px; height: 52px; display: flex; align-items: center; justify-content: center; border-radius: 12px; }
+    .card h2 { font-size: 1.25rem; margin-bottom: 10px; font-weight: 600; }
+    .card p { color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6; margin-bottom: 14px; }
+    .meta { display: grid; grid-template-columns: 1fr; gap: 8px; margin-top: 8px; }
+    .meta li { color: var(--text-secondary); font-size: .9rem; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; text-decoration: none; color: #0a2e23; background-color: var(--accent-green); padding: 12px 18px; border-radius: 50px; font-weight: 600; transition: all 0.2s ease; }
+    .btn:hover { background-color: var(--accent-hover); }
+    .btn:active { transform: scale(0.98); }
+    footer { text-align: center; padding: 40px 20px; color: rgba(255, 255, 255, 0.4); font-size: 0.85rem; }
+    @media (max-width: 600px) { header { padding: 46px 20px 20px; } .grid { grid-template-columns: 1fr; padding: 15px; } .card { border-radius: 16px; } }
+    /* Simple tag filter bar */
+    .tagbar { max-width:1200px; margin: 0 auto; padding: 0 20px 10px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; }
+    .tags { display:flex; gap:8px; flex-wrap:wrap; }
+    .chip { background: rgba(255,255,255,.12); color: #fff; border: 1px solid var(--glass-border); padding: 6px 10px; border-radius: 999px; cursor:pointer; font-size:.85rem; }
+    .chip.active { background: rgba(74,222,128,.2); border-color: rgba(74,222,128,.4); }
+    .hidden { display:none !important; }
+
+
+  </style>
+<style>
+
+/* AEM content-specific styles (from aem-details, adapted) */
+main { max-width: 1200px; margin: 0 auto; padding: 20px; }
+main section { margin-bottom: 40px; }
+main h2 { font-size: 1.6rem; margin-bottom: 12px; color: var(--accent-green); border-bottom: 1px solid var(--glass-border); padding-bottom: 6px; }
+main h3 { font-size: 1.3rem; margin-top: 16px; margin-bottom: 8px; color: var(--text-secondary); }
+main p, main li { font-size: 1rem; line-height: 1.6; color: #ffffff; }
+main ul { padding-left: 20px; margin-bottom: 16px; }
+table { width: 100%; border-collapse: collapse; margin-top: 16px; font-size: 0.95rem; }
+th, td { padding: 12px; border-bottom: 1px solid var(--glass-border); text-align: left; }
+th { background: rgba(255,255,255,0.08); color: #fff; }
+tr:nth-child(even) { background: rgba(255,255,255,0.03); }
+.cta-buttons { display: flex; gap: 12px; justify-content: center; margin-top: 30px; }
+.cta-buttons a { background: var(--accent-green); color: #0a2e23; text-decoration: none; padding: 12px 20px; border-radius: 8px; font-weight: 600; transition: background 0.3s ease; }
+.cta-buttons a:hover { background: var(--accent-hover); }
+/* Header typography re-use */
+header { text-align: center; padding: 80px 24px 30px; }
+
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main-content">Skip to content</a>
+<div class="topbar" role="banner">
+<div class="topbar-inner">
+<a aria-label="Homepage" class="brand" href="index.html">Avenir Catalogue</a>
+<button aria-controls="menu-list" aria-expanded="false" aria-label="Open menu" class="menu-toggle" id="menu-toggle">☰</button>
+<nav aria-label="Primary navigation" class="primary">
+<ul class="menu" id="menu-list">
+<li><a href="index.html">Introduction</a></li>
+<li class="active"><a aria-current="page" href="tools.html">Tools</a></li>
+<li><a href="#dashboards">Dashboards</a></li>
+<li><a href="#use-cases">Use Cases</a></li>
+<li><a href="#questions">Questions</a></li>
+</ul>
+</nav>
+</div>
+</div>
+<header>
+<h1 id="main-content">Advanced Emission Model (AEM)</h1>
+<p class="subtitle">Detailed information about AEM, its methodology, requirements, limitations, and future developments.</p>
+</header>
+<main>
+<section>
+<h2>Overview</h2>
+<p>The Advanced Emission Model2 (AEM) is a software suite which is used for calculation of aircraft engine emissions using 4-dimension trajectories that are cut in segments. It provides the option to calculate 24 pollutants, e.g., CO2, NOx, PMs, HC, Cl, SOx. </p>
+<p>One of the different available run modes of AEM allows calculation based on the ICAO CAEP trends method: </p>
+<ul>
+<li><strong>Below 3,000 ft:</strong> the fuel burn calculation is based on the LTO cycle defined by the ICAO Engine Certification specifications. The ICAO LTO cycle covers four modes of engine operation: approach, taxi, take-off and climb. They are used in AEM to model the following six phases of operations: taxi-out, taxi-in (idle), take-off, climb-out, approach and landing (approach).  </li>
+<li><strong>Above 3,000 ft:</strong> during the Climb, Cruise, Descent phases of flight, the fuel burn calculation is based on EUROCONTROL’s BADA model, by using pre-calculated aircraft performance tables. It derives aircraft engine emissions from the calculations. </li>
+</ul>
+<p>AEM options and setups allow users to adapt the model to their own context and available information: use of input fuel flow (ex. flight data recording, cockpit and real time simulators), atmospheric conditions at the flown segment, adaptation to the study context and reference database evolutions (aircraft and engine definition, default atmospheric model, taxi times, etc.) 
+
+The BFFM2 model is used for calculation of non-linear pollutants such as NOx, CO, HC (&VOC TOG) and vPM. The nvPM MEEM is applied for the calculation of nvPM. AEM provides engine emissions indices for jet and piston engines. Particles emission indices are determined with the FOA4 method.  
+AEM supports service providers in their environmental efforts as follows: 
+</p>
+
+<ul>
+<li><strong>Emission Estimation:</strong> AEM estimates aircraft emissions and fuel burn for various flight profiles and scenarios. It calculates the mass of fuel burned and the corresponding emissions of pollutants such as CO2, NOx, SOx and particulate matter. </li>
+<li> <strong>Detailed Analysis:</strong>The tool analyses flight profile data on a flight-by-flight basis, allowing for detailed assessments of emissions for specific air traffic scenarios, from local airport studies to global emissions. </li>
+<li><strong>Regulatory Compliance:</strong> AEM helps providers comply with international environmental standards and regulations by providing accurate emissions data that can be used for reporting and regulatory purposes. </li>
+<li><strong>Scenario Modelling:</strong> The tool can model different operational scenarios to assess their environmental impact, helping service providers plan and implement more sustainable air traffic management practices. </li>
+</ul>
+</section>
+<section>
+<h2>AEM Provider</h2>
+<p>AEM is part of EUROCONTROL’s environmental tool suite, composed of:</p>
+<ul>
+<li>Advanced Emission Model (AEM)</li>
+<li>Open-ALAQS</li>
+<li>IMPACT</li>
+</ul>
+</section>
+<section>
+<h2>Versions and OS Requirements</h2>
+<p>Current version: <strong>AEM 2.6.2b</strong> (available since March 2025).</p>
+<ul>
+<li>AEM_CLI: Command-line executable</li>
+<li>AEM_GUI: GUI executable</li>
+<li>AEM_GEO: Trajectory pre-processing</li>
+<li>AEM database files</li>
+<li>AEM API (DLL/.so)</li>
+</ul>
+<h3>Supported Platforms</h3>
+<ul>
+<li><strong>Windows:</strong> CLI, GUI, GEO, DB files, API (.dll)</li>
+<li><strong>Linux (Red Hat 7 &amp; 8):</strong> CLI, DB files, API (.so)</li>
+</ul>
+</section>
+<section>
+<h2>Data Requirements</h2>
+<h3>Mandatory</h3>
+<ul>
+<li>Aircraft type</li>
+<li>Phase of flight</li>
+<li>Weight category</li>
+<li>Timestamp for each segment</li>
+<li>Number of movements</li>
+<li>Cruise altitude</li>
+<li>ADEP and ADES</li>
+</ul>
+<h3>Optional</h3>
+<ul>
+<li>True Air Speed or Mach</li>
+<li>Atmospheric conditions</li>
+<li>Measured fuel flow</li>
+</ul>
+</section>
+<section>
+<h2>Limitations</h2>
+<ul>
+<li>BADA fuel burn uses simplified performance model</li>
+<li>Input speed and thrust not used; weight decrease not modeled</li>
+<li>Default reference database values require adaptation</li>
+<li>Turboprops database not included by default</li>
+</ul>
+</section>
+<section>
+<h2>Future Developments</h2>
+<ul>
+<li>Add single LTO segment types</li>
+<li>Update nvPM method (ICAO CAEP/13)</li>
+<li>Helicopter fuel and emissions modeling</li>
+</ul>
+</section>
+<section>
+<h2>High-Level Assessment</h2>
+<table>
+<tr><th>Criteria</th><th>Description</th><th>Score</th></tr>
+<tr><td>Accuracy &amp; Reliability</td><td>EUROCONTROL ensures that the tool remains aligned with evolving env standards. Frequency of updates depends on the calculation methodologies changes, and the reference data updates (e.g., engine emissions indices). Ad-hoc aircraft engine mappings can be provided on a yearly basis. </td><td>++</td></tr>
+<tr><td>Computational Performance</td><td>The tool is designed to handle various air traffic scenarios efficiently and is also the basis for the calculations within the IMPACT and the R-NEST models. The tool is adapted for multi-threading runs. Its computational performance allows for the processing of different scenarios, from airport studies to comprehensive global assessments, in a reasonable time frame.  </td><td>+++</td></tr>
+<tr><td>Usability</td><td>AEM is delivered with an automatic installer file, user guide, release note and installation file. AEM API is delivered with dynamic linkage file, interface files and code documentation. AEM tools are dedicated to aviation environmental impact analysts, and their use requires pre-requisite domain expertise. AEM main complexity comes from the adaptation of the input files to the emissions model and the reference to the specificities of the exercise (e.g., fleet definition, etc.) Furthermore, AEM tools are also built up to be included in a more global and automatised workflow. Nevertheless, the user-interface (AEM SUI, Window X) provides easy access to the options selection and processing. The input and output files can be edited with simple spreadsheet tools. Output consists in the enrichment of the input information with the corresponding calculated fuel and emissions amounts. Aggregations are possible (by flight, etc.). </td><td>++</td></tr>
+<tr><td>Stakeholders’ Acceptability</td><td>AEM is deployed worldwide, with more than 80 multi-users active AEM licenses and with the IMPACT licenses. It is one of the validated emissions calculations models for ICAO/CAEP, the main model for establishing EEA inventories and several EUROCONTROL fuel and emissions reporting (e.g., EUROCONTROL FlyingGreen, PRU). </td><td>++</td></tr>
+<tr><td>Flexibility &amp; Customization</td><td>AEM can analyse air traffic scenarios of varying scopes, from local to global, from gate to gate, different operational strategies and policy implementation. AEM options and information setup make the tool adapted for all the LTO and CCD fuel and emissions modes. The AEM DLL is adapted for C++ tool workflows solutions. AEM is adapted for future aircraft types modelling.</td><td>+++</td></tr>
+<tr><td>Maintenance &amp; Availability</td><td>AEM is provided with a user manual and examples. AEM API is provided with the code documentation. Training can be provided on an ad-hoc basis. Support is offered by EUROCONTROL. The tool is under continuous development, as it among others forms the basis for calculating emissions and fuel consumption within tools such as IMPACT and R-NEST.</td><td>++</td></tr>
+</table>
+</section>
+<div class="cta-buttons">
+<a href="#">Go to the platform</a>
+</div>
+</main>
+<footer>
+<p>© 2025 Eurocontrol Sustainability Unit. All rights reserved.</p>
+</footer>
+<script src="https://unpkg.com/@phosphor-icons/web"></script>
+<script>
+    // Menu toggle
+    const toggle = document.getElementById('menu-toggle');
+    const list = document.getElementById('menu-list');
+    toggle?.addEventListener('click', () => {
+      const open = list.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', String(open));
+      toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    });
+    // Tag filtering
+    const chips = Array.from(document.querySelectorAll('.chip'));
+    const cards = Array.from(document.querySelectorAll('.card'));
+    let active = null;
+    function apply(tag) {
+      active = tag;
+      chips.forEach(c=>c.classList.toggle('active', c.dataset.tag===tag));
+      cards.forEach(card=>{
+        const tags = (card.getAttribute('data-tags')||'').toLowerCase();
+        card.classList.toggle('hidden', !tags.includes(tag.toLowerCase()));
+      });
+    }
+    function clear() {
+      active = null;
+      chips.forEach(c=>c.classList.remove('active'));
+      cards.forEach(card=>card.classList.remove('hidden'));
+    }
+    chips.forEach(chip=>{
+      chip.addEventListener('click', ()=>{
+        if(active===chip.dataset.tag) clear(); else apply(chip.dataset.tag);
+      });
+    });
+  </script>
+</body>
+</html>

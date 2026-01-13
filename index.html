@@ -4,22 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Eurocontrol Sustainability Hub</title>
-    <!-- Inter Font for modern typography -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <!-- Phosphor Icons (clean, modern SVGs) -->
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
     
     <style>
         :root {
-            /* FlyingGreen inspired palette */
-            --bg-gradient-start: #0a2e23; /* Deep forest green */
-            --bg-gradient-end: #14533a;   /* Lighter sustainability green */
-            --accent-green: #4ade80;      /* Vibrant lime green for buttons/hovers */
+            --bg-gradient-start: #0a2e23;
+            --bg-gradient-end: #14533a;  
+            --accent-green: #4ade80;      
             --accent-hover: #22c55e;
             --glass-bg: rgba(255, 255, 255, 0.05);
             --glass-border: rgba(255, 255, 255, 0.1);
             --text-primary: #ffffff;
-            --text-secondary: #a7f3d0;    /* Soft mint for descriptions */
+            --text-secondary: #a7f3d0;    
         }
 
         * {
@@ -39,7 +36,7 @@
             position: relative;
         }
 
-        /* Subtle animated background shapes */
+        /* Animated background shapes */
         body::before {
             content: '';
             position: absolute;
@@ -54,20 +51,6 @@
             animation: float 20s infinite ease-in-out;
         }
 
-        body::after {
-            content: '';
-            position: absolute;
-            bottom: -10%;
-            right: -10%;
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, rgba(20, 83, 58, 0.4) 0%, transparent 70%);
-            border-radius: 50%;
-            filter: blur(80px);
-            z-index: -1;
-            animation: float 15s infinite ease-in-out reverse;
-        }
-
         @keyframes float {
             0% { transform: translate(0, 0); }
             50% { transform: translate(50px, 30px); }
@@ -75,24 +58,25 @@
         }
 
         header {
-            text-align: center;
-            padding: 80px 20px 40px;
+            text-align: justify;
+            padding: 80px 24px 40px; /* Responsive padding */
         }
 
         h1 {
-            font-size: 3rem;
+            font-size: clamp(2rem, 8vw, 3.5rem); /* Scales between 2rem and 3.5rem based on screen width */
             font-weight: 700;
             letter-spacing: -0.05rem;
             margin-bottom: 16px;
             background: linear-gradient(to right, #fff, var(--accent-green));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            line-height: 1.1;
         }
 
         p.subtitle {
-            font-size: 1.2rem;
+            font-size: clamp(1rem, 4vw, 1.25rem);
             color: var(--text-secondary);
-            max-width: 600px;
+            max-width: 700px;
             margin: 0 auto;
             line-height: 1.6;
         }
@@ -101,26 +85,24 @@
             flex: 1;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 40px 20px;
+            padding: 20px;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 24px;
+            /* Adaptive Grid: 1 column on mobile, multiple on desktop */
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            width: 100%;
         }
 
-        /* Glassmorphism Card Style */
         .card {
             background: var(--glass-bg);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             border: 1px solid var(--glass-border);
             border-radius: 20px;
-            padding: 32px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+            padding: clamp(20px, 5vw, 32px); /* Responsive inner padding */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
-            position: relative;
-            overflow: hidden;
         }
 
         .card:hover {
@@ -130,12 +112,12 @@
         }
 
         .card-icon {
-            font-size: 40px;
+            font-size: 32px;
             color: var(--accent-green);
-            margin-bottom: 24px;
+            margin-bottom: 20px;
             background: rgba(74, 222, 128, 0.1);
-            width: 64px;
-            height: 64px;
+            width: 56px;
+            height: 56px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -143,7 +125,7 @@
         }
 
         .card h2 {
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             margin-bottom: 12px;
             font-weight: 600;
         }
@@ -152,7 +134,7 @@
             color: var(--text-secondary);
             font-size: 0.95rem;
             line-height: 1.6;
-            margin-bottom: 32px;
+            margin-bottom: 24px;
             flex-grow: 1;
         }
 
@@ -164,104 +146,81 @@
             text-decoration: none;
             color: #0a2e23;
             background-color: var(--accent-green);
-            padding: 12px 24px;
+            padding: 14px 24px; /* Slightly larger for mobile tap targets */
             border-radius: 50px;
             font-weight: 600;
             transition: all 0.2s ease;
             width: 100%;
         }
 
-        .btn:hover {
-            background-color: var(--accent-hover);
-            transform: scale(1.02);
-        }
+        .btn:active { transform: scale(0.98); }
 
         footer {
             text-align: center;
-            padding: 40px;
+            padding: 40px 20px;
             color: rgba(255, 255, 255, 0.4);
             font-size: 0.85rem;
-            margin-top: auto;
         }
 
-        /* Responsive adjustments */
-        @media (max-width: 768px) {
-            h1 { font-size: 2.2rem; }
-            main { padding: 20px; }
+        /* Tablet/Mobile Specific Adjustments */
+        @media (max-width: 600px) {
+            header { padding: 40px 20px 20px; }
+            main { 
+                grid-template-columns: 1fr; /* Force single column on small phones */
+                padding: 15px;
+            }
+            .card { border-radius: 16px; }
         }
-    </style>
+    
+/* === Responsive top navigation === */
+.skip-link{position:absolute;left:-999px;top:0;background:#fff;color:#000;padding:8px 12px;border-radius:4px}
+.skip-link:focus{left:8px}
+.topbar{position:sticky;top:0;z-index:1000;background:rgba(10,46,35,0.8);backdrop-filter:saturate(160%) blur(10px);border-bottom:1px solid var(--glass-border)}
+.topbar-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;gap:12px;padding:10px 16px}
+.brand{color:var(--text-primary);text-decoration:none;font-weight:700;letter-spacing:.2px}
+.menu-toggle{margin-left:auto;font-size:1.6rem;line-height:1;background:transparent;color:var(--text-primary);border:0;cursor:pointer;padding:4px 8px}
+nav.primary .menu{list-style:none;display:none;flex-direction:column;gap:0;width:100%;background:transparent;margin-top:8px}
+nav.primary .menu.open{display:flex}
+nav.primary .menu a{display:block;color:var(--text-primary);text-decoration:none;padding:10px 12px;border-radius:8px}
+nav.primary .menu a:hover,nav.primary .menu a:focus{background:rgba(255,255,255,.12);outline:none}
+nav.primary .menu li.active>a,nav.primary .menu a[aria-current="page"]{background:rgba(74,222,128,.2);font-weight:600}
+@media (min-width:768px){
+  .menu-toggle{display:none}
+  .topbar-inner{display:grid;grid-template-columns:auto 1fr;align-items:center}
+  nav.primary{justify-self:end}
+  nav.primary .menu{display:flex !important;flex-direction:row;align-items:center;gap:8px;background:transparent;margin-top:0}
+  nav.primary .menu a{padding:8px 10px}
+}
+</style>
+
 </head>
 <body>
 
-    <header>
-        <h1>Eurocontrol Sustainability</h1>
-        <p class="subtitle">Advanced tools and services dedicated to decarbonising European aviation and supporting environmental compliance.</p>
-    </header>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+  <div class="topbar" role="banner">
+    <div class="topbar-inner">
+      <a class="brand" href="index.html" aria-label="Homepage">Avenir Catalogue</a>
+      <button id="menu-toggle" class="menu-toggle" aria-controls="menu-list" aria-expanded="false" aria-label="Open menu">☰</button>
+      <nav class="primary" aria-label="Primary navigation">
+        <ul id="menu-list" class="menu">
+          <li class="active"><a href="index.html">Introduction</a></li>
+          <li><a href="tools.html">Tools</a></li>
+          <li><a href="#dashboards">Dashboards</a></li>
+          <li><a href="#use-cases">Use Cases</a></li>
+          <li><a href="#questions">Questions</a></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+
 
     <main>
-        <!-- Card 1: FlyingGreen -->
-        <div class="card">
-            <div class="card-icon"><i class="ph ph-airplane-tilt"></i></div>
-            <h2>FlyingGreen Platform</h2>
-            <p>The flagship "One Stop Shop" for decarbonisation. Access NetZero planning, sustainable fuel (SAF) intelligence, and green financing resources all in one centralized hub.</p>
-            <a href="https://www.eurocontrol.int/platform/flyinggreen" target="_blank" class="btn">
-                Launch Platform <i class="ph ph-arrow-right"></i>
-            </a>
-        </div>
-
-        <!-- Card 2: Small Emitters Tool -->
-        <div class="card">
-            <div class="card-icon"><i class="ph ph-chart-bar"></i></div>
-            <h2>Small Emitters Tool (SET)</h2>
-            <p>A specialized tool allowing small aircraft operators to estimate fuel burn and CO2 emissions using Eurocontrol's support facility, simplifying EU ETS compliance.</p>
-            <a href="https://www.eurocontrol.int/tool/small-emitters-tool-set" target="_blank" class="btn">
-                Access Tool <i class="ph ph-arrow-right"></i>
-            </a>
-        </div>
-
-        <!-- Card 3: ETS Support Facility -->
-        <div class="card">
-            <div class="card-icon"><i class="ph ph-file-text"></i></div>
-            <h2>ETS Support Facility</h2>
-            <p>Comprehensive support for the EU Emissions Trading System and CORSIA. Generate annual emissions reports and manage state-level compliance obligations.</p>
-            <a href="https://www.eurocontrol.int/tool/emissions-trading-system-support-facility" target="_blank" class="btn">
-                View Facility <i class="ph ph-arrow-right"></i>
-            </a>
-        </div>
-
-        <!-- Card 4: NEATS -->
-        <div class="card">
-            <div class="card-icon"><i class="ph ph-cloud-fog"></i></div>
-            <h2>NEATS (Non-CO2 Effects)</h2>
-            <p>The Non-CO2 Aviation Effects Tracking System. A cutting-edge tool designed to monitor and report environmental impacts beyond carbon, such as contrails.</p>
-            <a href="https://neats.eurocontrol.int/" target="_blank" class="btn">
-                Open NEATS <i class="ph ph-arrow-right"></i>
-            </a>
-        </div>
-
-        <!-- Card 5: Open Source Models -->
-        <div class="card">
-            <div class="card-icon"><i class="ph ph-github-logo"></i></div>
-            <h2>ASU Open Source</h2>
-            <p>Access the Aviation Sustainability Unit's open-source repositories. Explore physics-guided neural networks (DeepEnv) and emissions calculation libraries.</p>
-            <a href="https://github.com/eurocontrol-asu" target="_blank" class="btn">
-                View on GitHub <i class="ph ph-arrow-right"></i>
-            </a>
-        </div>
-
-        <!-- Card 6: Aviation Sustainability Maps -->
-        <div class="card">
-            <div class="card-icon"><i class="ph ph-globe-hemisphere-west"></i></div>
-            <h2>Sustainability Data & SAF</h2>
-            <p>Interactive maps and data resources tracking the deployment of Sustainable Aviation Fuels (SAF) and general environmental performance across Europe.</p>
-            <a href="https://www.eurocontrol.int/aviation-sustainability" target="_blank" class="btn">
-                Explore Data <i class="ph ph-arrow-right"></i>
-            </a>
-        </div>
+        <h1>Avenir Pillar 2 Catalogue</h1>
+        <p class="subtitle">One of the purposes of the AVENIR WG was to develop methods and provide insight into how individual ANSPs improve environmental performance through the implementation of new technologies and procedures. With a focus on exchanging best practices on how the impact of the changes is measured, how environmental performance and all the trade-offs are explained, the goal of Pillar 2 was the creation of a repository containing this information. Based on presentations made to the group between 2023 and 2025 and various workshops, this document offers ANSPs an overview of available solutions for evaluating fuel consumption, emissions, noise, and their related interdependencies. It promotes knowledge sharing, minimises duplication of efforts and assists ANSPs in selecting suitable tools that align with their specific operational environments. </h3>
     </main>
 
     <footer>
-        <p>This portal is for informational purposes. All tools are property of Eurocontrol.</p>
+        <p>&copy; 2025 Eurocontrol Sustainability Unit. All rights reserved.</p>
     </footer>
 
 </body>
