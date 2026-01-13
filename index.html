@@ -205,7 +205,7 @@ nav.primary .menu li.active>a,nav.primary .menu a[aria-current="page"]{backgroun
         <ul id="menu-list" class="menu">
           <li class="active"><a href="index.html">Introduction</a></li>
           <li><a href="tools.html">Tools</a></li>
-          <li><a href="#dashboards">Dashboards</a></li>
+          <li><a href="dashboard.html">Dashboards</a></li>
           <li><a href="#use-cases">Use Cases</a></li>
           <li><a href="#questions">Questions</a></li>
         </ul>
@@ -222,6 +222,16 @@ nav.primary .menu li.active>a,nav.primary .menu a[aria-current="page"]{backgroun
     <footer>
         <p>&copy; 2025 Eurocontrol Sustainability Unit. All rights reserved.</p>
     </footer>
+<script>
+    // Menu toggle
+    const toggle = document.getElementById('menu-toggle');
+    const list = document.getElementById('menu-list');
+    toggle?.addEventListener('click', () => {
+      const open = list.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', String(open));
+      toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    });
+</script>
 
 </body>
 </html>

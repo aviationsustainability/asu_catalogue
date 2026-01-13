@@ -51,8 +51,7 @@
     .card:hover { transform: translateY(-4px); box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3); border-color: rgba(74, 222, 128, 0.3); }
     .card-icon { font-size: 30px; color: var(--accent-green); margin-bottom: 18px; background: rgba(74, 222, 128, 0.1); width: 52px; height: 52px; display: flex; align-items: center; justify-content: center; border-radius: 12px; }
     .card h2 { font-size: 1.25rem; margin-bottom: 10px; font-weight: 600; }
-    .card p { color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6; margin-bottom: 14px; margin-top: 14px; text-align: justify
-     }
+    .card p { color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6; margin-top:14px ; margin-bottom: 14px; text-align: justify }
     .meta { display: grid; grid-template-columns: 1fr; gap: 8px; margin-top: 8px; }
     .meta li { color: var(--text-secondary); font-size: .9rem; }
     .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; text-decoration: none; color: #0a2e23; background-color: var(--accent-green); padding: 12px 18px; border-radius: 50px; font-weight: 600; transition: all 0.2s ease; }
@@ -79,8 +78,8 @@
       <nav class="primary" aria-label="Primary navigation">
         <ul id="menu-list" class="menu">
           <li><a href="index.html">Introduction</a></li>
-          <li class="active"><a href="tools.html" aria-current="page">Tools</a></li>
-          <li><a href="dashboard.html">Dashboards</a></li>
+          <li><a href="tools.html">Tools</a></li>
+          <li class="active"><a href="dashboard.html" aria-current="page">Dashboards</a></li>
           <li><a href="#use-cases">Use Cases</a></li>
           <li><a href="#questions">Questions</a></li>
         </ul>
@@ -88,95 +87,78 @@
     </div>
   </div>
   <header>
-    <h1 id="main-content">Tools</h1>
- <p class="subtitle" style="font-size: 15px; text-align: justify;">
-  The various tools described in this document help estimate fuel consumption, emissions and noise to better analyse environmental impacts, address interdependencies and facilitate constructive exchanges with aircraft operators and local communities. The tools have been designed to objectify pollution (not nuisance) and the emission of gaseous pollutants, and to create a solid basis for further steps. None of the software packages are meant to “judge”, they just provide factual outputs based on the inputs made by the users. Some of the tools focus on the analysis of completed flights, while others are designed for the calculation of planned procedures. Some applications offer both functionalities, while others include the capability for noise impact assessments. 
-  <br><br>
-  <strong>Note:</strong> the information presented in this section has been collected via presentations made to the sub-group by experts from the organisations providing the tools or using them, and/or from information publicly made available on the websites of those organisations. Since the document targets experts, and to avoid making it unreadable, it does not provide the explanation of the acronyms in the description of the tools or dashboards itself. The acronyms can be found in Section 7.
-</p>
+    <h1 id="main-content">Dashboards</h1>
 </header>
-
-
-
-  <div class="tagbar">
-    <div class="tags">
-      <button class="chip" data-tag="emissions">Emissions</button>
-      <button class="chip" data-tag="noise">Noise</button>
-      <button class="chip" data-tag="airport">Airport</button>
-      <button class="chip" data-tag="network">Network</button>
-      <button class="chip" data-tag="research">Research</button>
-      <button class="chip" data-tag="open-source">Open source</button>
-    </div>
-  </div>
 
   <main class="grid">
     
-    <!-- AEM -->
-    <article class="card" data-tags="emissions">
+    <article class="card" data-tags="">
       <div class="card-icon"><i class="ph ph-factory"></i></div>
-      <h2>Advanced Emission Model (AEM)</h2>
-      <p>Suite for calculating aircraft engine emissions across 4D trajectories (LTO + CCD), supporting ~24 pollutants (CO₂, NOx, SOx, PM, HC, …). BADA and CAEP methodologies, CLI/GUI/API variants.</p>
-      <a class="btn" href="aem-details.html">Details <i class="ph ph-arrow-right"></i></a>
+      <h2>TMA Flight Efficiency Dashboard </h2>
+      <img src="figure/tma.png"></img>
+      <p>An interactive tool for analyzing and improving flight operations in terminal areas.</p>
+      <a class="btn" href="aem-details.html">Details<i class="ph ph-arrow-right"></i></a>
     </article>
 
-    <!-- Open-ALAQS -->
-    <article class="card" data-tags="airport open-source emissions">
+    <article class="card" data-tags="">
       <div class="card-icon"><i class="ph ph-cloud-fog"></i></div>
-      <h2>Open‑ALAQS</h2>
-      <p>Airport Local Air Quality Studies: QGIS plugin for inventory & dispersion (AUSTAL), covering aircraft and non‑aircraft sources (roads, GSE). Public code, flexible source selection.</p>
-      <a class="btn" href="#alaqs-details">Details <i class="ph ph-arrow-right"></i></a>
+      <h2>FATHOM</h2>
+      <img src="figure/fathom.png"></img>
+      <p>A data analytics dashboard provided by EUROCONTROL, offering comprehensive insights into European air traffic management.</p>
+      <a class="btn" href="">Details<i class="ph ph-arrow-right"></i></a>
     </article>
 
-    <!-- IMPACT / INTACT -->
-    <article class="card" data-tags="emissions noise airport">
+    <article class="card" data-tags="">
       <div class="card-icon"><i class="ph ph-wave-sine"></i></div>
-      <h2>IMPACT & INTACT</h2>
-      <p>Web platform for noise, gaseous and particulate assessments (BADA4 TEM). ICAO/ECAC‑aligned. INTACT enables automated, near‑real‑time local impact maps and graphics.</p>
-      <a class="btn" href="#impact-details">Details <i class="ph ph-arrow-right"></i></a>
+      <h2>CO2MPASS </h2>
+      <img src="figure/compass.png"></img>
+      <p>An interactive dashboard to support the Network manager Operational Performance Framework.</p>
+      <a class="btn" href="">Details<i class="ph ph-arrow-right"></i></a>
     </article>
 
-    <!-- NEST -->
-    <article class="card" data-tags="network emissions">
+    <article class="card" data-tags="">
       <div class="card-icon"><i class="ph ph-circles-three"></i></div>
-      <h2>NEST</h2>
-      <p>Network Strategic Tool for scenario‑based planning and airspace design via DDR datasets. Simulates trajectories, CAPA/ENV/Cost‑EFF impacts; AIRAC‑aligned updates.</p>
-      <a class="btn" href="#nest-details">Details <i class="ph ph-arrow-right"></i></a>
+      <h2>FLair </h2>
+      <img src="figure/flair.png"></img>
+      <p>The Flight Level Adherence Interactive Reporting dashboard (FLair) provides users with flight level details to those flights that did not adhere to the filed (requested) flight level at some point during their route.</p>
+      <a class="btn" href="">Details<i class="ph ph-arrow-right"></i></a>
     </article>
 
-    <!-- R-NEST -->
-    <article class="card" data-tags="network research emissions">
-      <div class="card-icon"><i class="ph ph-flask"></i></div>
-      <h2>R‑NEST</h2>
-      <p>Research‑grade network simulation tool (CASA delay model, 3D HMI) for concept validation, scenario comparison and SESAR projects; very high performance.</p>
-      <a class="btn" href="#rnest-details">Details <i class="ph ph-arrow-right"></i></a>
+    <article class="card" data-tags="">
+      <div class="card-icon"><i class="ph ph-wave-sine"></i></div>
+      <h2>FlyingGreen Platform - NetZero Pillar </h2>
+      <img src="figure/netzero.png"></img>
+      <p>The NetZero pillar  offers a user-friendly dashboard that enables monitoring and forecasting of emissions based on operational improvements, fleet renewal and traffic growth scenarios.</p>
+      <a class="btn" href="">Details<i class="ph ph-arrow-right"></i></a>
     </article>
 
-    <!-- ACROPOLE -->
-    <article class="card" data-tags="emissions research">
-      <div class="card-icon"><i class="ph ph-brain"></i></div>
-      <h2>ACROPOLE</h2>
-      <p>AI‑based fuel flow & burn from radar/ADS‑B (QAR‑trained proxies; ICAO EDB/BFFM2 for emissions). Supports indicators (CDO/CCO) and ops inefficiency analysis.</p>
-      <a class="btn" href="#acropole-details">Details <i class="ph ph-arrow-right"></i></a>
+    <article class="card" data-tags="">
+      <div class="card-icon"><i class="ph ph-wave-sine"></i></div>
+      <h2>Landing and Take-Off (LTO) Cycle Emissions Estimator </h2>
+      <img src="figure/lto.png"></img>
+      <p>It is is designed to quickly and easily access emission information (CO2 and NOx emissions) during the landing and take-off phases of aircraft operations based on operational data instead of standardised ICAO LTO flight phase durations. </p>
+      <a class="btn" href="">Details<i class="ph ph-arrow-right"></i></a>
     </article>
 
-    <!-- AEDT -->
-    <article id="card-aedt" class="card" data-tags="emissions noise airport">
-      <div class="card-icon"><i class="ph ph-soundcloud-logo"></i></div>
-      <h2>AEDT</h2>
-      <p>FAA’s 4D aviation environmental design tool for fuel, emissions, noise & dispersion; scalable (airport→global). Uses ANP, BADA3/4, ICAO EDB; Windows + SQL Server.</p>
-      <a class="btn" href="#aedt-details">Details <i class="ph ph-arrow-right"></i></a>
+    <article class="card" data-tags="emissions">
+      <div class="card-icon"><i class="ph ph-wave-sine"></i></div>
+      <h2> Aviation Intelligence Portal – Flight Efficiency </h2>
+      <img src="figure/aiu.png"></img>
+      <p>The Efficiency and Environment  section of the Aviation Intelligence (AIU) Portal is a EUROCONTROL dashboard that provides data-driven insights into the efficiency and environmental impact of European aviation.</p>
+      <a class="btn" href="">Details<i class="ph ph-arrow-right"></i></a>
     </article>
 
+    <article class="card" data-tags="emissions">
+      <div class="card-icon"><i class="ph ph-wave-sine"></i></div>
+      <h2> Single European Sky (SES) Data Portal   </h2>
+      <img src="figure/ses.png"></img>
+      <p>It offers comprehensive reporting on performance indicators that are subject to targets or are monitored within the framework of the Single European Sky (SES) performance scheme.</p>
+      <a class="btn" href="">Details<i class="ph ph-arrow-right"></i></a>
+    </article>
   </main>
 
   <!-- Optional inline details anchors (to preserve deep links) -->
   <section id="aem-details" class="hidden"></section>
-  <section id="alaqs-details" class="hidden"></section>
-  <section id="impact-details" class="hidden"></section>
-  <section id="nest-details" class="hidden"></section>
-  <section id="rnest-details" class="hidden"></section>
-  <section id="acropole-details" class="hidden"></section>
-  <section id="aedt-details" class="hidden"></section>
 
 <footer>
         <p>&copy; 2025 Eurocontrol Sustainability Unit. All rights reserved.</p>
