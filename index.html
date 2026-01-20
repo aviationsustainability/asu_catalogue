@@ -1,228 +1,242 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eurocontrol Sustainability Hub</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AVENIR Pillar 2 Catalogue</title>
+  <link href="https://fonts.googleapis.com/css2?family=Exo:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <style>
+    :root {
+      --primary: #009F6E; --primary-dark: #075E54; --accent: #009F6E;
+      --ink: #212121; --paper: #FCFCFC;
+      --bg-gradient-start: #FCFCFC; --bg-gradient-end: #EAF4FF;
+      --surface: #FFFFFF; --surface-elev: rgba(255,255,255,0.8);
+      --border: rgba(0,0,0,0.08);
+      --text-primary: #212121; --text-secondary: #455A64; --text-inverse: #FFFFFF;
+      --focus: #009F6E; --shadow: 0 10px 30px rgba(0,0,0,0.08);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Exo';
+      background: linear-gradient(135deg, var(--bg-gradient-start), var(--bg-gradient-end));
+      color: var(--text-primary);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+    }
+    /* Decorative soft background spot using brand green */
+    body::before {
+      content: '';
+      position: fixed;
+      top: -20%; left: -10%;
+      width: 700px; height: 700px;
+      background: radial-gradient(circle, rgba(0,159,110,0.12) 0%, transparent 65%);
+      filter: blur(60px);
+      z-index: -1;
+      pointer-events: none;
+    }
+    .topbar {
+      position: sticky; top: 0; z-index: 1000;
+      background: rgba(252,252,252,0.8);
+      backdrop-filter: saturate(140%) blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+    .topbar-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; gap: 12px; padding: 12px 16px; }
+    .brand { color: var(--ink); text-decoration: none; font-weight: 800; letter-spacing: .2px; }
+    .brand:hover { color: var(--primary-dark); }
+    .menu-toggle { margin-left: auto; font-size: 1.6rem; line-height: 1; background: transparent; color: var(--ink); border: 0; cursor: pointer; padding: 4px 8px; }
+    .menu-toggle:focus { outline: 2px solid var(--focus); outline-offset: 2px; border-radius: 6px; }
+    nav.primary .menu { list-style: none; display: none; flex-direction: column; gap: 0; width: 100%; background: transparent; margin-top: 8px; }
+    nav.primary .menu.open { display: flex }
+    nav.primary .menu a { display: block; color: var(--ink); text-decoration: none; padding: 10px 12px; border-radius: 8px; }
+    nav.primary .menu a:hover, nav.primary .menu a:focus { background: rgba(41,144,234,0.12); outline: none; }
+    nav.primary .menu li.active>a, nav.primary .menu a[aria-current="page"] { background: rgba(0,159,110,0.12); font-weight: 600 }
+    @media (min-width: 768px){
+      .menu-toggle { display: none }
+      .topbar-inner { display: grid; grid-template-columns: auto 1fr; align-items: center }
+      nav.primary { justify-self: end }
+      nav.primary .menu { display: flex !important; flex-direction: row; align-items: center; gap: 8px; background: transparent; margin-top: 0 }
+      nav.primary .menu a { padding: 8px 10px }
+    }
+    header { text-align: center; padding: 64px 24px 24px; }
+    h1 { font-size: clamp(2rem, 6vw, 3.25rem); font-weight: 800; letter-spacing: -0.02em; margin-bottom: 12px; color: var(--primary-dark); }
+    p.subtitle { font-size: clamp(1rem, 3.2vw, 1.15rem); color: var(--text-secondary); max-width: 900px; margin: 0 auto; line-height: 1.65; }
+    main { flex: 1; max-width: 1200px; margin: 0 auto; padding: 24px; display: grid; grid-template-columns: 1fr; gap: 28px; width: 100%; }
+    section { background: var(--surface-elev); border: 1px solid var(--border); border-radius: 16px; padding: clamp(18px, 3.5vw, 28px); box-shadow: var(--shadow); }
+    section h2 { font-size: 1.4rem; margin-bottom: 10px; color: var(--ink); }
+    section p, section li { color: var(--text-secondary); line-height: 1.65; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px; }
+    .card { background: var(--surface-elev); border: 1px solid var(--border); border-radius: 16px; padding: clamp(18px, 3.5vw, 28px); box-shadow: var(--shadow); transition: transform .25s ease, box-shadow .25s ease; display: flex; flex-direction: column; }
+    .card:hover { transform: translateY(-4px); box-shadow: 0 16px 36px rgba(0,0,0,0.12); }
+    .card-icon { font-size: 28px; color: var(--accent); margin-bottom: 14px; background: rgba(0,159,110,0.10); width: 52px; height: 52px; display: flex; align-items: center; justify-content: center; border-radius: 12px; }
+    .card h2 { font-size: 1.25rem; margin-bottom: 10px; font-weight: 700; color: var(--ink); }
+    .card p { color: var(--text-secondary); font-size: 0.98rem; line-height: 1.6; margin-bottom: 16px; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; text-decoration: none; color: var(--text-inverse); background: var(--primary); padding: 12px 18px; border-radius: 999px; font-weight: 700; transition: background .2s ease, transform .05s ease; width: fit-content; }
+    .btn:hover { background: var(--primary-dark); }
+    .btn:active { transform: scale(0.98); }
+
+    /* NEW: toggle button style to match .btn but as a <button> */
+    .btn-ghost {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--primary); color: var(--text-inverse);
+      border: none; border-radius: 999px;
+      padding: 10px 14px; font-weight: 700; cursor: pointer;
+      width: fit-content;
+    }
+    .btn-ghost:hover { background: var(--primary-dark); }
+
+    /* NEW: expandable placeholder list styling */
+    .placeholder-list {
+      margin-top: 12px;
+      padding-left: 18px;
+      display: none;               /* hidden by default */
+      animation: fadeIn .18s ease;
+    }
+    .placeholder-list.show { display: block; }
+    .placeholder-list p { margin: 6px 0; }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-2px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    footer { text-align: center; padding: 36px 20px; color: #607D8B; font-size: 0.9rem; }
+    /* Accessibility helpers */
+    .skip-link { position: absolute; left: -999px; top: 0; background: var(--paper); color: var(--ink); padding: 8px 12px; border-radius: 4px; }
+    .skip-link:focus { left: 8px; outline: 2px solid var(--focus); }
+    @media (max-width: 600px){
+      header { padding: 40px 20px 16px; }
+      main { grid-template-columns: 1fr; padding: 16px; }
+      .card { border-radius: 14px; }
+    }
     
-    <style>
-        :root {
-            --bg-gradient-start: #0a2e23;
-            --bg-gradient-end: #14533a;  
-            --accent-green: #4ade80;      
-            --accent-hover: #22c55e;
-            --glass-bg: rgba(255, 255, 255, 0.05);
-            --glass-border: rgba(255, 255, 255, 0.1);
-            --text-primary: #ffffff;
-            --text-secondary: #a7f3d0;    
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, var(--bg-gradient-start), var(--bg-gradient-end));
-            color: var(--text-primary);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            overflow-x: hidden;
-            position: relative;
-        }
-
-        /* Animated background shapes */
-        body::before {
-            content: '';
-            position: absolute;
-            top: -10%;
-            left: -10%;
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(74, 222, 128, 0.15) 0%, transparent 70%);
-            border-radius: 50%;
-            filter: blur(80px);
-            z-index: -1;
-            animation: float 20s infinite ease-in-out;
-        }
-
-        @keyframes float {
-            0% { transform: translate(0, 0); }
-            50% { transform: translate(50px, 30px); }
-            100% { transform: translate(0, 0); }
-        }
-
-        header {
-            text-align: justify;
-            padding: 80px 24px 40px; /* Responsive padding */
-        }
-
-        h1 {
-            font-size: clamp(2rem, 8vw, 3.5rem); /* Scales between 2rem and 3.5rem based on screen width */
-            font-weight: 700;
-            letter-spacing: -0.05rem;
-            margin-bottom: 16px;
-            background: linear-gradient(to right, #fff, var(--accent-green));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            line-height: 1.1;
-        }
-
-        p.subtitle {
-            font-size: clamp(1rem, 4vw, 1.25rem);
-            color: var(--text-secondary);
-            max-width: 700px;
-            margin: 0 auto;
-            line-height: 1.6;
-        }
-
-        main {
-            flex: 1;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-            display: grid;
-            /* Adaptive Grid: 1 column on mobile, multiple on desktop */
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            width: 100%;
-        }
-
-        .card {
-            background: var(--glass-bg);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid var(--glass-border);
-            border-radius: 20px;
-            padding: clamp(20px, 5vw, 32px); /* Responsive inner padding */
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
-            border-color: rgba(74, 222, 128, 0.3);
-        }
-
-        .card-icon {
-            font-size: 32px;
-            color: var(--accent-green);
-            margin-bottom: 20px;
-            background: rgba(74, 222, 128, 0.1);
-            width: 56px;
-            height: 56px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 12px;
-        }
-
-        .card h2 {
-            font-size: 1.4rem;
-            margin-bottom: 12px;
-            font-weight: 600;
-        }
-
-        .card p {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-            line-height: 1.6;
-            margin-bottom: 24px;
-            flex-grow: 1;
-        }
-
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            text-decoration: none;
-            color: #0a2e23;
-            background-color: var(--accent-green);
-            padding: 14px 24px; /* Slightly larger for mobile tap targets */
-            border-radius: 50px;
-            font-weight: 600;
-            transition: all 0.2s ease;
-            width: 100%;
-        }
-
-        .btn:active { transform: scale(0.98); }
-
-        footer {
-            text-align: center;
-            padding: 40px 20px;
-            color: rgba(255, 255, 255, 0.4);
-            font-size: 0.85rem;
-        }
-
-        /* Tablet/Mobile Specific Adjustments */
-        @media (max-width: 600px) {
-            header { padding: 40px 20px 20px; }
-            main { 
-                grid-template-columns: 1fr; /* Force single column on small phones */
-                padding: 15px;
-            }
-            .card { border-radius: 16px; }
-        }
-    
-/* === Responsive top navigation === */
-.skip-link{position:absolute;left:-999px;top:0;background:#fff;color:#000;padding:8px 12px;border-radius:4px}
-.skip-link:focus{left:8px}
-.topbar{position:sticky;top:0;z-index:1000;background:rgba(10,46,35,0.8);backdrop-filter:saturate(160%) blur(10px);border-bottom:1px solid var(--glass-border)}
-.topbar-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;gap:12px;padding:10px 16px}
-.brand{color:var(--text-primary);text-decoration:none;font-weight:700;letter-spacing:.2px}
-.menu-toggle{margin-left:auto;font-size:1.6rem;line-height:1;background:transparent;color:var(--text-primary);border:0;cursor:pointer;padding:4px 8px}
-nav.primary .menu{list-style:none;display:none;flex-direction:column;gap:0;width:100%;background:transparent;margin-top:8px}
-nav.primary .menu.open{display:flex}
-nav.primary .menu a{display:block;color:var(--text-primary);text-decoration:none;padding:10px 12px;border-radius:8px}
-nav.primary .menu a:hover,nav.primary .menu a:focus{background:rgba(255,255,255,.12);outline:none}
-nav.primary .menu li.active>a,nav.primary .menu a[aria-current="page"]{background:rgba(74,222,128,.2);font-weight:600}
-@media (min-width:768px){
-  .menu-toggle{display:none}
-  .topbar-inner{display:grid;grid-template-columns:auto 1fr;align-items:center}
-  nav.primary{justify-self:end}
-  nav.primary .menu{display:flex !important;flex-direction:row;align-items:center;gap:8px;background:transparent;margin-top:0}
-  nav.primary .menu a{padding:8px 10px}
-}
-</style>
-
+  </style>
 </head>
 <body>
-
   <a class="skip-link" href="#main-content">Skip to content</a>
   <div class="topbar" role="banner">
     <div class="topbar-inner">
-      <a class="brand" href="index.html" aria-label="Homepage">Avenir Catalogue</a>
+      <a class="brand" href="index.html" aria-label="Homepage">AVENIR Catalogue</a>
       <button id="menu-toggle" class="menu-toggle" aria-controls="menu-list" aria-expanded="false" aria-label="Open menu">☰</button>
       <nav class="primary" aria-label="Primary navigation">
         <ul id="menu-list" class="menu">
-          <li class="active"><a href="index.html">Introduction</a></li>
+          <li class="active"><a href="index.html" aria-current="page">Introduction</a></li>
           <li><a href="tools.html">Tools</a></li>
           <li><a href="dashboard.html">Dashboards</a></li>
           <li><a href="#use-cases">Use Cases</a></li>
-          <li><a href="#questions">Questions</a></li>
+          <li><a href="#questions">FAQs</a></li>
+          <li><a href="#questions">Downloads</a></li>
         </ul>
       </nav>
     </div>
   </div>
 
+  <header id="main-content" role="heading" aria-level="1">
+    <h1>AVENIR Pillar 2 Catalogue</h1>
+    <p class="subtitle">An <strong>open-source</strong> resource for Air Navigation Service Providers (ANSPs). It helps teams across <strong>all organisational levels</strong> — from operational experts to senior management — to understand, select, and apply tools and methodologies that improve environmental performance in ATM. The catalogue is <strong>non‑prescriptive</strong>, practical, and easy to navigate, avoiding any perception of assessment, ranking, or compliance pressure.</p>
+  </header>
 
-    <main>
-        <h1>Avenir Pillar 2 Catalogue</h1>
-        <p class="subtitle">One of the purposes of the AVENIR WG was to develop methods and provide insight into how individual ANSPs improve environmental performance through the implementation of new technologies and procedures. With a focus on exchanging best practices on how the impact of the changes is measured, how environmental performance and all the trade-offs are explained, the goal of Pillar 2 was the creation of a repository containing this information. Based on presentations made to the group between 2023 and 2025 and various workshops, this document offers ANSPs an overview of available solutions for evaluating fuel consumption, emissions, noise, and their related interdependencies. It promotes knowledge sharing, minimises duplication of efforts and assists ANSPs in selecting suitable tools that align with their specific operational environments. </h3>
-    </main>
+  <main>
+    <section id="context" aria-labelledby="context-title">
+      <h2 id="context-title">The scope</h2>
+      <p>One of the core goals of the AVENIR Working Group (WG) was to identify methods and provide insight into how ANSPs can improve environmental performance through new technologies and operational procedures. By focusing on the exchange of best practices — including how the impact of operational changes is measured and how performance trade‑offs are addressed — Pillar 2 set out to create a shared, open repository of this knowledge.
+Based on contributions made between 2023 and 2025, including presentations, workshops, and operational case studies, the catalogue offers ANSPs a comprehensive overview of existing solutions for evaluating fuel consumption, emissions, noise, and their interdependencies. It promotes knowledge sharing, reduces duplication of effort, and helps organisations choose tools that best align with their specific operational environment.</p>
+    </section>
 
-    <footer>
-        <p>&copy; 2025 Eurocontrol Sustainability Unit. All rights reserved.</p>
-    </footer>
-<script>
+    <section id="how-to-use" aria-labelledby="how-title">
+      <h2 id="how-title">The usage levels</h2>
+
+      <div class="grid">
+        <!-- CARD 1 -->
+        <div class="card">
+          <div class="card-icon" aria-hidden="true"><i class="ph ph-rocket-launch"></i></div>
+          <h3>Early-stage or smaller ANSPs</h3>
+          <p>Identify fit-for-purpose methods and tools with low entry barriers. Start with foundational KPIs and examples, then scale as data maturity grows.</p>
+
+          <!-- NEW: toggle button + list -->
+          <button class="btn-ghost usage-toggle"
+                  aria-expanded="false"
+                  aria-controls="list-early">
+            <i class="ph ph-list-bullets" aria-hidden="true"></i>
+            Show examples
+          </button>
+          <ul id="list-early" class="placeholder-list" hidden>
+             <strong> Tools </strong>
+            <p>Placeholder alpha (Advanced)</p>
+            <p>Placeholder beta (Advanced)</p>
+            <p>Placeholder gamma (Advanced)</p>
+
+            <strong> Dashboards </strong>
+            <p>Placeholder alpha (Advanced)</p>
+            <p>Placeholder beta (Advanced)</p>
+            <p>Placeholder gamma (Advanced)</p>
+          </ul>
+        </div>
+
+        <!-- CARD 2 -->
+        <div class="card">
+          <div class="card-icon" aria-hidden="true"><i class="ph ph-arrows-in-cardinal"></i></div>
+          <h3>Developing ANSPs</h3>
+          <p>Compare alternative approaches, understand input/output requirements, and use the usage-level tags to align tools with planning horizons.</p>
+
+          <!-- NEW: toggle button + list -->
+          <button class="btn-ghost usage-toggle"
+                  aria-expanded="false"
+                  aria-controls="list-developing">
+            <i class="ph ph-list-bullets" aria-hidden="true"></i>
+            Show examples
+          </button>
+          <ul id="list-developing" class="placeholder-list" hidden>
+             <strong> Tools </strong>
+            <p>Placeholder alpha (Advanced)</p>
+            <p>Placeholder beta (Advanced)</p>
+            <p>Placeholder gamma (Advanced)</p>
+
+            <strong> Dashboards </strong>
+            <p>Placeholder alpha (Advanced)</p>
+            <p>Placeholder beta (Advanced)</p>
+            <p>Placeholder gamma (Advanced)</p>
+          </ul>
+        </div>
+
+        <!-- CARD 3 -->
+        <div class="card">
+          <div class="card-icon" aria-hidden="true"><i class="ph ph-stack"></i></div>
+          <h3>Advanced ANSPs</h3>
+          <p>Explore interdependencies (fuel, emissions, noise), share case studies, and integrate methodologies into dashboards and decision-support flows.</p>
+
+          <!-- NEW: toggle button + list -->
+          <button class="btn-ghost usage-toggle"
+                  aria-expanded="false"
+                  aria-controls="list-advanced">
+            <i class="ph ph-list-bullets" aria-hidden="true"></i>
+            Show examples
+          </button>
+          <ul id="list-advanced" class="placeholder-list" hidden>
+            <strong> Tools </strong>
+            <p>Placeholder alpha (Advanced)</p>
+            <p>Placeholder beta (Advanced)</p>
+            <p>Placeholder gamma (Advanced)</p>
+
+            <strong> Dashboards </strong>
+            <p>Placeholder alpha (Advanced)</p>
+            <p>Placeholder beta (Advanced)</p>
+            <p>Placeholder gamma (Advanced)</p>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+<footer>
+<p> <strong>Open‑Source Governance: </strong>The Avenir Catalogue is developed as an open‑source, collaborative reference. Its evolution is driven by operational experience, user feedback, and contributions from ANSPs, ensuring that methods, tools and practices remain aligned with real-world challenges and emerging needs.</p>
+<p style="margin-bottom: 1rem;"></p>
+<p>© 2025 Eurocontrol Sustainability Unit. All rights reserved.</p>
+</footer>
+
+  <script>
     // Menu toggle
     const toggle = document.getElementById('menu-toggle');
     const list = document.getElementById('menu-list');
@@ -231,7 +245,30 @@ nav.primary .menu li.active>a,nav.primary .menu a[aria-current="page"]{backgroun
       toggle.setAttribute('aria-expanded', String(open));
       toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
     });
-</script>
 
+    // NEW: usage level card toggle buttons
+    document.querySelectorAll('.usage-toggle').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const listId = btn.getAttribute('aria-controls');
+        const target = document.getElementById(listId);
+        const expanded = btn.getAttribute('aria-expanded') === 'true';
+
+        // toggle state
+        btn.setAttribute('aria-expanded', String(!expanded));
+        btn.innerHTML = !expanded
+          ? '<i class="ph ph-list-bullets" aria-hidden="true"></i> Hide examples'
+          : '<i class="ph ph-list-bullets" aria-hidden="true"></i> Show examples';
+
+        // show/hide list (keep both display + hidden attribute for a11y)
+        if (!expanded) {
+          target.hidden = false;
+          target.classList.add('show');
+        } else {
+          target.classList.remove('show');
+          setTimeout(() => { target.hidden = true; }, 120);
+        }
+      });
+    });
+  </script>
 </body>
 </html>

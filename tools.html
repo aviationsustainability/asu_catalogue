@@ -1,72 +1,92 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tools</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AVENIR Pillar 2 Catalogue</title>
+  <!-- Fonts + Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Exo:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
   <script src="https://unpkg.com/@phosphor-icons/web"></script>
   <style>
     :root {
-      --bg-gradient-start: #0a2e23;
-      --bg-gradient-end: #14533a;
-      --accent-green: #4ade80;
-      --accent-hover: #22c55e;
-      --glass-bg: rgba(255, 255, 255, 0.05);
-      --glass-border: rgba(255, 255, 255, 0.1);
-      --text-primary: #ffffff;
-      --text-secondary: #a7f3d0;
+      --primary: #009F6E; --primary-dark: #075E54; --accent: #009F6E;
+      --ink: #212121; --paper: #FCFCFC;
+      --bg-gradient-start: #FCFCFC; --bg-gradient-end: #EAF4FF;
+      --surface: #FFFFFF; --surface-elev: rgba(255,255,255,0.8);
+      --border: rgba(0,0,0,0.08);
+      --text-primary: #212121; --text-secondary: #455A64; --text-inverse: #FFFFFF;
+      --focus: #009F6E; --shadow: 0 10px 30px rgba(0,0,0,0.08);
     }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      font-family: 'Inter', sans-serif;
-      background: linear-gradient(135deg, var(--bg-gradient-start), var(--bg-gradient-end));
-      color: var(--text-primary);
-      min-height: 100vh; display: flex; flex-direction: column; overflow-x: hidden; position: relative;
-    }
-    body::before {
-      content: ''; position: absolute; top: -10%; left: -10%; width: 600px; height: 600px;
-      background: radial-gradient(circle, rgba(74, 222, 128, 0.15) 0%, transparent 70%);
-      border-radius: 50%; filter: blur(80px); z-index: -1; animation: float 20s infinite ease-in-out;
-    }
-    @keyframes float { 0% { transform: translate(0, 0); } 50% { transform: translate(50px, 30px); } 100% { transform: translate(0, 0); } }
-    .skip-link{position:absolute;left:-999px;top:0;background:#fff;color:#000;padding:8px 12px;border-radius:4px}
-    .skip-link:focus{left:8px}
-    .topbar{position:sticky;top:0;z-index:1000;background:rgba(10,46,35,0.8);backdrop-filter:saturate(160%) blur(10px);border-bottom:1px solid var(--glass-border)}
-    .topbar-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;gap:12px;padding:10px 16px}
-    .brand{color:var(--text-primary);text-decoration:none;font-weight:700;letter-spacing:.2px}
-    .menu-toggle{margin-left:auto;font-size:1.6rem;line-height:1;background:transparent;color:var(--text-primary);border:0;cursor:pointer;padding:4px 8px}
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:'Exo';background:linear-gradient(135deg,var(--bg-gradient-start),var(--bg-gradient-end));color:var(--text-primary);min-height:100vh;display:flex;flex-direction:column;overflow-x:hidden}
+    body::before{content:'';position:fixed;top:-20%;left:-10%;width:700px;height:700px;background:radial-gradient(circle,rgba(0,159,110,.12) 0%,transparent 65%);filter:blur(60px);z-index:-1;pointer-events:none}
+    .topbar{position:sticky;top:0;z-index:1000;background:rgba(252,252,252,0.85);backdrop-filter:saturate(140%) blur(10px);border-bottom:1px solid var(--border)}
+    .topbar-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;gap:12px;padding:12px 16px}
+    .brand{color:var(--ink);text-decoration:none;font-weight:800;letter-spacing:.2px}
+    .brand:hover{color:var(--primary-dark)}
+    .menu-toggle{margin-left:auto;font-size:1.6rem;line-height:1;background:transparent;color:var(--ink);border:0;cursor:pointer;padding:4px 8px}
+    .menu-toggle:focus{outline:2px solid var(--focus);outline-offset:2px;border-radius:6px}
     nav.primary .menu{list-style:none;display:none;flex-direction:column;gap:0;width:100%;background:transparent;margin-top:8px}
     nav.primary .menu.open{display:flex}
-    nav.primary .menu a{display:block;color:var(--text-primary);text-decoration:none;padding:10px 12px;border-radius:8px}
-    nav.primary .menu a:hover,nav.primary .menu a:focus{background:rgba(255,255,255,.12);outline:none}
-    nav.primary .menu li.active>a,nav.primary .menu a[aria-current="page"]{background:rgba(74,222,128,.2);font-weight:600}
-    @media (min-width:768px){ .menu-toggle{display:none} .topbar-inner{display:grid;grid-template-columns:auto 1fr;align-items:center} nav.primary{justify-self:end} nav.primary .menu{display:flex !important;flex-direction:row;align-items:center;gap:8px;background:transparent;margin-top:0} nav.primary .menu a{padding:8px 10px} }
-    header { text-align: center; padding: 80px 24px 30px; }
-    h1 { font-size: clamp(2rem, 8vw, 3.5rem); font-weight: 700; letter-spacing: -0.05rem; margin-bottom: 16px; background: linear-gradient(to right, #fff, var(--accent-green)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; line-height: 1.1; }
-    p.subtitle { font-size: clamp(1rem, 4vw, 1.1rem); color: var(--text-secondary); max-width: 1200px; margin: 0 auto; line-height: 1.6; }
-    .grid { max-width: 1200px; margin: 0 auto; padding: 20px; display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; width: 100%; }
-    .card { background: var(--glass-bg); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid var(--glass-border); border-radius: 20px; padding: clamp(20px, 5vw, 28px); transition: transform 0.3s ease, box-shadow 0.3s ease, border-color .3s ease; display: flex; flex-direction: column; }
-    .card:hover { transform: translateY(-4px); box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3); border-color: rgba(74, 222, 128, 0.3); }
-    .card-icon { font-size: 30px; color: var(--accent-green); margin-bottom: 18px; background: rgba(74, 222, 128, 0.1); width: 52px; height: 52px; display: flex; align-items: center; justify-content: center; border-radius: 12px; }
-    .card h2 { font-size: 1.25rem; margin-bottom: 10px; font-weight: 600; }
-    .card p { color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6; margin-bottom: 14px; margin-top: 14px; text-align: justify
-     }
-    .meta { display: grid; grid-template-columns: 1fr; gap: 8px; margin-top: 8px; }
-    .meta li { color: var(--text-secondary); font-size: .9rem; }
-    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; text-decoration: none; color: #0a2e23; background-color: var(--accent-green); padding: 12px 18px; border-radius: 50px; font-weight: 600; transition: all 0.2s ease; }
-    .btn:hover { background-color: var(--accent-hover); }
-    .btn:active { transform: scale(0.98); }
-    footer { text-align: center; padding: 40px 20px; color: rgba(255, 255, 255, 0.4); font-size: 0.85rem; }
-    @media (max-width: 600px) { header { padding: 46px 20px 20px; } .grid { grid-template-columns: 1fr; padding: 15px; } .card { border-radius: 16px; } }
-    /* Simple tag filter bar */
-    .tagbar { max-width:1200px; margin: 0 auto; padding: 0 20px 10px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; }
-    .tags { display:flex; gap:8px; flex-wrap:wrap; }
-    .chip { background: rgba(255,255,255,.12); color: #fff; border: 1px solid var(--glass-border); padding: 6px 10px; border-radius: 999px; cursor:pointer; font-size:.85rem; }
-    .chip.active { background: rgba(74,222,128,.2); border-color: rgba(74,222,128,.4); }
-    .hidden { display:none !important; }
+    nav.primary .menu a{display:block;color:var(--ink);text-decoration:none;padding:10px 12px;border-radius:8px}
+    nav.primary .menu a:hover,nav.primary .menu a:focus{background:rgba(41,144,234,0.12);outline:none}
+    nav.primary .menu li.active>a,nav.primary .menu a[aria-current="page"]{background:rgba(0,159,110,0.12);font-weight:600}
+    @media(min-width:768px){.menu-toggle{display:none}.topbar-inner{display:grid;grid-template-columns:auto 1fr;align-items:center}nav.primary{justify-self:end}nav.primary .menu{display:flex!important;flex-direction:row;align-items:center;gap:8px;background:transparent;margin-top:0}nav.primary .menu a{padding:8px 10px}}
+    header{text-align:center;padding:64px 24px 24px}
+    h1{font-size:clamp(2rem,6vw,3.25rem);font-weight:800;letter-spacing:-.02em;margin-bottom:12px;color:var(--primary-dark)}
+    p.subtitle{font-size:clamp(1rem,3.2vw,1.1rem);color:var(--text-secondary);max-width:1200px;margin:0 auto;line-height:1.65}
+    .grid{max-width:1200px;margin:0 auto;padding:20px;display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:20px;width:100%}
+    .card{background:var(--surface-elev);border:1px solid var(--border);border-radius:16px;padding:clamp(18px,3.5vw,24px);box-shadow:var(--shadow);transition:transform .25s ease, box-shadow .25s ease;display:flex;flex-direction:column}
+    .card:hover{transform:translateY(-3px);box-shadow:0 16px 36px rgba(0,0,0,.12)}
+    .card-icon{font-size:28px;color:var(--accent);margin-bottom:12px;background:rgba(0,159,110,.10);width:52px;height:52px;display:flex;align-items:center;justify-content:center;border-radius:12px}
+    .card h2{font-size:1.25rem;margin-bottom:10px;font-weight:700;color:var(--ink)}
+    .card p{color:var(--text-secondary);font-size:.98rem;line-height:1.6;margin-bottom:14px;margin-top:14px;text-align:justify}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;color:var(--text-inverse);background:var(--focus);padding:12px 18px;border-radius:999px;font-weight:700;transition:background .2s ease, transform .05s ease}
+    .btn:hover{background:var(--primary-dark)}.btn:active{transform:scale(.98)}
+    footer{text-align:center;padding:40px 20px;color:#607D8B;font-size:.9rem}
+    .skip-link{position:absolute;left:-999px;top:0;background:var(--paper);color:var(--ink);padding:8px 12px;border-radius:4px}
+    .skip-link:focus{left:8px;outline:2px solid var(--focus)}
+    .tagbar{max-width:1200px;margin:0 auto;padding:0 20px 10px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap}
+    .tags{display:flex;gap:8px;flex-wrap:wrap}
+    .chip{font-family:'Exo';background:rgba(41,144,234,.10);color:var(--ink);border:1px solid var(--border);padding:6px 10px;border-radius:999px;cursor:pointer;font-size:.85rem}
+    .chip.active{font-family:'Exo';background:rgba(0,159,110,.18);border-color:rgba(0,159,110,.35)}
+    .hidden{display:none !important}
+    /* Filter panel (tabs + groups) */
+    .filter-panel{max-width:1200px;margin:0 auto 6px;padding:8px 20px 0}
+    .filter-tabs{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+    .filter-tabs .tab{font-family:'Exo';display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border:1px solid var(--border);border-radius:999px;background:#fff;color:var(--ink);cursor:pointer;font-weight:800}
+    .filter-tabs .tab[aria-selected="true"], .filter-tabs .tab:hover{background:rgba(41,144,234,.12)}
+    .filter-tabs .tab .count{background:rgba(0,159,110,.18);color:#075E54;border:1px solid rgba(0,159,110,.35);padding:2px 8px;border-radius:999px;font-size:.78rem;font-weight:700}
+    .filter-tabs .clear{font-family:'Exo';margin-left:auto;display:inline-flex;align-items:center;gap:6px;padding:8px 12px;border-radius:999px;background:rgba(41,144,234,.10);border:1px solid var(--border);color:var(--ink);cursor:pointer}
+    .filter-group{background:var(--surface-elev);border:1px solid var(--border);border-radius:12px;padding:10px;margin:8px 0 0}
+    .filter-group[hidden]{display:none}
+    .filter-group .chips{display:flex;gap:8px;flex-wrap:wrap}
+    .active-summary{display:flex;align-items:center;gap:8px;flex-wrap:wrap;min-height:36px;padding:8px 0;color:var(--text-secondary)}
+    .active-summary .chip{background:rgba(0,159,110,.18));border:1px solid var(--border)}
+    .spacer{flex:1 1 auto}
+    @media(max-width:600px){header{padding:46px 20px 20px}.grid{grid-template-columns:1fr;padding:16px}.card{border-radius:14px}}
 
+    /* Usage level pill on cards */
+.card{position:relative}
+.badge.level-badge{
+  
+display: inline-flex;
+  align-items: center;
+  gap: 4px;                /* smaller space between icon + text */
+  padding: 3px 6px;        /* reduce size */
+  font-size: 11px;         /* smaller text */
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: rgba(41,144,234,.10);
+  color: var(--ink);
+  font-weight: 600;        /* slightly lighter for readability */
+  white-space: nowrap;
+
+}
+.badge.level-badge.early{background:rgba(255,193,7,.15);border-color:rgba(255,193,7,.35)}
+.badge.level-badge.developing{background:rgba(41,144,234,.12);border-color:rgba(41,144,234,.35)}
+.badge.level-badge.advanced{background:rgba(0,159,110,.18);border-color:rgba(0,159,110,.35)}
+.badge-usage{position:absolute;top:12px;right:12px}
 
   </style>
 </head>
@@ -74,7 +94,7 @@
   <a class="skip-link" href="#main-content">Skip to content</a>
   <div class="topbar" role="banner">
     <div class="topbar-inner">
-      <a class="brand" href="index.html" aria-label="Homepage">Avenir Catalogue</a>
+      <a class="brand" href="index.html" aria-label="Homepage">AVENIR Catalogue</a>
       <button id="menu-toggle" class="menu-toggle" aria-controls="menu-list" aria-expanded="false" aria-label="Open menu">☰</button>
       <nav class="primary" aria-label="Primary navigation">
         <ul id="menu-list" class="menu">
@@ -82,69 +102,141 @@
           <li class="active"><a href="tools.html" aria-current="page">Tools</a></li>
           <li><a href="dashboard.html">Dashboards</a></li>
           <li><a href="#use-cases">Use Cases</a></li>
-          <li><a href="#questions">Questions</a></li>
+          <li><a href="#questions">FAQs</a></li>
+          <li><a href="#questions">Downloads</a></li>
         </ul>
       </nav>
     </div>
   </div>
+
   <header>
     <h1 id="main-content">Tools</h1>
- <p class="subtitle" style="font-size: 15px; text-align: justify;">
-  The various tools described in this document help estimate fuel consumption, emissions and noise to better analyse environmental impacts, address interdependencies and facilitate constructive exchanges with aircraft operators and local communities. The tools have been designed to objectify pollution (not nuisance) and the emission of gaseous pollutants, and to create a solid basis for further steps. None of the software packages are meant to “judge”, they just provide factual outputs based on the inputs made by the users. Some of the tools focus on the analysis of completed flights, while others are designed for the calculation of planned procedures. Some applications offer both functionalities, while others include the capability for noise impact assessments. 
-  <br><br>
-  <strong>Note:</strong> the information presented in this section has been collected via presentations made to the sub-group by experts from the organisations providing the tools or using them, and/or from information publicly made available on the websites of those organisations. Since the document targets experts, and to avoid making it unreadable, it does not provide the explanation of the acronyms in the description of the tools or dashboards itself. The acronyms can be found in Section 7.
-</p>
-</header>
+    <p class="subtitle" style="font-size:15px;text-align:justify">
+      The various tools described in this document help estimate fuel consumption, emissions and Noise to better analyse environmental impacts, address interdependencies and facilitate constructive exchanges with aircraft operators and local communities. The tools have been designed to objectify pollution (not nuisance) and the emission of gaseous pollutants, and to create a solid basis for further steps. None of the software packages are meant to “judge”, they just provide factual outputs based on the inputs made by the users. Some of the tools focus on the analysis of completed flights, while others are designed for the calculation of planned procedures. Some applications offer both functionalities, while others include the capability for Noise impact assessments.
+      <br><br>
+      <strong>Note:</strong> the information presented in this section has been collected via presentations made to the sub-group by experts from the organisations providing the tools or using them, and/or from information publicly made available on the websites of those organisations. Since the document targets experts, and to avoid making it unreadable, it does not provide the explanation of the acronyms in the description of the tools or dashboards itself. The acronyms can be found in Section 7.
+    </p>
+  </header>
 
-
-
-  <div class="tagbar">
-    <div class="tags">
-      <button class="chip" data-tag="emissions">Emissions</button>
-      <button class="chip" data-tag="noise">Noise</button>
-      <button class="chip" data-tag="airport">Airport</button>
-      <button class="chip" data-tag="network">Network</button>
-      <button class="chip" data-tag="research">Research</button>
-      <button class="chip" data-tag="open-source">Open source</button>
+  <!-- New collapsible filter panel (top only) -->
+  <section class="filter-panel" id="filters" aria-label="Tool filters">
+    <div class="filter-tabs" role="tablist">
+      <button class="tab" role="tab" aria-controls="group-focus" aria-selected="false" data-target="focus">
+        <i class="ph ph-target" aria-hidden="true"></i> Focus areas <span class="count" aria-hidden="true">0</span>
+      </button>
+      <button class="tab" role="tab" aria-controls="group-phase" aria-selected="false" data-target="phase">
+        <i class="ph ph-airplane-takeoff" aria-hidden="true"></i> Flight phases <span class="count" aria-hidden="true">0</span>
+      </button>
+      <button class="tab" role="tab" aria-controls="group-metric" aria-selected="false" data-target="metric">
+        <i class="ph ph-chart-line-up" aria-hidden="true"></i> Indicators & metrics <span class="count" aria-hidden="true">0</span>
+      </button>
+      <button class="tab" role="tab" aria-controls="group-usage" aria-selected="false" data-target="usage">
+  <i class="ph ph-user-switch" aria-hidden="true"></i> Usage level <span class="count" aria-hidden="true">0</span>
+</button>
+      <div class="spacer"></div>
+      <button id="clear-all" class="clear" title="Clear all filters"><i class="ph ph-broom" aria-hidden="true"></i> Clear</button>
     </div>
-  </div>
+
+    <div class="filter-group" id="group-focus" role="region" aria-labelledby="tab-focus" hidden>
+      <div class="chips" data-group="focus">
+        <button class="chip chip-n" data-group="focus" data-tag="CO₂">CO₂</button>
+        <button class="chip chip-n" data-group="focus" data-tag="Non‑CO₂">Non‑CO₂</button>
+        <button class="chip chip-n" data-group="focus" data-tag="Noise">Noise</button>
+        <button class="chip chip-n" data-group="focus" data-tag="LAQ">LAQ</button>
+      </div>
+    </div>
+
+    <div class="filter-group" id="group-phase" role="region" aria-labelledby="tab-phase" hidden>
+      <div class="chips" data-group="phase">
+        <button class="chip chip-n" data-group="phase" data-tag="Taxi‑out">Taxi‑out</button>
+        <button class="chip chip-n" data-group="phase" data-tag="Departure/Climb">Departure/Climb</button>
+        <button class="chip chip-n" data-group="phase" data-tag="Cruise">Cruise</button>
+        <button class="chip chip-n" data-group="phase" data-tag="Descent/Arrival">Descent/Arrival</button>
+        <button class="chip chip-n" data-group="phase" data-tag="Taxi‑in">Taxi‑in</button>
+        <button class="chip chip-n" data-group="phase" data-tag="Wheels‑up/‑down">Wheels‑up/‑down</button>
+        <button class="chip chip-n" data-group="phase" data-tag="Gate‑to‑Gate">Gate‑to‑Gate</button>
+      </div>
+    </div>
+
+    <div class="filter-group" id="group-metric" role="region" aria-labelledby="tab-metric" hidden>
+      <div class="chips" data-group="metric">
+        <button class="chip chip-n" data-group="metric" data-tag="ICAO KPIs">ICAO KPIs</button>
+        <button class="chip chip-n" data-group="metric" data-tag="SES KPIs/PIs">SES KPIs/PIs</button>
+        <button class="chip chip-n" data-group="metric" data-tag="Non‑SES HFE">Non‑SES HFE</button>
+        <button class="chip chip-n" data-group="metric" data-tag="Non‑SES VFE">Non‑SES VFE</button>
+        <button class="chip chip-n" data-group="metric" data-tag="Fuel burn/CO₂">Fuel burn/CO₂</button>
+        <button class="chip chip-n" data-group="metric" data-tag="metric-Non‑CO₂">Non‑CO₂</button>
+        <button class="chip chip-n" data-group="metric" data-tag="metric-Noise">Noise</button>
+        <button class="chip chip-n" data-group="metric" data-tag="metric-LAQ">LAQ</button>
+      </div>
+    </div>
+
+      <div class="filter-group" id="group-usage" role="region" aria-labelledby="tab-usage" hidden>
+      <div class="chips" data-group="usage">
+        <button class="chip chip-n" data-group="usage" data-tag="Early stage">Early stage ANSPs</button>
+        <button class="chip chip-n" data-group="usage" data-tag="Developing">Developing ANSPs</button>
+        <button class="chip chip-n" data-group="usage" data-tag="Advanced">Advanced ANSPs</button>
+      </div> 
+    </div>
+
+    <div class="active-summary" id="active-summary" aria-live="polite"></div>
+  </section>
 
   <main class="grid">
-    
     <!-- AEM -->
-    <article class="card" data-tags="emissions">
+    <article class="card" data-usage="Developing"
+             data-focus="CO₂,Non‑CO₂"
+             data-phase="Taxi‑out,Departure/Climb,Cruise,Descent/Arrival,Taxi‑in,Wheels‑up/‑down,Gate‑to‑Gate"
+             data-metric="Fuel burn/CO₂,metric-Non‑CO₂">
+      <span class="badge level-badge developing badge-usage">Developing ANSPs</span>
       <div class="card-icon"><i class="ph ph-factory"></i></div>
       <h2>Advanced Emission Model (AEM)</h2>
       <p>Suite for calculating aircraft engine emissions across 4D trajectories (LTO + CCD), supporting ~24 pollutants (CO₂, NOx, SOx, PM, HC, …). BADA and CAEP methodologies, CLI/GUI/API variants.</p>
       <a class="btn" href="aem-details.html">Details <i class="ph ph-arrow-right"></i></a>
     </article>
 
-    <!-- Open-ALAQS -->
-    <article class="card" data-tags="airport open-source emissions">
+    <!-- Open‑ALAQS -->
+    <article class="card" data-usage="Advanced"
+             data-focus="CO₂,LAQ,Non‑CO₂"
+             data-phase="Taxi‑out,Departure/Climb,Descent/Arrival,Taxi‑in"
+             data-metric="Fuel burn/CO₂,metric-Non‑CO₂,metric-LAQ">
+      <span class="badge level-badge advanced badge-usage">Advanced ANSPs</span>
       <div class="card-icon"><i class="ph ph-cloud-fog"></i></div>
       <h2>Open‑ALAQS</h2>
       <p>Airport Local Air Quality Studies: QGIS plugin for inventory & dispersion (AUSTAL), covering aircraft and non‑aircraft sources (roads, GSE). Public code, flexible source selection.</p>
-      <a class="btn" href="#alaqs-details">Details <i class="ph ph-arrow-right"></i></a>
+      <a class="btn" href="#aLAQs-details">Details <i class="ph ph-arrow-right"></i></a>
     </article>
 
     <!-- IMPACT / INTACT -->
-    <article class="card" data-tags="emissions noise airport">
+    <article class="card" data-usage="Advanced"
+             data-focus="Noise,CO₂,Non‑CO₂"
+             data-phase="Taxi‑out,Departure/Climb,Cruise,Descent/Arrival,Taxi‑in,Wheels‑up/‑down,Gate‑to‑Gate"
+             data-metric="metric-Noise,metric-Non‑CO₂,Fuel burn/CO₂">
+             <span class="badge level-badge advanced badge-usage">Advanced ANSPs</span>
       <div class="card-icon"><i class="ph ph-wave-sine"></i></div>
       <h2>IMPACT & INTACT</h2>
-      <p>Web platform for noise, gaseous and particulate assessments (BADA4 TEM). ICAO/ECAC‑aligned. INTACT enables automated, near‑real‑time local impact maps and graphics.</p>
+      <p>Web platform for Noise, gaseous and particulate assessments (BADA4 TEM). ICAO/ECAC‑aligned. INTACT enables automated, near‑real‑time local impact maps and graphics.</p>
       <a class="btn" href="#impact-details">Details <i class="ph ph-arrow-right"></i></a>
     </article>
 
     <!-- NEST -->
-    <article class="card" data-tags="network emissions">
+    <article class="card" data-usage="Early stage"
+             data-focus="CO₂,Non‑CO₂"
+             data-phase="Wheels‑up/‑down"
+             data-metric="Fuel burn/CO₂">
+      <span class="badge level-badge early badge-usage">Early stage ANSPs</span>
       <div class="card-icon"><i class="ph ph-circles-three"></i></div>
       <h2>NEST</h2>
       <p>Network Strategic Tool for scenario‑based planning and airspace design via DDR datasets. Simulates trajectories, CAPA/ENV/Cost‑EFF impacts; AIRAC‑aligned updates.</p>
       <a class="btn" href="#nest-details">Details <i class="ph ph-arrow-right"></i></a>
     </article>
 
-    <!-- R-NEST -->
-    <article class="card" data-tags="network research emissions">
+    <!-- R‑NEST -->
+    <article class="card" data-usage="Early stage"
+             data-focus="CO₂,Non‑CO₂"
+             data-phase="Taxi‑out,Departure/Climb,Cruise,Descent/Arrival,Taxi‑in,Wheels‑up/‑down,Gate‑to‑Gate"
+             data-metric="Fuel burn/CO₂,metric-Non‑CO₂">
+      <span class="badge level-badge early badge-usage">Early stage ANSPs</span>
       <div class="card-icon"><i class="ph ph-flask"></i></div>
       <h2>R‑NEST</h2>
       <p>Research‑grade network simulation tool (CASA delay model, 3D HMI) for concept validation, scenario comparison and SESAR projects; very high performance.</p>
@@ -152,7 +244,12 @@
     </article>
 
     <!-- ACROPOLE -->
-    <article class="card" data-tags="emissions research">
+    <article class="card" data-usage="Developing"
+             data-focus="CO₂"
+             data-phase="Departure/Climb,Cruise,Descent/Arrival,Gate‑to‑Gate"
+             data-metric="Non‑SES HFE,Non‑SES VFE, Fuel burn/CO₂,metric-Non‑CO₂">
+    <span class="badge level-badge developing badge-usage">Developing ANSPs</span>
+
       <div class="card-icon"><i class="ph ph-brain"></i></div>
       <h2>ACROPOLE</h2>
       <p>AI‑based fuel flow & burn from radar/ADS‑B (QAR‑trained proxies; ICAO EDB/BFFM2 for emissions). Supports indicators (CDO/CCO) and ops inefficiency analysis.</p>
@@ -160,18 +257,22 @@
     </article>
 
     <!-- AEDT -->
-    <article id="card-aedt" class="card" data-tags="emissions noise airport">
+    <article id="card-aedt" class="card" data-usage="Early stage"
+             data-focus="CO₂,Non‑CO₂,Noise,LAQ"
+             data-phase="Taxi‑out,Departure/Climb,Cruise,Descent/Arrival,Taxi‑in,Wheels‑up/‑down,Gate‑to‑Gate"
+             data-metric="Non‑SES HFE,Non‑SES VFE,Fuel burn/CO₂,metric-Non‑CO₂,metric-Noise,metric-LAQ">
+  <span class="badge level-badge early badge-usage">Early stage ANSPs</span>
+
       <div class="card-icon"><i class="ph ph-soundcloud-logo"></i></div>
       <h2>AEDT</h2>
-      <p>FAA’s 4D aviation environmental design tool for fuel, emissions, noise & dispersion; scalable (airport→global). Uses ANP, BADA3/4, ICAO EDB; Windows + SQL Server.</p>
+      <p>FAA’s 4D aviation environmental design tool for fuel, emissions, Noise & dispersion; scalable (airport→global). Uses ANP, BADA3/4, ICAO EDB; Windows + SQL Server.</p>
       <a class="btn" href="#aedt-details">Details <i class="ph ph-arrow-right"></i></a>
     </article>
-
   </main>
 
-  <!-- Optional inline details anchors (to preserve deep links) -->
+  <!-- Hidden anchors -->
   <section id="aem-details" class="hidden"></section>
-  <section id="alaqs-details" class="hidden"></section>
+  <section id="aLAQs-details" class="hidden"></section>
   <section id="impact-details" class="hidden"></section>
   <section id="nest-details" class="hidden"></section>
   <section id="rnest-details" class="hidden"></section>
@@ -179,8 +280,10 @@
   <section id="aedt-details" class="hidden"></section>
 
 <footer>
-        <p>&copy; 2025 Eurocontrol Sustainability Unit. All rights reserved.</p>
-    </footer>
+<p justify="align"> <strong>Open‑Source Governance: </strong>The Avenir Catalogue is developed as an open‑source, collaborative reference. Its evolution is driven by operational experience, user feedback, and contributions from ANSPs, ensuring that methods, tools and practices remain aligned with real-world challenges and emerging needs.</p>
+<p style="margin-bottom: 1rem;"></p>
+<p>© 2025 Eurocontrol Sustainability Unit. All rights reserved.</p>
+</footer>
 
   <script>
     // Menu toggle
@@ -191,28 +294,64 @@
       toggle.setAttribute('aria-expanded', String(open));
       toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
     });
-    // Tag filtering
-    const chips = Array.from(document.querySelectorAll('.chip'));
-    const cards = Array.from(document.querySelectorAll('.card'));
-    let active = null;
-    function apply(tag) {
-      active = tag;
-      chips.forEach(c=>c.classList.toggle('active', c.dataset.tag===tag));
-      cards.forEach(card=>{
-        const tags = (card.getAttribute('data-tags')||'').toLowerCase();
-        card.classList.toggle('hidden', !tags.includes(tag.toLowerCase()));
-      });
-    }
-    function clear() {
-      active = null;
-      chips.forEach(c=>c.classList.remove('active'));
-      cards.forEach(card=>card.classList.remove('hidden'));
-    }
-    chips.forEach(chip=>{
-      chip.addEventListener('click', ()=>{
-        if(active===chip.dataset.tag) clear(); else apply(chip.dataset.tag);
-      });
-    });
+
+   // Flat tag filtering (existing)
+    (function(){
+      const chips = Array.from(document.querySelectorAll('.tagbar:first-of-type .chip'));
+      const cards = Array.from(document.querySelectorAll('main.grid .card'));
+      let active = null;
+      function apply(tag){
+        active = tag;
+        chips.forEach(c => c.classList.toggle('active', c.dataset.tag===tag));
+        cards.forEach(card => {
+          const tags = (card.getAttribute('data-tags')||'').toLowerCase();
+          card.classList.toggle('hidden', !tags.includes(tag.toLowerCase()));
+        });
+      }
+      function clear(){ active=null; chips.forEach(c=>c.classList.remove('active')); cards.forEach(card=>card.classList.remove('hidden')); }
+      chips.forEach(chip => chip.addEventListener('click', () => { if(active===chip.dataset.tag) clear(); else apply(chip.dataset.tag); }));
+    })();
+
+    // Collapsible filter panel (top only): tabs + nested filtering (AND across groups; OR within group)
+    (function(){
+      const panel = document.getElementById('filters'); if(!panel) return;
+      const tabs = Array.from(panel.querySelectorAll('.filter-tabs .tab'));
+      const groups = { focus: document.getElementById('group-focus'), phase: document.getElementById('group-phase'), metric: document.getElementById('group-metric'), usage: document.getElementById('group-usage') };
+      const chips = Array.from(panel.querySelectorAll('.chip-n'));
+      const clearAll = document.getElementById('clear-all');
+      const summary = document.getElementById('active-summary');
+      const state = { focus:new Set(), phase:new Set(), metric:new Set(), usage:new Set() };
+
+      function updateCounts(){
+        tabs.forEach(t => { const key=t.dataset.target; const node=t.querySelector('.count'); if(node) node.textContent = (state[key]||new Set()).size; });
+      }
+      function renderSummary(){
+        const frag = document.createDocumentFragment();
+        Object.entries(state).forEach(([group,set])=>{ set.forEach(tag=>{ const b=document.createElement('button'); b.className='chip'; b.textContent=tag; b.title='Remove '+tag+' from '+group; b.addEventListener('click',()=>{ set.delete(tag); sync(); }); frag.appendChild(b); }); });
+        summary.innerHTML=''; if(frag.childNodes.length){ const label=document.createElement('span'); label.textContent='Active:'; summary.appendChild(label); summary.appendChild(frag); }
+      }
+      function filterCards(){
+        const cards = Array.from(document.querySelectorAll('main.grid .card'));
+        const match = (arr,set) => !set.size || arr.some(v=>set.has(v));
+        cards.forEach(card=>{
+          const f=(card.getAttribute('data-focus')||'').split(',').map(s=>s.trim()).filter(Boolean);
+          const p=(card.getAttribute('data-phase')||'').split(',').map(s=>s.trim()).filter(Boolean);
+          const m=(card.getAttribute('data-metric')||'').split(',').map(s=>s.trim()).filter(Boolean);
+          const u=(card.getAttribute('data-usage')||'').split(',').map(s=>s.trim()).filter(Boolean);
+      const visible = match(f,state.focus) && match(p,state.phase) && match(m,state.metric) && match(u,state.usage);
+          card.classList.toggle('hidden', !visible);
+        });
+      }
+      function sync(){ chips.forEach(ch=>ch.classList.toggle('active', state[ch.dataset.group].has(ch.dataset.tag))); updateCounts(); renderSummary(); filterCards(); }
+
+      // Tab toggle: show dependencies only when the main tab is clicked
+      tabs.forEach(tab=>tab.addEventListener('click',()=>{ const key=tab.dataset.target; const group=groups[key]; const isOpen = !group.hasAttribute('hidden'); Object.values(groups).forEach(g=>g.setAttribute('hidden','')); if(!isOpen) group.removeAttribute('hidden'); tabs.forEach(t=>t.setAttribute('aria-selected', String(t===tab && !isOpen))); }));
+
+      // Chip selection
+      chips.forEach(ch=>ch.addEventListener('click',()=>{ const set=state[ch.dataset.group]; if(set.has(ch.dataset.tag)) set.delete(ch.dataset.tag); else set.add(ch.dataset.tag); sync(); }));
+      clearAll?.addEventListener('click',()=>{ Object.values(state).forEach(s=>s.clear()); sync(); });
+      sync();
+    })();
   </script>
 </body>
 </html>
