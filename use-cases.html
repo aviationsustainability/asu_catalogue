@@ -4,22 +4,20 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AVENIR Pillar 2 Catalogue</title>
-  <!-- Fonts + Icons (from tools.html) -->
   <link href="https://fonts.googleapis.com/css2?family=Exo:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
   <script src="https://unpkg.com/@phosphor-icons/web"></script>
-
   <style>
     :root {
       --primary: #009F6E; --primary-dark: #075E54; --accent: #009F6E;
       --ink: #212121; --paper: #FCFCFC;
       --bg-gradient-start: #FCFCFC; --bg-gradient-end: #EAF4FF;
-      --surface: #FFFFFF; --surface-elev: rgba(255,255,255,0.8);
       --border: rgba(0,0,0,0.08);
       --text-primary: #212121; --text-secondary: #455A64; --text-inverse: #FFFFFF;
-      --focus: #009F6E; --shadow: 0 10px 30px rgba(0,0,0,0.08);
+      --shadow: 0 10px 30px rgba(0,0,0,0.08);
     }
     *{box-sizing:border-box;margin:0;padding:0}
-    body{font-family:'Exo';background:linear-gradient(135deg,var(--bg-gradient-start),var(--bg-gradient-end));color:var(--text-primary);min-height:100vh;display:flex;flex-direction:column;overflow-x:hidden}
+
+    body{font-family:'Exo', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;background:linear-gradient(135deg,var(--bg-gradient-start),var(--bg-gradient-end));color:var(--text-primary);min-height:100vh;display:flex;flex-direction:column;overflow-x:hidden}
     body::before{content:'';position:fixed;top:-20%;left:-10%;width:700px;height:700px;background:radial-gradient(circle,rgba(0,159,110,.12) 0%,transparent 65%);filter:blur(60px);z-index:-1;pointer-events:none}
 
     .topbar{position:sticky;top:0;z-index:1000;background:rgba(252,252,252,0.85);backdrop-filter:saturate(140%) blur(10px);border-bottom:1px solid var(--border)}
@@ -27,72 +25,62 @@
     .brand{color:var(--ink);text-decoration:none;font-weight:800;letter-spacing:.2px}
     .brand:hover{color:var(--primary-dark)}
     .menu-toggle{margin-left:auto;font-size:1.6rem;line-height:1;background:transparent;color:var(--ink);border:0;cursor:pointer;padding:4px 8px}
-    .menu-toggle:focus{outline:2px solid var(--focus);outline-offset:2px;border-radius:6px}
-    nav.primary .menu{list-style:none;display:none;flex-direction:column;gap:0;width:100%;background:transparent;margin-top:8px}
+    .menu-toggle:focus{outline:2px solid var(--primary);outline-offset:2px;border-radius:6px}
+    nav.primary .menu{list-style:none;display:none;flex-direction:column;gap:0;width:100%;margin-top:8px}
     nav.primary .menu.open{display:flex}
     nav.primary .menu a{display:block;color:var(--ink);text-decoration:none;padding:10px 12px;border-radius:8px}
     nav.primary .menu a:hover,nav.primary .menu a:focus{background:rgba(41,144,234,0.12);outline:none}
     nav.primary .menu li.active>a,nav.primary .menu a[aria-current="page"]{background:rgba(0,159,110,0.12);font-weight:600}
-    @media(min-width:768px){.menu-toggle{display:none}.topbar-inner{display:grid;grid-template-columns:auto 1fr;align-items:center}nav.primary{justify-self:end}nav.primary .menu{display:flex!important;flex-direction:row;align-items:center;gap:8px;background:transparent;margin-top:0}nav.primary .menu a{padding:8px 10px}}
+    @media(min-width:768px){.menu-toggle{display:none}.topbar-inner{display:grid;grid-template-columns:auto 1fr;align-items:center}nav.primary{justify-self:end}nav.primary .menu{display:flex!important;flex-direction:row;align-items:center;gap:8px;margin-top:0}nav.primary .menu a{padding:8px 10px}}
 
-    header{text-align:center;padding:64px 24px 24px}
-    h1{font-size:clamp(2rem,6vw,3.25rem);font-weight:800;letter-spacing:-.02em;margin-bottom:12px;color:var(--primary-dark)}
-    p.subtitle{font-size:clamp(1rem,3.2vw,1.1rem);color:var(--text-secondary);max-width:1200px;margin:0 auto;line-height:1.65}
+    header{text-align:center;padding:48px 24px 16px}
+    h1{font-size:clamp(2rem,6vw,3.25rem);font-weight:800;letter-spacing:-.02em;margin-bottom:8px;color:#075E54}
 
-    .grid{max-width:1200px;margin:0 auto;padding:20px;display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:20px;width:100%}
-    .card{background:var(--surface-elev);border:1px solid var(--border);border-radius:16px;padding:clamp(18px,3.5vw,24px);box-shadow:var(--shadow);transition:transform .25s ease, box-shadow .25s ease;display:flex;flex-direction:column}
-    .card:hover{transform:translateY(-3px);box-shadow:0 16px 36px rgba(0,0,0,.12)}
-    .card-icon{font-size:28px;color:var(--accent);margin-bottom:12px;background:rgba(0,159,110,.10);width:52px;height:52px;display:flex;align-items:center;justify-content:center;border-radius:12px}
-    .card h2{font-size:1.25rem;margin-bottom:10px;font-weight:700;color:var(--ink)}
-    .card p{color:var(--text-secondary);font-size:.98rem;line-height:1.6;margin-bottom:14px;margin-top:14px;text-align:justify}
-    .card img{max-width:100%;height:auto;display:block;border-radius:10px}
+    .grid{max-width:1200px;margin:0 auto;padding:20px;display:grid;grid-template-columns:repeat(auto-fit,minmax(1fr,1fr));gap:20px;width:100%}
 
-    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;color:var(--text-inverse);background:var(--focus);padding:12px 18px;border-radius:999px;font-weight:700;transition:background .2s ease, transform .05s ease}
-    .btn:hover{background:var(--primary-dark)} .btn:active{transform:scale(.98)}
+    /* Card with background image + overlay */
+    .card{position:relative;border:1px solid var(--border);border-radius:16px;box-shadow:var(--shadow);overflow:hidden;min-height:360px;display:flex;flex-direction:column;justify-content:flex-end;padding:20px;background-size:cover;background-position:center}
+    .card::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.55) 70%)}
+    .card > *{position:relative;z-index:1}
+
+    .card h2{color:#fff;font-size:1.25rem;margin:0 0 8px 0;font-weight:800;text-shadow:0 2px 8px rgba(0,0,0,.45)}
+    .card p{color:#f0f7f5;font-size:.98rem;line-height:1.6;margin:0 0 14px 0;text-shadow:0 2px 8px rgba(0,0,0,.35)}
+
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;color:var(--text-inverse);background:#009F6E;padding:12px 18px;border-radius:999px;font-weight:700;transition:background .2s ease, transform .05s ease}
+    .btn:hover{background:#075E54} .btn:active{transform:scale(.98)}
+
+    /* Non-interactive per-card tag pills */
+    .tagbar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+    .tagbar .chip{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:999px;border:1px solid rgba(255,255,255,0.35);background:rgba(255,255,255,0.18);color:#fff;font-size:.85rem;backdrop-filter:blur(4px);cursor:default;user-select:text}
+    .tagbar .chip .dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.85)}
+
+    /* Usage badge */
+    .badge.level-badge{display:inline-flex;align-items:center;gap:4px;padding:3px 6px;font-size:11px;border-radius:999px;border:1px solid rgba(255,255,255,0.45);background:rgba(255,255,255,0.22);color:#fff;font-weight:600;white-space:nowrap;position:absolute;top:12px;right:12px;z-index:1}
+
+    .card img{display:none}
 
     footer{text-align:center;padding:40px 20px;color:#607D8B;font-size:.9rem}
     .skip-link{position:absolute;left:-999px;top:0;background:var(--paper);color:var(--ink);padding:8px 12px;border-radius:4px}
-    .skip-link:focus{left:8px;outline:2px solid var(--focus)}
+    .skip-link:focus{left:8px;outline:2px solid #009F6E}
 
-    /* Filter panel (tabs + groups) */
+    /* Filters (as in original) */
     .filter-panel{max-width:1200px;margin:0 auto 6px;padding:8px 20px 0}
     .filter-tabs{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
     .filter-tabs .tab{font-family:'Exo';display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border:1px solid var(--border);border-radius:999px;background:#fff;color:var(--ink);cursor:pointer;font-weight:800}
     .filter-tabs .tab[aria-selected="true"], .filter-tabs .tab:hover{background:rgba(41,144,234,.12)}
     .filter-tabs .tab .count{background:rgba(0,159,110,.18);color:#075E54;border:1px solid rgba(0,159,110,.35);padding:2px 8px;border-radius:999px;font-size:.78rem;font-weight:700}
     .filter-tabs .clear{font-family:'Exo';margin-left:auto;display:inline-flex;align-items:center;gap:6px;padding:8px 12px;border-radius:999px;background:rgba(41,144,234,.10);border:1px solid var(--border);color:var(--ink);cursor:pointer}
-    .filter-group{background:var(--surface-elev);border:1px solid var(--border);border-radius:12px;padding:10px;margin:8px 0 0}
+
+    .filter-group{background:rgba(255,255,255,0.85);backdrop-filter:saturate(140%) blur(10px);border:1px solid var(--border);border-radius:12px;padding:10px;margin:8px 0 0}
     .filter-group[hidden]{display:none}
     .filter-group .chips{display:flex;gap:8px;flex-wrap:wrap}
     .chip{font-family:'Exo';background:rgba(41,144,234,.10);color:var(--ink);border:1px solid var(--border);padding:6px 10px;border-radius:999px;cursor:pointer;font-size:.85rem}
-    .chip.active{font-family:'Exo';background:rgba(0,159,110,.18);border-color:rgba(0,159,110,.35)}
+    .chip.active{background:rgba(0,159,110,.18);border-color:rgba(0,159,110,.35)}
+
     .active-summary{display:flex;align-items:center;gap:8px;flex-wrap:wrap;min-height:36px;padding:8px 0;color:var(--text-secondary)}
-    .active-summary .chip{background:rgba(0,159,110,.18));border:1px solid var(--border)}
+    .active-summary .chip{background:rgba(0,159,110,.18);border:1px solid var(--border)}
+
     .hidden{display:none !important}
-    .spacer{flex:1 1 auto}
-
-    .card{position:relative}
-.badge.level-badge{
-  
-display: inline-flex;
-  align-items: center;
-  gap: 4px;                /* smaller space between icon + text */
-  padding: 3px 6px;        /* reduce size */
-  font-size: 11px;         /* smaller text */
-  border-radius: 999px;
-  border: 1px solid var(--border);
-  background: rgba(41,144,234,.10);
-  color: var(--ink);
-  font-weight: 600;        /* slightly lighter for readability */
-  white-space: nowrap;
-
-}
-.badge.level-badge.early{background:rgba(255,193,7,.15);border-color:rgba(255,193,7,.35)}
-.badge.level-badge.developing{background:rgba(41,144,234,.12);border-color:rgba(41,144,234,.35)}
-.badge.level-badge.advanced{background:rgba(0,159,110,.18);border-color:rgba(0,159,110,.35)}
-.badge-usage{position:absolute;top:12px;right:12px}
-
-    @media(max-width:600px){header{padding:46px 20px 20px}.grid{grid-template-columns:1fr;padding:16px}.card{border-radius:14px}}
   </style>
 </head>
 <body>
@@ -106,8 +94,8 @@ display: inline-flex;
         <ul id="menu-list" class="menu">
           <li><a href="index.html">Introduction</a></li>
           <li><a href="tools.html">Tools</a></li>
-          <li class="active"><a href="dashboard.html" aria-current="page">Dashboards</a></li>
-          <li><a href="use-cases.html">Use Cases</a></li>
+          <li><a href="dashboard.html">Dashboards</a></li>
+          <li class="active"><a href="use-cases.html" aria-current="page">Use Cases</a></li>
           <li><a href="#questions">FAQs</a></li>
           <li><a href="#questions">Downloads</a></li>
         </ul>
@@ -116,10 +104,10 @@ display: inline-flex;
   </div>
 
   <header>
-    <h1 id="main-content">Dashboards</h1>
+    <h1 id="main-content">Use Cases</h1>
   </header>
 
-  <!-- Filter panel (copied from tools.html) -->
+  <!-- Filter panel -->
   <section class="filter-panel" id="filters" aria-label="Dashboard filters">
     <div class="filter-tabs" role="tablist">
       <button class="tab" role="tab" aria-controls="group-focus" aria-selected="false" data-target="focus">
@@ -131,11 +119,9 @@ display: inline-flex;
       <button class="tab" role="tab" aria-controls="group-metric" aria-selected="false" data-target="metric">
         <i class="ph ph-chart-line-up" aria-hidden="true"></i> Indicators & metrics <span class="count" aria-hidden="true">0</span>
       </button>
-
       <button class="tab" role="tab" aria-controls="group-usage" aria-selected="false" data-target="usage">
-  <i class="ph ph-user-switch" aria-hidden="true"></i> Usage level <span class="count" aria-hidden="true">0</span>
-</button>
-
+        <i class="ph ph-user-switch" aria-hidden="true"></i> Usage level <span class="count" aria-hidden="true">0</span>
+      </button>
       <div class="spacer"></div>
       <button id="clear-all" class="clear" title="Clear all filters"><i class="ph ph-broom" aria-hidden="true"></i> Clear</button>
     </div>
@@ -149,6 +135,7 @@ display: inline-flex;
         <button class="chip chip-n" data-group="focus" data-tag="LAQ">LAQ</button>
       </div>
     </div>
+
     <!-- Phase -->
     <div class="filter-group" id="group-phase" role="region" aria-labelledby="tab-phase" hidden>
       <div class="chips" data-group="phase">
@@ -161,6 +148,7 @@ display: inline-flex;
         <button class="chip chip-n" data-group="phase" data-tag="Gate‑to‑Gate">Gate‑to‑Gate</button>
       </div>
     </div>
+
     <!-- Metric -->
     <div class="filter-group" id="group-metric" role="region" aria-labelledby="tab-metric" hidden>
       <div class="chips" data-group="metric">
@@ -180,125 +168,46 @@ display: inline-flex;
         <button class="chip chip-n" data-group="usage" data-tag="Early stage">Early stage ANSPs</button>
         <button class="chip chip-n" data-group="usage" data-tag="Developing">Developing ANSPs</button>
         <button class="chip chip-n" data-group="usage" data-tag="Advanced">Advanced ANSPs</button>
-      </div> 
+      </div>
     </div>
 
     <div class="active-summary" id="active-summary" aria-live="polite"></div>
   </section>
 
   <main class="grid">
+    <!-- Example card; you can duplicate/change attributes and <img> -->
     <article class="card"
-    data-usage="Early stage"
+      data-usage="Early stage"
       data-focus="CO₂"
       data-phase="Descent/Arrival"
       data-metric="Non‑SES HFE,Non‑SES VFE,Fuel burn/CO₂">
-      <div class="card-icon"><i class="ph ph-factory"></i></div>
-      <h2>TMA Flight Efficiency Dashboard </h2>
-      <img src="figure/tma.png" alt="TMA Flight Efficiency Dashboard">
-      <p>An interactive tool for analyzing and improving flight operations in terminal areas.</p>
-      <a class="btn" href="aem-details.html">Details<i class="ph ph-arrow-right"></i></a>
-      <span class="badge level-badge early badge-usage">Early stage ANSPs</span>
+      <h2>MUAC – Pre‑flight efficiency optimisation</h2>
+      <img src="figure/muac.png" alt="MUAC - Pre-flight efficiency optimisation">
+      <p>The Pre‑Flight Check (PFC) initiative, launched by the Maastricht Upper Area Control Centre (MUAC) in 2020, aims to enhance flight efficiency during the pre‑flight phase by filing a trajectory closer to the expected actual flight path.</p>
+      <a class="btn" href="aem-details.html">Details <i class="ph ph-arrow-right" aria-hidden="true"></i></a>
+      <span class="badge level-badge"><i class="ph ph-flag" aria-hidden="true"></i> Early stage ANSPs</span>
     </article>
 
+    <!-- Duplicate example -->
     <article class="card"
-    data-usage="Early stage"
-      data-focus="CO₂"
-      data-phase="Wheels‑up/‑down"
-      data-metric="Fuel burn/CO₂">
-      <div class="card-icon"><i class="ph ph-cloud-fog"></i></div>
-      <h2>FATHOM</h2>
-      <img src="figure/fathom.png" alt="FATHOM dashboard">
-      <p>A data analytics dashboard provided by EUROCONTROL, offering comprehensive insights into European air traffic management.</p>
-      <a class="btn" href="">Details<i class="ph ph-arrow-right"></i></a>
-      <span class="badge level-badge early badge-usage">Early stage ANSPs</span>
+      data-usage="Developing"
+      data-focus="Non‑CO₂,Noise"
+      data-phase="Cruise,Departure/Climb"
+      data-metric="ICAO KPIs,metric‑Noise">
+      <h2>Another use case</h2>
+      <img src="figure/muac.png" alt="Placeholder">
+      <p>Example description showing how the layout behaves with other attributes and the same background image.</p>
+      <a class="btn" href="#">Details <i class="ph ph-arrow-right" aria-hidden="true"></i></a>
+      <span class="badge level-badge"><i class="ph ph-flag" aria-hidden="true"></i> Developing ANSPs</span>
     </article>
-
-    <article class="card"
-    data-usage="Early stage"
-      data-focus="CO₂"
-      data-phase="Departure/Climb,Cruise,Descent/Arrival"
-      data-metric="Fuel burn/CO₂">
-      <div class="card-icon"><i class="ph ph-wave-sine"></i></div>
-      <h2>CO2MPASS </h2>
-      <img src="figure/compass.png" alt="CO2MPASS dashboard">
-      <p>An interactive dashboard to support the Network manager Operational Performance Framework.</p>
-      <a class="btn" href="">Details<i class="ph ph-arrow-right"></i></a>
-      <span class="badge level-badge early badge-usage">Early stage ANSPs</span>
-    </article>
-
-    <article class="card"
-    data-usage="Early stage"
-      data-focus=""
-      data-phase="Cruise"
-      data-metric="SES KPIs/PIs,Non‑SES VFE">
-      <div class="card-icon"><i class="ph ph-circles-three"></i></div>
-      <h2>FLair</h2>
-      <img src="figure/flair.png" alt="FLair dashboard">
-      <p>The Flight Level Adherence Interactive Reporting dashboard (FLair) provides users with flight level details to those flights that did not adhere to the filed (requested) flight level at some point during their route.</p>
-      <a class="btn" href="">Details<i class="ph ph-arrow-right"></i></a>
-      <span class="badge level-badge early badge-usage">Early stage ANSPs</span>
-    </article>
-
-    <article class="card"
-    data-usage="Early stage"
-      data-focus="CO₂,Non‑CO₂"
-      data-phase="Taxi‑out,Departure/Climb,Cruise,Descent/Arrival,Taxi‑in,Wheels‑up/‑down,Gate‑to‑Gate"
-      data-metric="Fuel burn/CO₂">
-      <div class="card-icon"><i class="ph ph-wave-sine"></i></div>
-      <h2>FlyingGreen Platform - NetZero Pillar </h2>
-      <img src="figure/netzero.png" alt="NetZero pillar dashboard">
-      <p>The NetZero pillar offers a user-friendly dashboard that enables monitoring and forecasting of emissions based on operational improvements, fleet renewal and traffic growth scenarios.</p>
-      <a class="btn" href="">Details<i class="ph ph-arrow-right"></i></a>
-      <span class="badge level-badge early badge-usage">Early stage ANSPs</span>
-    </article>
-
-    <article class="card"
-    data-usage="Early stage"
-      data-focus="CO₂,Non‑CO₂"
-      data-phase="Taxi‑out,Departure/Climb,Descent/Arrival,Taxi‑in"
-      data-metric="Fuel burn/CO₂,metric‑Non‑CO₂">
-      <div class="card-icon"><i class="ph ph-wave-sine"></i></div>
-      <h2>Landing and Take-Off (LTO) Cycle Emissions Estimator </h2>
-      <img src="figure/lto.png" alt="LTO emissions estimator">
-      <p>It is is designed to quickly and easily access emission information (CO2 and NOx emissions) during the landing and take-off phases of aircraft operations based on operational data instead of standardised ICAO LTO flight phase durations. </p>
-      <a class="btn" href="">Details<i class="ph ph-arrow-right"></i></a>
-      <span class="badge level-badge early badge-usage">Early stage ANSPs</span>
-    </article>
-
-    <article class="card"
-    data-usage="Early stage"
-      data-focus="CO₂"
-      data-phase="Taxi‑out,Departure/Climb,Cruise,Descent/Arrival,Taxi‑in,Wheels‑up/‑down,Gate‑to‑Gate"
-      data-metric="ICAO KPIs,SES KPIs/PIs,Non‑SES HFE,Non‑SES VFE,Fuel burn/CO₂">
-      <div class="card-icon"><i class="ph ph-wave-sine"></i></div>
-      <h2> Aviation Intelligence Portal – Flight Efficiency </h2>
-      <img src="figure/aiu.png" alt="Aviation Intelligence Portal - Flight Efficiency">
-      <p>The Efficiency and Environment section of the Aviation Intelligence (AIU) Portal is a EUROCONTROL dashboard that provides data-driven insights into the efficiency and environmental impact of European aviation.</p>
-      <a class="btn" href="">Details<i class="ph ph-arrow-right"></i></a>
-      <span class="badge level-badge early badge-usage">Early stage ANSPs</span>
-    </article>
-
-    <article class="card"
-    data-usage="Early stage"
-      data-focus="CO₂"
-      data-phase="Taxi‑out,Departure/Climb,Cruise,Descent/Arrival,Taxi‑in"
-      data-metric="ICAO KPIs,SES KPIs/PIs">
-      <div class="card-icon"><i class="ph ph-wave-sine"></i></div>
-      <h2> Single European Sky (SES) Data Portal </h2>
-      <img src="figure/ses.png" alt="SES Data Portal">
-      <p>It offers comprehensive reporting on performance indicators that are subject to targets or are monitored within the framework of the Single European Sky (SES) performance scheme.</p>
-      <a class="btn" href="">Details<i class="ph ph-arrow-right"></i></a>
-<span class="badge level-badge early badge-usage">Early stage ANSPs</span>    </article>
   </main>
 
-  <!-- Optional inline details anchors (to preserve deep links) -->
   <section id="aem-details" class="hidden"></section>
 
-<footer>
-<p> <strong>Open‑Source Governance: </strong>The Avenir Catalogue is developed as an open‑source, collaborative reference. Its evolution is driven by operational experience, user feedback, and contributions from ANSPs, ensuring that methods, tools and practices remain aligned with real-world challenges and emerging needs.</p>
-<p style="margin-bottom: 1rem;"></p>
-<p>© 2025 Eurocontrol Sustainability Unit. All rights reserved.</p>
-</footer>
+  <footer>
+    <p><strong>Open‑Source Governance: </strong>The Avenir Catalogue is developed as an open‑source, collaborative reference. Its evolution is driven by operational experience, user feedback, and contributions from ANSPs.</p>
+    <p>© 2025 Eurocontrol Sustainability Unit. All rights reserved.</p>
+  </footer>
 
   <script>
     // Menu toggle
@@ -310,24 +219,21 @@ display: inline-flex;
       toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
     });
 
-   // Flat tag filtering (existing)
+    // Promote each card's <img> to CSS background and build NON-interactive tagbar from data-attributes
     (function(){
-      const chips = Array.from(document.querySelectorAll('.tagbar:first-of-type .chip'));
       const cards = Array.from(document.querySelectorAll('main.grid .card'));
-      let active = null;
-      function apply(tag){
-        active = tag;
-        chips.forEach(c => c.classList.toggle('active', c.dataset.tag===tag));
-        cards.forEach(card => {
-          const tags = (card.getAttribute('data-tags')||'').toLowerCase();
-          card.classList.toggle('hidden', !tags.includes(tag.toLowerCase()));
-        });
-      }
-      function clear(){ active=null; chips.forEach(c=>c.classList.remove('active')); cards.forEach(card=>card.classList.remove('hidden')); }
-      chips.forEach(chip => chip.addEventListener('click', () => { if(active===chip.dataset.tag) clear(); else apply(chip.dataset.tag); }));
+      cards.forEach(card => {
+        // 1) Background image from <img> or data-bg attribute
+        const img = card.querySelector('img');
+        const dataBg = card.getAttribute('data-bg');
+        const src = img?.getAttribute('src') || dataBg || '';
+        if (src) { card.style.backgroundImage = `url('${src}')`; }
+
+
+      });
     })();
 
-    // Collapsible filter panel (top only): tabs + nested filtering (AND across groups; OR within group)
+    // Filter panel logic (unchanged from original): AND across groups; OR within a group
     (function(){
       const panel = document.getElementById('filters'); if(!panel) return;
       const tabs = Array.from(panel.querySelectorAll('.filter-tabs .tab'));
@@ -337,9 +243,7 @@ display: inline-flex;
       const summary = document.getElementById('active-summary');
       const state = { focus:new Set(), phase:new Set(), metric:new Set(), usage:new Set() };
 
-      function updateCounts(){
-        tabs.forEach(t => { const key=t.dataset.target; const node=t.querySelector('.count'); if(node) node.textContent = (state[key]||new Set()).size; });
-      }
+      function updateCounts(){ tabs.forEach(t => { const key=t.dataset.target; const node=t.querySelector('.count'); if(node) node.textContent = (state[key]||new Set()).size; }); }
       function renderSummary(){
         const frag = document.createDocumentFragment();
         Object.entries(state).forEach(([group,set])=>{ set.forEach(tag=>{ const b=document.createElement('button'); b.className='chip'; b.textContent=tag; b.title='Remove '+tag+' from '+group; b.addEventListener('click',()=>{ set.delete(tag); sync(); }); frag.appendChild(b); }); });
@@ -353,16 +257,12 @@ display: inline-flex;
           const p=(card.getAttribute('data-phase')||'').split(',').map(s=>s.trim()).filter(Boolean);
           const m=(card.getAttribute('data-metric')||'').split(',').map(s=>s.trim()).filter(Boolean);
           const u=(card.getAttribute('data-usage')||'').split(',').map(s=>s.trim()).filter(Boolean);
-      const visible = match(f,state.focus) && match(p,state.phase) && match(m,state.metric) && match(u,state.usage);
+          const visible = match(f,state.focus) && match(p,state.phase) && match(m,state.metric) && match(u,state.usage);
           card.classList.toggle('hidden', !visible);
         });
       }
       function sync(){ chips.forEach(ch=>ch.classList.toggle('active', state[ch.dataset.group].has(ch.dataset.tag))); updateCounts(); renderSummary(); filterCards(); }
-
-      // Tab toggle: show dependencies only when the main tab is clicked
       tabs.forEach(tab=>tab.addEventListener('click',()=>{ const key=tab.dataset.target; const group=groups[key]; const isOpen = !group.hasAttribute('hidden'); Object.values(groups).forEach(g=>g.setAttribute('hidden','')); if(!isOpen) group.removeAttribute('hidden'); tabs.forEach(t=>t.setAttribute('aria-selected', String(t===tab && !isOpen))); }));
-
-      // Chip selection
       chips.forEach(ch=>ch.addEventListener('click',()=>{ const set=state[ch.dataset.group]; if(set.has(ch.dataset.tag)) set.delete(ch.dataset.tag); else set.add(ch.dataset.tag); sync(); }));
       clearAll?.addEventListener('click',()=>{ Object.values(state).forEach(s=>s.clear()); sync(); });
       sync();
