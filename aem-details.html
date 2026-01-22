@@ -117,6 +117,22 @@
 .cta-buttons a { background: var(--primary); color: #0a2e23; text-decoration: none; padding: 12px 20px; border-radius: 8px; font-weight: 600; transition: background 0.3s ease; }
 .cta-buttons a:hover { background: var(--primary-dark); }
 
+.badge.level-badge{
+  gap: 4px;                /* smaller space between icon + text */
+  padding: 3px 6px;        /* reduce size */
+  font-size: 11px;         /* smaller text */
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: rgba(41,144,234,.10);
+  color: var(--ink);
+  font-weight: 600;        /* slightly lighter for readability */
+  white-space: nowrap;
+
+}
+.badge.level-badge.early{background:rgba(255,193,7,.15);border-color:rgba(255,193,7,.35)}
+.badge.level-badge.developing{background:rgba(41,144,234,.12);border-color:rgba(41,144,234,.35)}
+.badge.level-badge.advanced{background:rgba(0,159,110,.18);border-color:rgba(0,159,110,.35)}
+
 /* Use Cases Slider (CSS Scroll Snap) */
 .uc-controls { display: grid; grid-template-columns: 40px 1fr 40px; align-items: center; gap: 8px; margin: 6px 0 12px; }
 .uc-prev, .uc-next { appearance: none; border: 1px solid var(--border); background: var(--surface-elev); color: var(--ink); width: 40px; height: 40px; border-radius: 999px; font-size: 20px; line-height: 1; cursor: pointer; box-shadow: var(--shadow); }
@@ -157,6 +173,17 @@
   gap: 12px;                       /* optional spacing */
 }
 
+/* Prevent 'Go to the platform' button from stretching */
+.header-actions{flex-wrap:wrap;gap:12px}
+.header-cta{flex:0 0 auto;align-self:flex-start}
+
+
+/* Scope chips (below the CTA + Developing ANSPs) */
+.meta-badges{display:flex;flex-direction:column;gap:8px;margin-top:6px}
+.meta-badges .meta-label{font-size:12px;font-weight:800;color:var(--text-secondary);text-transform:uppercase;letter-spacing:.04em}
+.meta-badges .chips{display:flex;flex-wrap:wrap;gap:10px}
+.badge-chip{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;border:1px solid var(--border);background:linear-gradient(180deg, rgba(255,255,255,.9) 0%, rgba(245,249,255,.8) 100%);color:var(--ink);font-size:12px;font-weight:700;box-shadow:0 2px 10px rgba(0,0,0,.06)}
+.badge-chip .chip-icon{width:20px;height:20px;display:inline-grid;place-items:center;background:rgba(0,159,110,.12);color:var(--primary-dark);border-radius:50%;font-size:12px}
 
 </style>
   
@@ -187,7 +214,25 @@
 <main>
 <div class="header-actions">
 <a class="btn header-cta" href="#" target="_blank" rel="noopener" margin-left="left">Go to the platform</a>
-<a class="btn header-cta" href="#" target="_blank" rel="noopener" justify="right">Go to the platform</a>
+<span class="badge level-badge developing badge-usage">Developing ANSPs</span>
+</div>
+
+<div class="meta-badges" role="group" aria-label="AEM scope badges">
+  <div class="meta-label">Scope</div>
+  <div class="chips">
+    <span class="badge-chip" data-focus="CO₂,LAQ,Non‑CO₂" title="Focus areas: CO₂, LAQ and Non‑CO₂ effects" aria-label="Focus: CO₂, LAQ, Non‑CO₂">
+      <span class="chip-icon" aria-hidden="true">🎯</span>
+      <span class="chip-text">Focus: CO₂, LAQ, Non‑CO₂</span>
+    </span>
+    <span class="badge-chip" data-phase="Taxi‑out,Departure/Climb,Descent/Arrival,Taxi‑in" title="Covered phases: Taxi‑out, Departure/Climb, Descent/Arrival, Taxi‑in" aria-label="Phases: Taxi‑out, Departure/Climb, Descent/Arrival, Taxi‑in">
+      <span class="chip-icon" aria-hidden="true">🛫</span>
+      <span class="chip-text">Phases: Taxi‑out, Departure/Climb, Descent/Arrival, Taxi‑in</span>
+    </span>
+    <span class="badge-chip" data-metric="Fuel burn/CO₂,metric-Non‑CO₂,metric-LAQ" title="Reported metrics: Fuel burn/CO₂, Non‑CO₂, LAQ" aria-label="Metrics: Fuel burn/CO₂, Non‑CO₂, LAQ">
+      <span class="chip-icon" aria-hidden="true">📊</span>
+      <span class="chip-text">Metrics: Fuel burn/CO₂, Non‑CO₂, LAQ</span>
+    </span>
+  </div>
 </div>
 
 <section>
