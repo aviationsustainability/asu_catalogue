@@ -96,7 +96,7 @@
           <li><a href="tools.html">Tools</a></li>
           <li><a href="dashboard.html">Dashboards</a></li>
           <li class="active"><a href="use-cases.html" aria-current="page">Use Cases</a></li>
-          <li><a href="#questions">FAQs</a></li>
+          <li><a href="questionnaires.html">Questionnaires</a></li>
           <li><a href="#questions">Downloads</a></li>
         </ul>
       </nav>
@@ -165,9 +165,9 @@
 
     <div class="filter-group" id="group-usage" role="region" aria-labelledby="tab-usage" hidden>
       <div class="chips" data-group="usage">
-        <button class="chip chip-n" data-group="usage" data-tag="Early stage">Early stage ANSPs</button>
-        <button class="chip chip-n" data-group="usage" data-tag="Developing">Developing ANSPs</button>
-        <button class="chip chip-n" data-group="usage" data-tag="Advanced">Advanced ANSPs</button>
+       <button class="chip chip-n" data-group="usage" data-tag="strategic">Strategic / Management</button>
+       <button class="chip chip-n" data-group="usage" data-tag="tactical">Tactical / Planning</button>
+       <button class="chip chip-n" data-group="usage" data-tag="operational">Operational / Expert</button>
       </div>
     </div>
 
@@ -177,7 +177,7 @@
   <main class="grid">
     <!-- Example card; you can duplicate/change attributes and <img> -->
     <article class="card"
-      data-usage="Early stage"
+      data-usage="strategic"
       data-focus="CO₂"
       data-phase="Descent/Arrival"
       data-metric="Non‑SES HFE,Non‑SES VFE,Fuel burn/CO₂">
@@ -185,12 +185,12 @@
       <img src="figure/muac.png" alt="MUAC - Pre-flight efficiency optimisation">
       <p>The Pre‑Flight Check (PFC) initiative, launched by the Maastricht Upper Area Control Centre (MUAC) in 2020, aims to enhance flight efficiency during the pre‑flight phase by filing a trajectory closer to the expected actual flight path.</p>
       <a class="btn" href="aem-details.html">Details <i class="ph ph-arrow-right" aria-hidden="true"></i></a>
-      <span class="badge level-badge"><i class="ph ph-flag" aria-hidden="true"></i> Early stage ANSPs</span>
+      <span class="badge level-badge"><i aria-hidden="true"></i>Strategic / Management</span>
     </article>
 
     <!-- Duplicate example -->
     <article class="card"
-      data-usage="Developing"
+      data-usage="operational"
       data-focus="Non‑CO₂,Noise"
       data-phase="Cruise,Departure/Climb"
       data-metric="ICAO KPIs,metric‑Noise">
@@ -198,7 +198,19 @@
       <img src="figure/muac.png" alt="Placeholder">
       <p>Example description showing how the layout behaves with other attributes and the same background image.</p>
       <a class="btn" href="#">Details <i class="ph ph-arrow-right" aria-hidden="true"></i></a>
-      <span class="badge level-badge"><i class="ph ph-flag" aria-hidden="true"></i> Developing ANSPs</span>
+      <span class="badge level-badge"><i aria-hidden="true"></i>Operational / Expert</span>
+    </article>
+
+    <article class="card"
+      data-usage="tactical"
+      data-focus="Non‑CO₂,Noise"
+      data-phase="Cruise,Departure/Climb"
+      data-metric="ICAO KPIs,metric‑Noise">
+      <h2>Another use case</h2>
+      <img src="figure/muac.png" alt="Placeholder">
+      <p>Example description showing how the layout behaves with other attributes and the same background image.</p>
+      <a class="btn" href="#">Details <i class="ph ph-arrow-right" aria-hidden="true"></i></a>
+      <span class="badge level-badge"><i aria-hidden="true"></i>Tactical / Planning</span>
     </article>
   </main>
 

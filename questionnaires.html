@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AVENIR Pillar 2 Catalogue</title>
+  <link href="https://fonts.googleapis.com/css2?family=Exo:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <style>
+    :root {
+      --primary: #009F6E; --primary-dark: #075E54; --accent: #009F6E;
+      --ink: #212121; --paper: #FCFCFC;
+      --bg-gradient-start: #FCFCFC; --bg-gradient-end: #EAF4FF;
+      --surface: #FFFFFF; --surface-elev: rgba(255,255,255,0.8);
+      --border: rgba(0,0,0,0.08);
+      --text-primary: #212121; --text-secondary: #455A64; --text-inverse: #FFFFFF;
+      --focus: #009F6E; --shadow: 0 10px 30px rgba(0,0,0,0.08);
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{
+      font-family:'Exo';
+      background: linear-gradient(135deg, var(--bg-gradient-start), var(--bg-gradient-end));
+      color: var(--text-primary);
+      min-height:100vh; display:flex; flex-direction:column; overflow-x:hidden;
+    }
+    body::before{content:'';position:fixed;top:-20%;left:-10%;width:700px;height:700px;background:radial-gradient(circle, rgba(0,159,110,0.12) 0%, transparent 65%);filter:blur(60px);z-index:-1;pointer-events:none}
+
+    /* Topbar */
+    .topbar{position:sticky;top:0;z-index:1000;background:rgba(252,252,252,0.8);backdrop-filter:saturate(140%) blur(10px);border-bottom:1px solid var(--border)}
+    .topbar-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;gap:12px;padding:12px 16px}
+    .brand{color:var(--ink);text-decoration:none;font-weight:800;letter-spacing:.2px}
+    .brand:hover{color:var(--primary-dark)}
+    .menu-toggle{margin-left:auto;font-size:1.6rem;line-height:1;background:transparent;color:var(--ink);border:0;cursor:pointer;padding:4px 8px}
+    .menu-toggle:focus{outline:2px solid var(--focus);outline-offset:2px;border-radius:6px}
+    nav.primary .menu{list-style:none;display:none;flex-direction:column;gap:0;width:100%;background:transparent;margin-top:8px}
+    nav.primary .menu.open{display:flex}
+    nav.primary .menu a{display:block;color:var(--ink);text-decoration:none;padding:10px 12px;border-radius:8px}
+    nav.primary .menu a:hover,nav.primary .menu a:focus{background:rgba(41,144,234,0.12);outline:none}
+    nav.primary .menu li.active>a,nav.primary .menu a[aria-current="page"]{background:rgba(0,159,110,0.12);font-weight:600}
+    @media (min-width:768px){
+      .menu-toggle{display:none}
+      .topbar-inner{display:grid;grid-template-columns:auto 1fr;align-items:center}
+      nav.primary{justify-self:end}
+      nav.primary .menu{display:flex !important;flex-direction:row;align-items:center;gap:8px;background:transparent;margin-top:0}
+      nav.primary .menu a{padding:8px 10px}
+    }
+
+    header{text-align:center;padding:64px 24px 24px}
+    h1{font-size:clamp(2rem,6vw,3.25rem);font-weight:800;letter-spacing:-0.02em;margin-bottom:12px;color:var(--primary-dark)}
+    p.subtitle{font-size:clamp(1rem,3.2vw,1.15rem);color:var(--text-secondary);max-width:1200px;margin:0 auto;line-height:1.65}
+
+    main{flex:1;max-width:1200px;margin:0 auto;padding:24px;display:grid;grid-template-columns:1fr;gap:28px;width:100%}
+    section{background:var(--surface-elev);border:1px solid var(--border);border-radius:16px;padding:clamp(18px,3.5vw,28px);box-shadow:var(--shadow)}
+    section h2{font-size:1.4rem;margin-bottom:10px;color:var(--ink)}
+    section p, section li{color:var(--text-secondary);line-height:1.65}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit, minmax(260px,1fr));gap:18px}
+    .card{background:var(--surface-elev);border:1px solid var(--border);border-radius:16px;padding:clamp(18px,3.5vw,28px);box-shadow:var(--shadow);transition:transform .25s ease, box-shadow .25s ease;display:flex;flex-direction:column}
+    .card:hover{transform:translateY(-4px);box-shadow:0 16px 36px rgba(0,0,0,0.12)}
+    .card-icon{font-size:28px;color:var(--accent);margin-bottom:14px;background:rgba(0,159,110,0.10);width:52px;height:52px;display:flex;align-items:center;justify-content:center;border-radius:12px}
+    .card h3{font-size:1.25rem;margin-bottom:10px;font-weight:700;color:var(--ink)}
+    .card p{color:var(--text-secondary);font-size:0.98rem;line-height:1.6;margin-bottom:16px}
+
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;color:var(--text-inverse);background:var(--primary);padding:12px 18px;border-radius:999px;font-weight:700;transition:background .2s ease, transform .05s ease;width:fit-content}
+    .btn:hover{background:var(--primary-dark)}
+    .btn:active{transform:scale(0.98)}
+    .btn-ghost{display:inline-flex;align-items:center;gap:8px;background:var(--primary);color:var(--text-inverse);border:none;border-radius:999px;padding:10px 14px;font-weight:700;cursor:pointer;width:fit-content}
+    .btn-ghost:hover{background:var(--primary-dark)}
+    .placeholder-list{margin-top:12px;padding-left:18px;display:none;animation:fadeIn .18s ease}
+    .placeholder-list.show{display:block}
+    .placeholder-list p{margin:6px 0}
+    @keyframes fadeIn{from{opacity:0;transform:translateY(-2px)}to{opacity:1;transform:translateY(0)}}
+
+    footer{text-align:center;padding:36px 20px;color:#607D8B;font-size:0.9rem}
+    .skip-link{position:absolute;left:-999px;top:0;background:var(--paper);color:var(--ink);padding:8px 12px;border-radius:4px}
+    .skip-link:focus{left:8px;outline:2px solid var(--focus)}
+
+    @media (max-width:600px){header{padding:40px 20px 16px} main{grid-template-columns:1fr;padding:16px} .card{border-radius:14px}}
+
+    .faq h3{font-size:1.1rem;color:var(--ink);margin-bottom:6px}
+    .accordion{border-top:1px solid var(--border)}
+    .acc-item{border-bottom:1px solid var(--border)}
+    .acc-btn{width:100%;background:transparent;border:0;cursor:pointer;text-align:left;padding:14px 12px;display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center;font-weight:700;color:var(--ink)}
+    .acc-btn:hover{background:rgba(0,159,110,0.06)}
+    .acc-icon{color:var(--text-secondary);transition:transform .25s ease}
+    .acc-panel{display:none;padding:0 12px 14px 36px;color:var(--text-secondary)}
+    .acc-item.open .acc-panel{display:block}
+    .acc-item.open .acc-icon{transform:rotate(90deg)}
+    .faq span{font-size:15px;text-align:justify;line-height: 1.5rem;}
+    .faq p{font-size:15px;text-align:justify}
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+  <div class="topbar" role="banner">
+    <div class="topbar-inner">
+      <a class="brand" href="index.html" aria-label="Homepage">AVENIR Catalogue</a>
+      <button id="menu-toggle" class="menu-toggle" aria-controls="menu-list" aria-expanded="false" aria-label="Open menu">☰</button>
+      <nav class="primary" aria-label="Primary navigation">
+        <ul id="menu-list" class="menu">
+          <li><a href="index.html">Introduction</a></li>
+          <li><a href="tools.html">Tools</a></li>
+          <li><a href="dashboard.html">Dashboards</a></li>
+          <li><a href="use-cases.html">Use Cases</a></li>
+          <li class="active"><a href="questionnaires.html" aria-current="page">Questionnaires</a></li>
+          <li><a href="#downloads">Downloads</a></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+
+  <header id="main-content" role="heading" aria-level="1">
+    <h1 id="main-content">Questionnaires</h1>
+<p class="subtitle" style="font-size:15px;text-align:justify">
+      As explained in Section 2 of Volume I, one of the first steps undertaken in Pillar 2 sub-group in Summer 2023 was to jointly develop a questionnaire focusing on how different ANSPs handle environmental aspects and the calculation thereof with a focus on technological and/or procedural changes connected with ATM aspects. The purpose was to gain a comprehensive understanding of how different ANSPs handle and calculate environmental aspects. The aim was to gather feedback on the tools and methodologies used, as well as address the challenges faced by the need to balance various environmental requirements.
+      <br><br>
+Following the exchange of information during the finalisation of the 2nd intermediate report in December 2024, the sub-group deemed it beneficial to distribute a new questionnaire in January 2025. This questionnaire requested updates from Pillar-2 members on aspects previously addressed in the 2023 questionnaire, as well as soliciting their input on the content of the final report, with particular emphasis on the design of dashboards.
+More information and anonymised results are provided below.
+
+
+      
+    </p>
+  </header>
+
+  <main>
+    <section id="faq" class="faq" aria-labelledby="faq-title">
+    <h2 id="faq-title">Questionnaire #1 – Summer 2023 </h2>
+      <div class="accordion" role="list">
+        <div class="acc-item" role="listitem">
+          <button class="acc-btn" aria-expanded="false">
+            <i class="ph ph-caret-right acc-icon" aria-hidden="true"></i>
+            <span style="font-size:15px;text-align:justify;line-height: 1.5rem;">Q1: Which ENV aspects do you calculate / monitor (it can be indicators, performance areas or other aspects), other than the SES (key) performance indicators. How often do you calculate / monitor them (weekly, monthly, yearly)?</span>
+          </button>
+          <div class="acc-panel">
+            <p style="font-size:15px;text-align:justify">The PRU standards such as HFE / VFE / KEA  were listed quite frequently. Also, metrics and basis coming with CCO/CDO are used repeatedly. The ways of counting are highly site specific – either percentage of flights or total.
+<br></br>The response about the frequency of calculation/monitoring shows a homogenous result. It is quite common to apply an annual or monthly rhythm of calculation/monitoring. Still, there are exceptions, where calculation or monitoring is done on a weekly or even daily basis.</p>
+  <img src="figure/q1_1.png" style="max-width:50%;"></img>
+  <img src="figure/q1_2.png" style="max-width:130%;"></img>
+</div>
+        </div>
+    </section>
+
+    <section id="faq" class="faq" aria-labelledby="faq-title">
+    <h2 id="faq-title">Questionnaire #2 – Winter 2024 </h2>
+      <div class="accordion" role="list">
+        <div class="acc-item" role="listitem">
+          <button class="acc-btn" aria-expanded="false">
+            <i class="ph ph-caret-right acc-icon" aria-hidden="true"></i>
+            <span style="font-size:15px;text-align:justify;line-height: 1.5rem;">Q1: In your country, are there local / national requirements (such as noise) for ANSPs that have priority on “emission reduction”? 
+Are those requirements hard ones (such as law) or soft ones (such as “agreements”)? 
+How difficult is it to deviate (if possible) from those requirements to prioritise “emission reduction”?
+  </button>
+          <div class="acc-panel">
+            <p>As a general principle, safety is prioritised above all.<br></br>
+In several countries, there are local and national requirements for ANSPs that prioritise noise abatement procedures about emissions. These requirements can be either soft, such as agreements with adjacent communities, or hard, such as Aeronautical Information Publication (AIP) restrictions or laws. AIP restrictions include limitations on ground engine run-ups, visual approaches to avoid populated areas, recommendations for Continuous Descent Operations (CDOs), specific power settings for departure procedures and Standard Instrument Departures (SIDs) designed to avoid populated areas. 
+<br></br> Additionally, there are noise action plans that are regularly reviewed and involve multiple stakeholders, including ministries, airports, airlines and citizen associations. Air Traffic Control has the option to deviate from SIDs once departing aircraft pass a certain altitude (e.g., 4000 feet), issuing vectors or direct clearances to shorten flight tracks.
+<br></br>Another respondent specifies that – at low altitudes – the regulatory framework requires environmental impact studies for changes in air navigation procedures, assessing the impact of noise, overflights and CO2 emissions. There is no regulatory priority given to reducing emissions or noise. Public acceptance is crucial, as noise pollution remains a major concern for residents. New airspace projects often require public consultation and acceptance. For the enroute part, the regulatory framework requires an impact study focusing on fuel consumption and gaseous emissions. In this context, the environmental priority is clearly the reduction of emissions.
+<br></br>It was also mentioned that public health is a priority, especially in urban and residential areas, and noise and emission requirements apply to all emitters, not just ANSPs. Legal requirements make it difficult to prioritise emission reduction over noise abatement. Specific national and EU legislation must be respected for both noise and emissions. That legislation is not specific to air navigation services, but to all emitters in general. 
+<br></br>One case mentions that there is no strict guideline about prioritising noise over emissions, but a general principle of protection against noise. As a result, in practice, the design of new procedures involves mainly noise but both should be considered to comply with legal requirements.
+<br></br>In terms of emission reduction, one ANSP has a national plan aimed at reducing CO2 emissions, coordinated with various ministries and the National Supervisory Authority (NSA). However, there are no specific priorities for noise over CO2 emissions, and indications aim at supporting a policy that reduces emissions, in line with the European Green Deal. 
+<br></br>Punctuality is still mentioned somehow taking precedence over sustainability due to pressure on ANSPs to avoid delays. 
+</p>
+</div>
+        </div>
+    </section>
+  </main>
+
+  <footer>
+    <p><strong>Open‑Source Governance: </strong>The Avenir Catalogue is developed as an open‑source, collaborative reference. Its evolution is driven by operational experience and user feedback.</p>
+    <p style="margin-bottom:1rem;"></p>
+    <p>© 2026 Eurocontrol Sustainability Unit. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Menu toggle
+    const toggle = document.getElementById('menu-toggle');
+    const list = document.getElementById('menu-list');
+    toggle?.addEventListener('click', () => {
+      const open = list.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', String(open));
+      toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    });
+
+    // FAQ accordion behavior
+    document.querySelectorAll('.acc-item').forEach(item => {
+      const btn = item.querySelector('.acc-btn');
+      btn.addEventListener('click', () => {
+        const open = item.classList.toggle('open');
+        btn.setAttribute('aria-expanded', String(open));
+      });
+    });
+  </script>
+</body>
+</html>

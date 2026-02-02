@@ -62,7 +62,7 @@
     .filter-group[hidden]{display:none}
     .filter-group .chips{display:flex;gap:8px;flex-wrap:wrap}
     .active-summary{display:flex;align-items:center;gap:8px;flex-wrap:wrap;min-height:36px;padding:8px 0;color:var(--text-secondary)}
-    .active-summary .chip{background:rgba(0,159,110,.18));border:1px solid var(--border)}
+    .active-summary .chip{background:rgba(0,159,110,.18);border:1px solid var(--border)}
     .spacer{flex:1 1 auto}
     @media(max-width:600px){header{padding:46px 20px 20px}.grid{grid-template-columns:1fr;padding:16px}.card{border-radius:14px}}
 
@@ -83,9 +83,9 @@ display: inline-flex;
   white-space: nowrap;
 
 }
-.badge.level-badge.early{background:rgba(255,193,7,.15);border-color:rgba(255,193,7,.35)}
-.badge.level-badge.developing{background:rgba(41,144,234,.12);border-color:rgba(41,144,234,.35)}
-.badge.level-badge.advanced{background:rgba(0,159,110,.18);border-color:rgba(0,159,110,.35)}
+.badge.level-badge.strategic{background:rgba(255,193,7,.15);border-color:rgba(255,193,7,.35)}
+.badge.level-badge.tactical{background:rgba(41,144,234,.12);border-color:rgba(41,144,234,.35)}
+.badge.level-badge.operational{background:rgba(0,159,110,.18);border-color:rgba(0,159,110,.35)}
 .badge-usage{position:absolute;top:12px;right:12px}
 
   </style>
@@ -102,7 +102,7 @@ display: inline-flex;
           <li class="active"><a href="tools.html" aria-current="page">Tools</a></li>
           <li><a href="dashboard.html">Dashboards</a></li>
           <li><a href="use-cases.html">Use Cases</a></li>
-          <li><a href="#questions">FAQs</a></li>
+         <li><a href="questionnaires.html">Questionnaires</a></li>
           <li><a href="#questions">Downloads</a></li>
         </ul>
       </nav>
@@ -110,13 +110,98 @@ display: inline-flex;
   </div>
 
   <header>
-    <h1 id="main-content">Tools</h1>
-    <p class="subtitle" style="font-size:15px;text-align:justify">
+
+<h1 id="main-content">Tools</h1>
+<p class="subtitle" style="font-size:15px;text-align:justify">
       The various tools described in this document help estimate fuel consumption, emissions and Noise to better analyse environmental impacts, address interdependencies and facilitate constructive exchanges with aircraft operators and local communities. The tools have been designed to objectify pollution (not nuisance) and the emission of gaseous pollutants, and to create a solid basis for further steps. None of the software packages are meant to “judge”, they just provide factual outputs based on the inputs made by the users. Some of the tools focus on the analysis of completed flights, while others are designed for the calculation of planned procedures. Some applications offer both functionalities, while others include the capability for Noise impact assessments.
       <br><br>
-      <strong>Note:</strong> the information presented in this section has been collected via presentations made to the sub-group by experts from the organisations providing the tools or using them, and/or from information publicly made available on the websites of those organisations. Since the document targets experts, and to avoid making it unreadable, it does not provide the explanation of the acronyms in the description of the tools or dashboards itself. The acronyms can be found in Section 7.
+      
+<strong>Note:</strong> the information presented in this section has been collected via presentations made to the sub-group by experts from the organisations providing the tools or using them, and/or from information publicly made available on the websites of those organisations. Since the document targets experts, and to avoid making it unreadable, it does not provide the explanation of the acronyms in the description of the tools or dashboards itself. The acronyms can be found in Section 7.
     </p>
+
+
+
+<section style="
+    margin: 25px auto; 
+    max-width: 1200px; 
+    width: 100%;     
+">
+
+    <details class="fuelburn-block" style="border:1px solid #d0d7de;border-radius:8px;padding:0;background:#ffffff;">
+        <summary style="cursor:pointer;padding:14px 18px;font-weight:700;font-size:1rem;color:#075E54;background:#E8F5F1;border-radius:8px;">
+            EUROCONTROL Tools: Fuel Burn Scope and User Mapping
+        </summary>
+
+        <div style="padding:18px;">
+
+            
+<table style="
+    width: 100%;
+    margin: 0 auto;
+    border-collapse: collapse;
+    table-layout: auto;
+">
+
+                <thead style="background:#f5f7f8;font-weight:700;">
+                    <tr>
+                        <th style="padding:8px;border:1px solid #ddd;">Tool</th>
+                        <th style="padding:8px;border:1px solid #ddd;">Primary users</th>
+                        <th style="padding:8px;border:1px solid #ddd;">Scope</th>
+                        <th style="padding:8px;border:1px solid #ddd;">Aggregation</th>
+                        <th style="padding:8px;border:1px solid #ddd;">Phase</th>
+                        <th style="padding:8px;border:1px solid #ddd;">Context</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td style="padding:8px;border:1px solid #ddd;"> <strong>AEM (Advanced Emissions Model)</strong></td>
+                        <td style="padding:8px;border:1px solid #ddd;">Analysts, researchers, ANSPs, policy support</td>
+                        <td style="padding:8px;border:1px solid #ddd;">Physics-based estimation of fuel burn and emissions</td>
+                        <td style="padding:8px;border:1px solid #ddd;">Flight / trajectory level, scalable to aggregates</td>
+                        <td style="padding:8px;border:1px solid #ddd;">Supports gate-to-gate </td>
+                        <td style="padding:8px;border:1px solid #ddd;">Methodological analysis, emissions modelling, research and policy support</td>
+                    </tr>
+
+                    <tr>
+                        <td style="padding:8px;border:1px solid #ddd;"><strong>SET (Small Emitters Tool)</strong></td>
+                        <td style="padding:8px;border:1px solid #ddd;">Aircraft operators (small emitters); verifiers/administering States (EU/UK/Swiss ETS context)</td>
+                        <td style="padding:8px;border:1px solid #ddd;">Statistical estimation of fuel burn and associated CO₂ emissions for flights within ETS reporting scope (statistical model)</td>
+                        <td style="padding:8px;border:1px solid #ddd;">Flight list / operator fleet level (supports totals over lists of flights)</td>
+                        <td style="padding:8px;border:1px solid #ddd;">Entire flight as represented by the tool (based on statistical models and flight characteristics)</td>
+                        <td style="padding:8px;border:1px solid #ddd;">ETS monitoring and reporting support; data-gap reporting; simplified monitoring for eligible operators</td>
+                    </tr>
+
+                    <tr>
+                        <td style="padding:8px;border:1px solid #ddd;"><strong>IMPACT</strong></td>
+                        <td style="padding:8px;border:1px solid #ddd;">Network Manager, analysts</td>
+                        <td style="padding:8px;border:1px solid #ddd;">Consistent network-wide fuel burn and emissions estimates</td>
+                        <td style="padding:8px;border:1px solid #ddd;">Pan-European network level</td>
+                        <td style="padding:8px;border:1px solid #ddd;">Typically airborne</td>
+                        <td style="padding:8px;border:1px solid #ddd;">Network performance monitoring, reporting, trend analysis</td>
+                    </tr>
+
+                    <tr>
+                        <td style="padding:8px;border:1px solid #ddd;"><strong>FlyingGreen</strong></td>
+                        <td style="padding:8px;border:1px solid #ddd;">ANSPs, States, airports, Policy makers (module-dependent)</td>
+                        <td style="padding:8px;border:1px solid #ddd;">Fuel burn and emissions indicators derived from multiple data sources (using AEM)</td>
+                        <td style="padding:8px;border:1px solid #ddd;">Configurable: ANSP, airport, State, or network views</td>
+                        <td style="padding:8px;border:1px solid #ddd;">Phase-dependent, module-specific</td>
+                        <td style="padding:8px;border:1px solid #ddd;">Transparency, stakeholder dialogue, awareness, decision support</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <p style="padding: 25px;text-align:justify;">
+            <strong>Note:</strong> Fuel burn values from different tools should not be directly compared without understanding scope and assumptions. No single tool provides a complete representation of ANSP environmental performance. Interpretation must always reflect the intended user and decision context.
+        </p>
+    </details>
+</section>
+
   </header>
+
+
 
   <!-- New collapsible filter panel (top only) -->
   <section class="filter-panel" id="filters" aria-label="Tool filters">
@@ -173,9 +258,9 @@ display: inline-flex;
 
       <div class="filter-group" id="group-usage" role="region" aria-labelledby="tab-usage" hidden>
       <div class="chips" data-group="usage">
-        <button class="chip chip-n" data-group="usage" data-tag="Early stage">Early stage ANSPs</button>
-        <button class="chip chip-n" data-group="usage" data-tag="Developing">Developing ANSPs</button>
-        <button class="chip chip-n" data-group="usage" data-tag="Advanced">Advanced ANSPs</button>
+        <button class="chip chip-n" data-group="usage" data-tag="strategic">Strategic / Management</button>
+        <button class="chip chip-n" data-group="usage" data-tag="tactical">Tactical / Planning</button>
+        <button class="chip chip-n" data-group="usage" data-tag="operational">Operational / Expert</button>
       </div> 
     </div>
 
@@ -184,11 +269,11 @@ display: inline-flex;
 
   <main class="grid">
     <!-- AEM -->
-    <article class="card" data-usage="Developing"
+    <article class="card" data-usage="strategic"
              data-focus="CO₂,Non‑CO₂"
              data-phase="Taxi‑out,Departure/Climb,Cruise,Descent/Arrival,Taxi‑in,Wheels‑up/‑down,Gate‑to‑Gate"
              data-metric="Fuel burn/CO₂,metric-Non‑CO₂">
-      <span class="badge level-badge developing badge-usage">Developing ANSPs</span>
+      <span class="badge level-badge strategic badge-usage">Strategic / Management</span>
       <div class="card-icon"><i class="ph ph-factory"></i></div>
       <h2>Advanced Emission Model (AEM)</h2>
       <p>Suite for calculating aircraft engine emissions across 4D trajectories (LTO + CCD), supporting ~24 pollutants (CO₂, NOx, SOx, PM, HC, …). BADA and CAEP methodologies, CLI/GUI/API variants.</p>
@@ -196,11 +281,11 @@ display: inline-flex;
     </article>
 
     <!-- Open‑ALAQS -->
-    <article class="card" data-usage="Advanced"
+    <article class="card" data-usage="tactical"
              data-focus="CO₂,LAQ,Non‑CO₂"
              data-phase="Taxi‑out,Departure/Climb,Descent/Arrival,Taxi‑in"
              data-metric="Fuel burn/CO₂,metric-Non‑CO₂,metric-LAQ">
-      <span class="badge level-badge advanced badge-usage">Advanced ANSPs</span>
+      <span class="badge level-badge tactical badge-usage">Tactical / Planning</span>
       <div class="card-icon"><i class="ph ph-cloud-fog"></i></div>
       <h2>Open‑ALAQS</h2>
       <p>Airport Local Air Quality Studies: QGIS plugin for inventory & dispersion (AUSTAL), covering aircraft and non‑aircraft sources (roads, GSE). Public code, flexible source selection.</p>
@@ -208,11 +293,11 @@ display: inline-flex;
     </article>
 
     <!-- IMPACT / INTACT -->
-    <article class="card" data-usage="Advanced"
+    <article class="card" data-usage="tactical"
              data-focus="Noise,CO₂,Non‑CO₂"
              data-phase="Taxi‑out,Departure/Climb,Cruise,Descent/Arrival,Taxi‑in,Wheels‑up/‑down,Gate‑to‑Gate"
              data-metric="metric-Noise,metric-Non‑CO₂,Fuel burn/CO₂">
-             <span class="badge level-badge advanced badge-usage">Advanced ANSPs</span>
+             <span class="badge level-badge tactical badge-usage">Tactical / Planning</span>
       <div class="card-icon"><i class="ph ph-wave-sine"></i></div>
       <h2>IMPACT & INTACT</h2>
       <p>Web platform for Noise, gaseous and particulate assessments (BADA4 TEM). ICAO/ECAC‑aligned. INTACT enables automated, near‑real‑time local impact maps and graphics.</p>
@@ -220,11 +305,11 @@ display: inline-flex;
     </article>
 
     <!-- NEST -->
-    <article class="card" data-usage="Early stage"
+    <article class="card" data-usage="operational"
              data-focus="CO₂,Non‑CO₂"
              data-phase="Wheels‑up/‑down"
              data-metric="Fuel burn/CO₂">
-      <span class="badge level-badge early badge-usage">Early stage ANSPs</span>
+      <span class="badge level-badge operational badge-usage">Operational / Expert</span>
       <div class="card-icon"><i class="ph ph-circles-three"></i></div>
       <h2>NEST</h2>
       <p>Network Strategic Tool for scenario‑based planning and airspace design via DDR datasets. Simulates trajectories, CAPA/ENV/Cost‑EFF impacts; AIRAC‑aligned updates.</p>
@@ -232,11 +317,11 @@ display: inline-flex;
     </article>
 
     <!-- R‑NEST -->
-    <article class="card" data-usage="Early stage"
+    <article class="card" data-usage="operational"
              data-focus="CO₂,Non‑CO₂"
              data-phase="Taxi‑out,Departure/Climb,Cruise,Descent/Arrival,Taxi‑in,Wheels‑up/‑down,Gate‑to‑Gate"
              data-metric="Fuel burn/CO₂,metric-Non‑CO₂">
-      <span class="badge level-badge early badge-usage">Early stage ANSPs</span>
+      <span class="badge level-badge operational badge-usage">Operational / Expert </span>
       <div class="card-icon"><i class="ph ph-flask"></i></div>
       <h2>R‑NEST</h2>
       <p>Research‑grade network simulation tool (CASA delay model, 3D HMI) for concept validation, scenario comparison and SESAR projects; very high performance.</p>
@@ -244,11 +329,11 @@ display: inline-flex;
     </article>
 
     <!-- ACROPOLE -->
-    <article class="card" data-usage="Developing"
+    <article class="card" data-usage="strategic"
              data-focus="CO₂"
              data-phase="Departure/Climb,Cruise,Descent/Arrival,Gate‑to‑Gate"
              data-metric="Non‑SES HFE,Non‑SES VFE, Fuel burn/CO₂,metric-Non‑CO₂">
-    <span class="badge level-badge developing badge-usage">Developing ANSPs</span>
+    <span class="badge level-badge strategic badge-usage">Strategic / Management</span>
 
       <div class="card-icon"><i class="ph ph-brain"></i></div>
       <h2>ACROPOLE</h2>
@@ -257,11 +342,11 @@ display: inline-flex;
     </article>
 
     <!-- AEDT -->
-    <article id="card-aedt" class="card" data-usage="Early stage"
+    <article id="card-aedt" class="card" data-usage="operational"
              data-focus="CO₂,Non‑CO₂,Noise,LAQ"
              data-phase="Taxi‑out,Departure/Climb,Cruise,Descent/Arrival,Taxi‑in,Wheels‑up/‑down,Gate‑to‑Gate"
              data-metric="Non‑SES HFE,Non‑SES VFE,Fuel burn/CO₂,metric-Non‑CO₂,metric-Noise,metric-LAQ">
-  <span class="badge level-badge early badge-usage">Early stage ANSPs</span>
+  <span class="badge level-badge operational badge-usage">Operational / Expert </span>
 
       <div class="card-icon"><i class="ph ph-soundcloud-logo"></i></div>
       <h2>AEDT</h2>

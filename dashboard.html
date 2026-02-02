@@ -87,9 +87,9 @@ display: inline-flex;
   white-space: nowrap;
 
 }
-.badge.level-badge.early{background:rgba(255,193,7,.15);border-color:rgba(255,193,7,.35)}
-.badge.level-badge.developing{background:rgba(41,144,234,.12);border-color:rgba(41,144,234,.35)}
-.badge.level-badge.advanced{background:rgba(0,159,110,.18);border-color:rgba(0,159,110,.35)}
+.badge.level-badge.strategic{background:rgba(255,193,7,.15);border-color:rgba(255,193,7,.35)}
+.badge.level-badge.tactical{background:rgba(41,144,234,.12);border-color:rgba(41,144,234,.35)}
+.badge.level-badge.operational{background:rgba(0,159,110,.18);border-color:rgba(0,159,110,.35)}
 .badge-usage{position:absolute;top:12px;right:12px}
 
     @media(max-width:600px){header{padding:46px 20px 20px}.grid{grid-template-columns:1fr;padding:16px}.card{border-radius:14px}}
@@ -177,9 +177,9 @@ display: inline-flex;
 
     <div class="filter-group" id="group-usage" role="region" aria-labelledby="tab-usage" hidden>
       <div class="chips" data-group="usage">
-        <button class="chip chip-n" data-group="usage" data-tag="Early stage">Early stage ANSPs</button>
-        <button class="chip chip-n" data-group="usage" data-tag="Developing">Developing ANSPs</button>
-        <button class="chip chip-n" data-group="usage" data-tag="Advanced">Advanced ANSPs</button>
+        <button class="chip chip-n" data-group="usage" data-tag="strategic">Strategic / Management</button>
+        <button class="chip chip-n" data-group="usage" data-tag="tactical">Tactical / Planning</button>
+        <button class="chip chip-n" data-group="usage" data-tag="operational">Operational / Expert</button>
       </div> 
     </div>
 
@@ -188,7 +188,7 @@ display: inline-flex;
 
   <main class="grid">
     <article class="card"
-    data-usage="Early stage"
+    data-usage="strategic"
       data-focus="CO₂"
       data-phase="Descent/Arrival"
       data-metric="Non‑SES HFE,Non‑SES VFE,Fuel burn/CO₂">
@@ -197,11 +197,11 @@ display: inline-flex;
       <img src="figure/tma.png" alt="TMA Flight Efficiency Dashboard">
       <p>An interactive tool for analyzing and improving flight operations in terminal areas.</p>
       <a class="btn" href="aem-details.html">Details<i class="ph ph-arrow-right"></i></a>
-      <span class="badge level-badge early badge-usage">Early stage ANSPs</span>
+      <span class="badge level-badge strategic badge-usage">Strategic / Management</span>
     </article>
 
     <article class="card"
-    data-usage="Early stage"
+    data-usage="strategic"
       data-focus="CO₂"
       data-phase="Wheels‑up/‑down"
       data-metric="Fuel burn/CO₂">
@@ -210,11 +210,11 @@ display: inline-flex;
       <img src="figure/fathom.png" alt="FATHOM dashboard">
       <p>A data analytics dashboard provided by EUROCONTROL, offering comprehensive insights into European air traffic management.</p>
       <a class="btn" href="">Details<i class="ph ph-arrow-right"></i></a>
-      <span class="badge level-badge early badge-usage">Early stage ANSPs</span>
+      <span class="badge level-badge strategic badge-usage">Strategic / Management</span>
     </article>
 
     <article class="card"
-    data-usage="Early stage"
+    data-usage="strategic"
       data-focus="CO₂"
       data-phase="Departure/Climb,Cruise,Descent/Arrival"
       data-metric="Fuel burn/CO₂">
@@ -223,11 +223,11 @@ display: inline-flex;
       <img src="figure/compass.png" alt="CO2MPASS dashboard">
       <p>An interactive dashboard to support the Network manager Operational Performance Framework.</p>
       <a class="btn" href="">Details<i class="ph ph-arrow-right"></i></a>
-      <span class="badge level-badge early badge-usage">Early stage ANSPs</span>
+      <span class="badge level-badge strategic badge-usage">Strategic / Management</span>
     </article>
 
     <article class="card"
-    data-usage="Early stage"
+    data-usage="strategic"
       data-focus=""
       data-phase="Cruise"
       data-metric="SES KPIs/PIs,Non‑SES VFE">
@@ -236,11 +236,11 @@ display: inline-flex;
       <img src="figure/flair.png" alt="FLair dashboard">
       <p>The Flight Level Adherence Interactive Reporting dashboard (FLair) provides users with flight level details to those flights that did not adhere to the filed (requested) flight level at some point during their route.</p>
       <a class="btn" href="">Details<i class="ph ph-arrow-right"></i></a>
-      <span class="badge level-badge early badge-usage">Early stage ANSPs</span>
+      <span class="badge level-badge strategic badge-usage">Strategic / Management</span>
     </article>
 
     <article class="card"
-    data-usage="Early stage"
+    data-usage="strategic"
       data-focus="CO₂,Non‑CO₂"
       data-phase="Taxi‑out,Departure/Climb,Cruise,Descent/Arrival,Taxi‑in,Wheels‑up/‑down,Gate‑to‑Gate"
       data-metric="Fuel burn/CO₂">
@@ -249,11 +249,11 @@ display: inline-flex;
       <img src="figure/netzero.png" alt="NetZero pillar dashboard">
       <p>The NetZero pillar offers a user-friendly dashboard that enables monitoring and forecasting of emissions based on operational improvements, fleet renewal and traffic growth scenarios.</p>
       <a class="btn" href="">Details<i class="ph ph-arrow-right"></i></a>
-      <span class="badge level-badge early badge-usage">Early stage ANSPs</span>
+      <span class="badge level-badge strategic badge-usage">Strategic / Management</span>
     </article>
 
     <article class="card"
-    data-usage="Early stage"
+    data-usage="strategic"
       data-focus="CO₂,Non‑CO₂"
       data-phase="Taxi‑out,Departure/Climb,Descent/Arrival,Taxi‑in"
       data-metric="Fuel burn/CO₂,metric‑Non‑CO₂">
@@ -262,11 +262,11 @@ display: inline-flex;
       <img src="figure/lto.png" alt="LTO emissions estimator">
       <p>It is is designed to quickly and easily access emission information (CO2 and NOx emissions) during the landing and take-off phases of aircraft operations based on operational data instead of standardised ICAO LTO flight phase durations. </p>
       <a class="btn" href="">Details<i class="ph ph-arrow-right"></i></a>
-      <span class="badge level-badge early badge-usage">Early stage ANSPs</span>
+      <span class="badge level-badge strategic badge-usage">Strategic / Management</span>
     </article>
 
     <article class="card"
-    data-usage="Early stage"
+    data-usage="operational"
       data-focus="CO₂"
       data-phase="Taxi‑out,Departure/Climb,Cruise,Descent/Arrival,Taxi‑in,Wheels‑up/‑down,Gate‑to‑Gate"
       data-metric="ICAO KPIs,SES KPIs/PIs,Non‑SES HFE,Non‑SES VFE,Fuel burn/CO₂">
@@ -275,11 +275,11 @@ display: inline-flex;
       <img src="figure/aiu.png" alt="Aviation Intelligence Portal - Flight Efficiency">
       <p>The Efficiency and Environment section of the Aviation Intelligence (AIU) Portal is a EUROCONTROL dashboard that provides data-driven insights into the efficiency and environmental impact of European aviation.</p>
       <a class="btn" href="">Details<i class="ph ph-arrow-right"></i></a>
-      <span class="badge level-badge early badge-usage">Early stage ANSPs</span>
+      <span class="badge level-badge operational badge-usage">Operational / Expert</span>
     </article>
 
     <article class="card"
-    data-usage="Early stage"
+    data-usage="tactical"
       data-focus="CO₂"
       data-phase="Taxi‑out,Departure/Climb,Cruise,Descent/Arrival,Taxi‑in"
       data-metric="ICAO KPIs,SES KPIs/PIs">
@@ -288,7 +288,7 @@ display: inline-flex;
       <img src="figure/ses.png" alt="SES Data Portal">
       <p>It offers comprehensive reporting on performance indicators that are subject to targets or are monitored within the framework of the Single European Sky (SES) performance scheme.</p>
       <a class="btn" href="">Details<i class="ph ph-arrow-right"></i></a>
-<span class="badge level-badge early badge-usage">Early stage ANSPs</span>    </article>
+<span class="badge level-badge tactical badge-usage">Tactical / Planning</span>    </article>
   </main>
 
   <!-- Optional inline details anchors (to preserve deep links) -->
