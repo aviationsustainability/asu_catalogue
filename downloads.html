@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AVENIR Pillar 2 Catalogue</title>
+  <link href="https://fonts.googleapis.com/css2?family=Exo:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <style>
+    :root {
+      --primary: #009F6E; --primary-dark: #075E54; --accent: #009F6E;
+      --ink: #212121; --paper: #FCFCFC;
+      --bg-gradient-start: #FCFCFC; --bg-gradient-end: #EAF4FF;
+      --surface: #FFFFFF; --surface-elev: rgba(255,255,255,0.8);
+      --border: rgba(0,0,0,0.08);
+      --text-primary: #212121; --text-secondary: #455A64; --text-inverse: #FFFFFF;
+      --focus: #009F6E; --shadow: 0 10px 30px rgba(0,0,0,0.08);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Exo';
+      background: linear-gradient(135deg, var(--bg-gradient-start), var(--bg-gradient-end));
+      color: var(--text-primary);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+    }
+    /* Decorative soft background spot using brand green */
+    body::before {
+      content: '';
+      position: fixed;
+      top: -20%; left: -10%;
+      width: 700px; height: 700px;
+      background: radial-gradient(circle, rgba(0,159,110,0.12) 0%, transparent 65%);
+      filter: blur(60px);
+      z-index: -1;
+      pointer-events: none;
+    }
+    .topbar {
+      position: sticky; top: 0; z-index: 1000;
+      background: rgba(252,252,252,0.8);
+      backdrop-filter: saturate(140%) blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+    .topbar-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; gap: 12px; padding: 12px 16px; }
+    .brand { color: var(--ink); text-decoration: none; font-weight: 800; letter-spacing: .2px; }
+    .brand:hover { color: var(--primary-dark); }
+    .menu-toggle { margin-left: auto; font-size: 1.6rem; line-height: 1; background: transparent; color: var(--ink); border: 0; cursor: pointer; padding: 4px 8px; }
+    .menu-toggle:focus { outline: 2px solid var(--focus); outline-offset: 2px; border-radius: 6px; }
+    nav.primary .menu { list-style: none; display: none; flex-direction: column; gap: 0; width: 100%; background: transparent; margin-top: 8px; }
+    nav.primary .menu.open { display: flex }
+    nav.primary .menu a { display: block; color: var(--ink); text-decoration: none; padding: 10px 12px; border-radius: 8px; }
+    nav.primary .menu a:hover, nav.primary .menu a:focus { background: rgba(41,144,234,0.12); outline: none; }
+    nav.primary .menu li.active>a, nav.primary .menu a[aria-current="page"] { background: rgba(0,159,110,0.12); font-weight: 600 }
+    @media (min-width: 768px){
+      .menu-toggle { display: none }
+      .topbar-inner { display: grid; grid-template-columns: auto 1fr; align-items: center }
+      nav.primary { justify-self: end }
+      nav.primary .menu { display: flex !important; flex-direction: row; align-items: center; gap: 8px; background: transparent; margin-top: 0 }
+      nav.primary .menu a { padding: 8px 10px }
+    }
+    header { text-align: center; padding: 64px 24px 24px; }
+    h1 { font-size: clamp(2rem, 6vw, 3.25rem); font-weight: 800; letter-spacing: -0.02em; margin-bottom: 12px; color: var(--primary-dark); }
+    p.subtitle { font-size: clamp(1rem, 3.2vw, 1.15rem); color: var(--text-secondary); max-width: 900px; margin: 0 auto; line-height: 1.65; }
+    main { flex: 1; max-width: 1200px; margin: 0 auto; padding: 24px; display: grid; grid-template-columns: 1fr; gap: 28px; width: 100%; }
+    section { background: var(--surface-elev); border: 1px solid var(--border); border-radius: 16px; padding: clamp(18px, 3.5vw, 28px); box-shadow: var(--shadow); }
+    section h2 { font-size: 1.4rem; margin-bottom: 10px; color: var(--ink); }
+    section p, section li { color: var(--text-secondary); line-height: 1.65; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px; }
+    .card { background: var(--surface-elev); border: 1px solid var(--border); border-radius: 16px; padding: clamp(18px, 3.5vw, 28px); box-shadow: var(--shadow); transition: transform .25s ease, box-shadow .25s ease; display: flex; flex-direction: column; }
+    .card:hover { transform: translateY(-4px); box-shadow: 0 16px 36px rgba(0,0,0,0.12); }
+    .card-icon { font-size: 28px; color: var(--accent); margin-bottom: 14px; background: rgba(0,159,110,0.10); width: 52px; height: 52px; display: flex; align-items: center; justify-content: center; border-radius: 12px; }
+    .card h2 { font-size: 1.25rem; margin-bottom: 10px; font-weight: 700; color: var(--ink); }
+    .card p { color: var(--text-secondary); font-size: 0.98rem; line-height: 1.6; margin-bottom: 16px; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; text-decoration: none; color: var(--text-inverse); background: var(--primary); padding: 12px 18px; border-radius: 999px; font-weight: 700; transition: background .2s ease, transform .05s ease; width: fit-content; }
+    .btn:hover { background: var(--primary-dark); }
+    .btn:active { transform: scale(0.98); }
+
+    /* NEW: toggle button style to match .btn but as a <button> */
+    .btn-ghost {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--primary); color: var(--text-inverse);
+      border: none; border-radius: 999px;
+      padding: 10px 14px; font-weight: 700; cursor: pointer;
+      width: fit-content;
+    }
+    .btn-ghost:hover { background: var(--primary-dark); }
+
+    /* NEW: expandable placeholder list styling */
+    .placeholder-list {
+      margin-top: 12px;
+      padding-left: 18px;
+      display: none;               /* hidden by default */
+      animation: fadeIn .18s ease;
+    }
+    .placeholder-list.show { display: block; }
+    .placeholder-list p { margin: 6px 0; }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-2px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    footer { text-align: center; padding: 36px 20px; color: #607D8B; font-size: 0.9rem; }
+    /* Accessibility helpers */
+    .skip-link { position: absolute; left: -999px; top: 0; background: var(--paper); color: var(--ink); padding: 8px 12px; border-radius: 4px; }
+    .skip-link:focus { left: 8px; outline: 2px solid var(--focus); }
+    @media (max-width: 600px){
+      header { padding: 40px 20px 16px; }
+      main { grid-template-columns: 1fr; padding: 16px; }
+      .card { border-radius: 14px; }
+    }
+    
+  
+/* Bluebook section improvements */
+.bluebook {margin-top:40px; border-radius:16px; background:linear-gradient(120deg,#01512C,#006A3B,#003E74); padding:50px 30px;}
+.bluebook-container {display:flex; gap:40px; align-items:center; justify-content:space-between;}
+.bluebook-text h2 {font-size:28px; font-weight:700; margin-bottom:12px; color:white;}
+.bluebook-text p {color:white; opacity:.9; line-height:1.6;}
+.bluebook-btn {margin-top:20px; display:inline-flex; align-items:center; gap:8px; padding:10px 18px; border-radius:8px; background:rgba(255,255,255,0.15); color:white; text-decoration:none; border:1px solid rgba(255,255,255,0.3);} 
+.bluebook-btn:hover {background:rgba(255,255,255,0.25);} 
+.bluebook-image img {width:260px; border-radius:6px; box-shadow:0 6px 18px rgba(0,0,0,0.3);} 
+@media(max-width:900px){.bluebook-container{flex-direction:column; text-align:left;}}
+</style>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+  <div class="topbar" role="banner">
+    <div class="topbar-inner">
+      <a class="brand" href="index.html" aria-label="Homepage">AVENIR Catalogue</a>
+      <button id="menu-toggle" class="menu-toggle" aria-controls="menu-list" aria-expanded="false" aria-label="Open menu">☰</button>
+      <nav class="primary" aria-label="Primary navigation">
+        <ul id="menu-list" class="menu">
+          <li><a href="index.html">Introduction</a></li>
+          <li><a href="tools.html">Tools</a></li>
+          <li><a href="dashboard.html">Dashboards</a></li>
+          <li><a href="use-cases.html">Use Cases</a></li>
+          <li><a href="questionnaires.html">Questionnaires</a></li>
+          <li class="active"><a href="downloads.html" aria-current="page">Downloads</a></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+
+  <header id="main-content" role="heading" aria-level="1">
+    <h1>Downloads</h1>
+  </header>
+
+  <main>
+    
+
+<section id='bluebook-section' class='bluebook'>
+  <div class='bluebook-container'>
+    <div class='bluebook-text'>
+      <h2>Avenir Pillar 2 Catalogue</h2>
+      <p class="text-align:justify">This document constitutes Volume II of the final report from the Aviation Environmental Reporting Working Group (hereafter referred to as 'AVENIR WG'), Pillar 2. <br></br>
+It focuses on how individual Air Navigation Service Providers (ANSPs) enhance their environmental performance through the adoption of new technologies, procedures and the utilisation of calculation tools and dashboards.<br></br>
+The "Catalogue of Tools and Dashboards" offers ANSPs an overview of available solutions for evaluating fuel consumption, emissions, noise, and their related interdependencies. This catalogue promotes knowledge sharing, minimises duplication of efforts and assists ANSPs in selecting suitable tools that align with their specific operational environments. <br></br>
+Note: the group has incorporated solutions based on the best available knowledge and presentations received. The catalogue is intended to be a dynamic resource that will continuously be updated with additional tools and dashboards.<br></br>
+In addition to the catalogue, this document includes use cases from ANSPs that illustrate how they have employed the tools described in the catalogue or other methodologies to enhance the environmental efficiency of operations while taking interdependencies into account. This was achieved among others through the participation of ANSPs in two complementary questionnaires, one initiated at the commencement of the sub-group, and the other towards the conclusion of the work. The questionnaires examined how ANSPs manage environmental aspects and calculate related impacts, with an emphasis on technological and procedural changes associated with Air Traffic Management (ATM) considerations. Details can be found in Section 6.</p>
+      <a class='bluebook-btn' href='avenir-wg-pillar-2-final-report-volume-2-catalogue.pdf'>
+        <img src='https://img.icons8.com/material-rounded/24/ffffff/download--v1.png' alt=''/> Download PDF
+      </a>
+    </div>
+    <div class='bluebook-image'>
+      <img src='figure\cover.png' alt='Cover'/>
+    </div>
+  </div>
+</section>
+
+
+
+    
+  </main>
+
+<footer>
+<p> <strong>Open‑Source Governance: </strong>The Avenir Catalogue is developed as an open‑source, collaborative reference. Its evolution is driven by operational experience, user feedback, and contributions from ANSPs, ensuring that methods, tools and practices remain aligned with real-world challenges and emerging needs.</p>
+<p style="margin-bottom: 1rem;"></p>
+<p>© 2025 Eurocontrol Sustainability Unit. All rights reserved.</p>
+</footer>
+
+  <script>
+    // Menu toggle
+    const toggle = document.getElementById('menu-toggle');
+    const list = document.getElementById('menu-list');
+    toggle?.addEventListener('click', () => {
+      const open = list.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', String(open));
+      toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    });
+
+    // NEW: usage level card toggle buttons
+    document.querySelectorAll('.usage-toggle').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const listId = btn.getAttribute('aria-controls');
+        const target = document.getElementById(listId);
+        const expanded = btn.getAttribute('aria-expanded') === 'true';
+
+        // toggle state
+        btn.setAttribute('aria-expanded', String(!expanded));
+        btn.innerHTML = !expanded
+          ? '<i class="ph ph-list-bullets" aria-hidden="true"></i> Hide examples'
+          : '<i class="ph ph-list-bullets" aria-hidden="true"></i> Show examples';
+
+        // show/hide list (keep both display + hidden attribute for a11y)
+        if (!expanded) {
+          target.hidden = false;
+          target.classList.add('show');
+        } else {
+          target.classList.remove('show');
+          setTimeout(() => { target.hidden = true; }, 120);
+        }
+      });
+    });
+  </script>
+</body>
+</html>
