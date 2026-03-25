@@ -36,7 +36,7 @@
     header{text-align:center;padding:48px 24px 16px}
     h1{font-size:clamp(2rem,6vw,3.25rem);font-weight:800;letter-spacing:-.02em;margin-bottom:8px;color:#075E54}
 
-    .grid{max-width:1200px;margin:0 auto;padding:20px;display:grid;grid-template-columns:repeat(auto-fit,minmax(1fr,1fr));gap:20px;width:100%}
+    .grid{max-width:1200px;margin:0 auto;padding:20px;display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:20px;width:100%}
 
     /* Card with background image + overlay */
     .card{position:relative;border:1px solid var(--border);border-radius:16px;box-shadow:var(--shadow);overflow:hidden;min-height:360px;display:flex;flex-direction:column;justify-content:flex-end;padding:20px;background-size:cover;background-position:center}
@@ -53,9 +53,6 @@
     .tagbar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
     .tagbar .chip{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:999px;border:1px solid rgba(255,255,255,0.35);background:rgba(255,255,255,0.18);color:#fff;font-size:.85rem;backdrop-filter:blur(4px);cursor:default;user-select:text}
     .tagbar .chip .dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.85)}
-
-    /* Usage badge */
-    .badge.level-badge{display:inline-flex;align-items:center;gap:4px;padding:3px 6px;font-size:11px;border-radius:999px;border:1px solid rgba(255,255,255,0.45);background:rgba(255,255,255,0.22);color:#fff;font-weight:600;white-space:nowrap;position:absolute;top:12px;right:12px;z-index:1}
 
     .card img{display:none}
 
@@ -119,9 +116,6 @@
       <button class="tab" role="tab" aria-controls="group-metric" aria-selected="false" data-target="metric">
         <i class="ph ph-chart-line-up" aria-hidden="true"></i> Indicators & metrics <span class="count" aria-hidden="true">0</span>
       </button>
-      <button class="tab" role="tab" aria-controls="group-usage" aria-selected="false" data-target="usage">
-        <i class="ph ph-user-switch" aria-hidden="true"></i> Usage level <span class="count" aria-hidden="true">0</span>
-      </button>
       <div class="spacer"></div>
       <button id="clear-all" class="clear" title="Clear all filters"><i class="ph ph-broom" aria-hidden="true"></i> Clear</button>
     </div>
@@ -163,55 +157,74 @@
       </div>
     </div>
 
-    <div class="filter-group" id="group-usage" role="region" aria-labelledby="tab-usage" hidden>
-      <div class="chips" data-group="usage">
-       <button class="chip chip-n" data-group="usage" data-tag="strategic">Strategic / Management</button>
-       <button class="chip chip-n" data-group="usage" data-tag="tactical">Tactical / Planning</button>
-       <button class="chip chip-n" data-group="usage" data-tag="operational">Operational / Expert</button>
-      </div>
-    </div>
-
     <div class="active-summary" id="active-summary" aria-live="polite"></div>
   </section>
 
   <main class="grid">
-    <!-- Example card; you can duplicate/change attributes and <img> -->
+   
     <article class="card"
-      data-usage="strategic"
+      data-focus="CO₂,Non‑CO₂"
+      data-phase="Wheels‑up/‑down"
+      data-metric="Fuel burn/CO₂,metric‑Non‑CO₂">
+      <h2>MUAC – Pre‑flight efficiency optimisation</h2>
+      <img src="figure/muac.png" alt="">
+      <a class="btn" href="muac.html">Details <i class="ph ph-arrow-right" aria-hidden="true"></i></a>
+    </article>
+
+    <article class="card"
+      data-focus="Noise"
+      data-phase="Descent/Arrival"
+      data-metric="metric‑Noise">
+      <h2>Austro Control (ACG) - Noise calculation</h2>
+      <img src="figure/austrocontrol.jpg" alt="">
+     <a class="btn" href="austrocontrol.html">Details <i class="ph ph-arrow-right" aria-hidden="true"></i></a>
+    </article>
+
+     <article class="card"
+      data-focus="CO₂,Noise"
+      data-phase="Descent/Arrival"
+      data-metric="Fuel burn/CO₂,metric‑Noise">
+      <h2>skeyes – RNP trials</h2>
+      <img src="figure/skeyes.jpg" alt="">
+      <a class="btn" href="skeyes.html">Details <i class="ph ph-arrow-right" aria-hidden="true"></i></a>
+    </article>
+
+    <article class="card"
+      data-focus="Noise"
+      data-phase="Descent/Arrival"
+      data-metric="metric‑Noise">
+      <h2>LVNL and FABEC - Curved night arrival routes</h2>
+      <img src="figure/schipol.jpg" alt="">
+      <a class="btn" href="lvnl.html">Details <i class="ph ph-arrow-right" aria-hidden="true"></i></a>
+    </article>
+
+    <article class="card"
       data-focus="CO₂"
       data-phase="Descent/Arrival"
-      data-metric="Non‑SES HFE,Non‑SES VFE,Fuel burn/CO₂">
-      <h2>MUAC – Pre‑flight efficiency optimisation</h2>
-      <img src="figure/muac.png" alt="MUAC - Pre-flight efficiency optimisation">
-      <p>The Pre‑Flight Check (PFC) initiative, launched by the Maastricht Upper Area Control Centre (MUAC) in 2020, aims to enhance flight efficiency during the pre‑flight phase by filing a trajectory closer to the expected actual flight path.</p>
-      <a class="btn" href="aem-details.html">Details <i class="ph ph-arrow-right" aria-hidden="true"></i></a>
-      <span class="badge level-badge"><i aria-hidden="true"></i>Strategic / Management</span>
-    </article>
-
-    <!-- Duplicate example -->
-    <article class="card"
-      data-usage="operational"
-      data-focus="Non‑CO₂,Noise"
-      data-phase="Cruise,Departure/Climb"
-      data-metric="ICAO KPIs,metric‑Noise">
-      <h2>Another use case</h2>
-      <img src="figure/muac.png" alt="Placeholder">
-      <p>Example description showing how the layout behaves with other attributes and the same background image.</p>
-      <a class="btn" href="#">Details <i class="ph ph-arrow-right" aria-hidden="true"></i></a>
-      <span class="badge level-badge"><i aria-hidden="true"></i>Operational / Expert</span>
+      data-metric="Fuel burn/CO₂">
+      <h2>ENAIRE - Measuring procedures efficiency: Malaga Airport</h2>
+      <img src="figure/enaire.png" alt="">
+      <a class="btn" href="enaire.html">Details <i class="ph ph-arrow-right" aria-hidden="true"></i></a>
     </article>
 
     <article class="card"
-      data-usage="tactical"
-      data-focus="Non‑CO₂,Noise"
-      data-phase="Cruise,Departure/Climb"
-      data-metric="ICAO KPIs,metric‑Noise">
-      <h2>Another use case</h2>
-      <img src="figure/muac.png" alt="Placeholder">
-      <p>Example description showing how the layout behaves with other attributes and the same background image.</p>
-      <a class="btn" href="#">Details <i class="ph ph-arrow-right" aria-hidden="true"></i></a>
-      <span class="badge level-badge"><i aria-hidden="true"></i>Tactical / Planning</span>
+      data-focus="CO₂"
+      data-phase="Descent/Arrival"
+      data-metric="Fuel burn/CO₂">
+      <h2>NATS – Pairwise</h2>
+      <img src="figure/nats.jpg" alt="">
+      <a class="btn" href="nats.html">Details <i class="ph ph-arrow-right" aria-hidden="true"></i></a>
     </article>
+
+    <article class="card"
+      data-focus="CO₂"
+      data-phase="Descent/Arrival"
+      data-metric="">
+      <h2>DFS – Improved STAR distances</h2>
+      <img src="figure/dfs.avif" alt="">
+      <a class="btn" href="dfs.html">Details <i class="ph ph-arrow-right" aria-hidden="true"></i></a>
+    </article>
+    
   </main>
 
   <section id="aem-details" class="hidden"></section>
@@ -249,7 +262,7 @@
     (function(){
       const panel = document.getElementById('filters'); if(!panel) return;
       const tabs = Array.from(panel.querySelectorAll('.filter-tabs .tab'));
-      const groups = { focus: document.getElementById('group-focus'), phase: document.getElementById('group-phase'), metric: document.getElementById('group-metric'), usage: document.getElementById('group-usage') };
+      const groups = { focus: document.getElementById('group-focus'), phase: document.getElementById('group-phase'), metric: document.getElementById('group-metric') };
       const chips = Array.from(panel.querySelectorAll('.chip-n'));
       const clearAll = document.getElementById('clear-all');
       const summary = document.getElementById('active-summary');
@@ -268,8 +281,7 @@
           const f=(card.getAttribute('data-focus')||'').split(',').map(s=>s.trim()).filter(Boolean);
           const p=(card.getAttribute('data-phase')||'').split(',').map(s=>s.trim()).filter(Boolean);
           const m=(card.getAttribute('data-metric')||'').split(',').map(s=>s.trim()).filter(Boolean);
-          const u=(card.getAttribute('data-usage')||'').split(',').map(s=>s.trim()).filter(Boolean);
-          const visible = match(f,state.focus) && match(p,state.phase) && match(m,state.metric) && match(u,state.usage);
+          const visible = match(f,state.focus) && match(p,state.phase) && match(m,state.metric);
           card.classList.toggle('hidden', !visible);
         });
       }

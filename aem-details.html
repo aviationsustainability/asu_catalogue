@@ -129,9 +129,6 @@
   white-space: nowrap;
 
 }
-.badge.level-badge.strategic{background:rgba(255,193,7,.15);border-color:rgba(255,193,7,.35)}
-.badge.level-badge.operational{background:rgba(41,144,234,.12);border-color:rgba(41,144,234,.35)}
-.badge.level-badge.tactical{background:rgba(0,159,110,.18);border-color:rgba(0,159,110,.35)}
 
 /* Use Cases Slider (CSS Scroll Snap) */
 .uc-controls { display: grid; grid-template-columns: 40px 1fr 40px; align-items: center; gap: 8px; margin: 6px 0 12px; }
@@ -208,29 +205,28 @@
 </div>
 <header>
 <h1 id="main-content">Advanced Emission Model (AEM)</h1>
-<p class="subtitle">Detailed information about AEM, its methodology, requirements, limitations, and future developments.</p>
+<p class="subtitle">Detailed information about the tool, its methodology, requirements, limitations, and future developments.</p>
 </header>
 
 <main>
 <div class="header-actions">
-<a class="btn header-cta" href="#" target="_blank" rel="noopener" margin-left="left">Go to the platform</a>
-<span class="badge level-badge strategic badge-usage">Strategic/Management</span>
+<a class="btn header-cta" href="https://www.eurocontrol.int/model/advanced-emission-model" target="_blank" rel="noopener" margin-left="left">Go to the platform</a>
 </div>
 
 <div class="meta-badges" role="group" aria-label="AEM scope badges">
   <div class="meta-label">Scope</div>
   <div class="chips">
-    <span class="badge-chip" data-focus="CO₂,LAQ,Non‑CO₂" title="Focus areas: CO₂, LAQ and Non‑CO₂ effects" aria-label="Focus: CO₂, LAQ, Non‑CO₂">
+    <span class="badge-chip">
       <span class="chip-icon" aria-hidden="true">🎯</span>
-      <span class="chip-text">Focus: CO₂, LAQ, Non‑CO₂</span>
+      <span class="chip-text">Focus: CO₂, Non‑CO₂</span>
     </span>
-    <span class="badge-chip" data-phase="Taxi‑out,Departure/Climb,Descent/Arrival,Taxi‑in" title="Covered phases: Taxi‑out, Departure/Climb, Descent/Arrival, Taxi‑in" aria-label="Phases: Taxi‑out, Departure/Climb, Descent/Arrival, Taxi‑in">
+    <span class="badge-chip">
       <span class="chip-icon" aria-hidden="true">🛫</span>
-      <span class="chip-text">Phases: Taxi‑out, Departure/Climb, Descent/Arrival, Taxi‑in</span>
+      <span class="chip-text">Phases: Taxi‑out, Departure/Climb, Cruise, Descent/Arrival, Taxi‑in, Wheels‑up/‑down, Gate‑to‑Gate</span>
     </span>
-    <span class="badge-chip" data-metric="Fuel burn/CO₂,metric-Non‑CO₂,metric-LAQ" title="Reported metrics: Fuel burn/CO₂, Non‑CO₂, LAQ" aria-label="Metrics: Fuel burn/CO₂, Non‑CO₂, LAQ">
+    <span class="badge-chip">
       <span class="chip-icon" aria-hidden="true">📊</span>
-      <span class="chip-text">Metrics: Fuel burn/CO₂, Non‑CO₂, LAQ</span>
+      <span class="chip-text">Metrics: Fuel burn/CO₂, Non‑CO₂</span>
     </span>
   </div>
 </div>
@@ -258,7 +254,7 @@ AEM supports service providers in their environmental efforts as follows:
 </ul>
 </section>
 <section>
-<h2>AEM Provider</h2>
+<h2>Provider</h2>
 <p>AEM is part of EUROCONTROL’s environmental tool suite, composed of:</p>
 <ul>
 <li>Advanced Emission Model (AEM)</li>
@@ -321,31 +317,14 @@ AEM supports service providers in their environmental efforts as follows:
 
 <section id="related-use-cases" aria-label="Related Use Cases">
   <h2>Related Use Cases</h2>
-  <div class="uc-controls">
-  <button class="uc-prev" aria-label="Previous use case" title="Previous">‹</button>
-  <div class="uc-dots" role="tablist" aria-label="Use case slides"></div>
-  <button class="uc-next" aria-label="Next use case" title="Next">›</button>
-</div>
-  <div class="uc-track" id="uc-track" tabindex="0" role="region" aria-roledescription="carousel" aria-label="Use cases">
-<article class="card uc-slide" role="group" aria-roledescription="slide" aria-label="1 of 3">
+  <div class="uc-track" id="uc-track" tabindex="0" role="region" aria-label="Use cases">
+<article  class="card uc-slide" role="group" aria-roledescription="slide">
       <h2>MUAC - Pre-flight efficiency optimisation  </h2>
-      <img src="figure/muac.png" alt="MUAC ATM Portal">
-      <p>The Pre-Flight Check (PFC) initiative, launched by the Maastricht Upper Area Control Centre (MUAC) in 2020, aims to enhance flight efficiency during the pre-flight phase. The PFC’s goal is to optimise flight plan routes before departure, by filing a flight plan trajectory closer to the expected actual flight path, improving operational efficiency and environmental sustainability. </p>
-    </article>
-<article class="card uc-slide" role="group" aria-roledescription="slide" aria-label="2 of 3">
-      <h2>MUAC - Pre-flight efficiency optimisation  </h2>
-      <img src="figure/muac.png" alt="MUAC ATM Portal">
-      <p>The Pre-Flight Check (PFC) initiative, launched by the Maastricht Upper Area Control Centre (MUAC) in 2020, aims to enhance flight efficiency during the pre-flight phase. The PFC’s goal is to optimise flight plan routes before departure, by filing a flight plan trajectory closer to the expected actual flight path, improving operational efficiency and environmental sustainability. </p>
-    </article>
-<article class="card uc-slide" role="group" aria-roledescription="slide" aria-label="2 of 3">
-      <h2>MUAC - Pre-flight efficiency optimisation  </h2>
-      <img src="figure/muac.png" alt="MUAC ATM Portal">
-      <p>The Pre-Flight Check (PFC) initiative, launched by the Maastricht Upper Area Control Centre (MUAC) in 2020, aims to enhance flight efficiency during the pre-flight phase. The PFC’s goal is to optimise flight plan routes before departure, by filing a flight plan trajectory closer to the expected actual flight path, improving operational efficiency and environmental sustainability. </p>
+      <img src="figure/muac.png" alt="">
+      <a class="btn" href="muac.html">Find out more<a>
     </article>
   </div>
 </section>
-
-  </div>
 
 
 </main>

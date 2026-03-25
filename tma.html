@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TMA Flight Efficiency Dashboard</title>
+<link href="https://fonts.googleapis.com/css2?family=Exo:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+<style>
+    :root {
+      --primary: #009F6E; --primary-dark: #075E54; --accent: #009F6E;
+      --ink: #212121; --paper: #FCFCFC;
+      --bg-gradient-start: #FCFCFC; --bg-gradient-end: #EAF4FF;
+      --surface: #FFFFFF; --surface-elev: rgba(255,255,255,0.8);
+      --border: rgba(0,0,0,0.08);
+      --text-primary: #212121; --text-secondary: #455A64; --text-inverse: #FFFFFF;
+      --focus: #009F6E; --shadow: 0 10px 30px rgba(0,0,0,0.08);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Exo';
+      text-align:justify;
+      background: linear-gradient(135deg, var(--bg-gradient-start), var(--bg-gradient-end));
+      color: var(--text-primary);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+    }
+    /* Decorative soft background spot using brand green */
+    body::before {
+      content: '';
+      position: fixed;
+      top: -20%; left: -10%;
+      width: 700px; height: 700px;
+      background: radial-gradient(circle, rgba(0,159,110,0.12) 0%, transparent 65%);
+      filter: blur(60px);
+      z-index: -1;
+      pointer-events: none;
+    }
+    .topbar {
+      position: sticky; top: 0; z-index: 1000;
+      background: rgba(252,252,252,0.8);
+      backdrop-filter: saturate(140%) blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+    .topbar-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; gap: 12px; padding: 12px 16px; }
+    .brand { color: var(--ink); text-decoration: none; font-weight: 800; letter-spacing: .2px; }
+    .brand:hover { color: var(--primary-dark); }
+    .menu-toggle { margin-left: auto; font-size: 1.6rem; line-height: 1; background: transparent; color: var(--ink); border: 0; cursor: pointer; padding: 4px 8px; }
+    .menu-toggle:focus { outline: 2px solid var(--focus); outline-offset: 2px; border-radius: 6px; }
+    nav.primary .menu { list-style: none; display: none; flex-direction: column; gap: 0; width: 100%; background: transparent; margin-top: 8px; }
+    nav.primary .menu.open { display: flex }
+    nav.primary .menu a { display: block; color: var(--ink); text-decoration: none; padding: 10px 12px; border-radius: 8px; }
+    nav.primary .menu a:hover, nav.primary .menu a:focus { background: rgba(41,144,234,0.12); outline: none; }
+    nav.primary .menu li.active>a, nav.primary .menu a[aria-current="page"] { background: rgba(0,159,110,0.12); font-weight: 600 }
+    @media (min-width: 768px){
+      .menu-toggle { display: none }
+      .topbar-inner { display: grid; grid-template-columns: auto 1fr; align-items: center }
+      nav.primary { justify-self: end }
+      nav.primary .menu { display: flex !important; flex-direction: row; align-items: center; gap: 8px; background: transparent; margin-top: 0 }
+      nav.primary .menu a { padding: 8px 10px }
+    }
+    header { text-align: center; padding: 64px 24px 24px; }
+    h1 { font-size: clamp(2rem, 6vw, 3.25rem); font-weight: 800; letter-spacing: -0.02em; margin-bottom: 12px; color: var(--primary-dark); }
+    p.subtitle { font-size: clamp(1rem, 3.2vw, 1.15rem); color: var(--text-secondary); max-width: 900px; margin: 0 auto; line-height: 1.65; }
+    main { flex: 1; max-width: 1200px; margin: 0 auto; padding: 24px; display: grid; grid-template-columns: 1fr; gap: 28px; width: 100%; }
+    section { background: var(--surface-elev); border: 1px solid var(--border); border-radius: 16px; padding: clamp(18px, 3.5vw, 28px); box-shadow: var(--shadow); }
+    section h2 { font-size: 1.4rem; margin-bottom: 10px; color: var(--ink); }
+    section h3 { font-size: 1rem; margin-bottom: 10px; color: var(--ink); }
+    section p, section li { margin-bottom: 10px;color: var(--text-secondary); line-height: 1.65; }
+    section li {margin-left: 30px;}
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px; }
+    .card { background: var(--surface-elev); border: 1px solid var(--border); border-radius: 16px; padding: clamp(18px, 3.5vw, 28px); box-shadow: var(--shadow); transition: transform .25s ease, box-shadow .25s ease; display: flex; flex-direction: column; }
+    .card:hover { transform: translateY(-4px); box-shadow: 0 16px 36px rgba(0,0,0,0.12); }
+    .card-icon { font-size: 28px; color: var(--accent); margin-bottom: 14px; background: rgba(0,159,110,0.10); width: 52px; height: 52px; display: flex; align-items: center; justify-content: center; border-radius: 12px; }
+    .card h2 { font-size: 1.25rem; margin-bottom: 10px; font-weight: 700; color: var(--ink); }
+    .card p { color: var(--text-secondary); font-size: 0.98rem; line-height: 1.6; margin-bottom: 16px; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; text-decoration: none; color: var(--text-inverse); background: var(--primary); padding: 12px 18px; border-radius: 999px; font-weight: 700; transition: background .2s ease, transform .05s ease; width: fit-content; }
+    .btn:hover { background: var(--primary-dark); }
+    .btn:active { transform: scale(0.98); }
+
+    /* NEW: toggle button style to match .btn but as a <button> */
+    .btn-ghost {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--primary); color: var(--text-inverse);
+      border: none; border-radius: 999px;
+      padding: 10px 14px; font-weight: 700; cursor: pointer;
+      width: fit-content;
+    }
+    .btn-ghost:hover { background: var(--primary-dark); }
+
+    /* NEW: expandable placeholder list styling */
+    .placeholder-list {
+      margin-top: 12px;
+      padding-left: 18px;
+      display: none;               /* hidden by default */
+      animation: fadeIn .18s ease;
+    }
+    .placeholder-list.show { display: block; }
+    .placeholder-list p { margin: 6px 0; }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-2px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    footer { text-align: center; padding: 36px 20px; color: #607D8B; font-size: 0.9rem; }
+    /* Accessibility helpers */
+    .skip-link { position: absolute; left: -999px; top: 0; background: var(--paper); color: var(--ink); padding: 8px 12px; border-radius: 4px; }
+    .skip-link:focus { left: 8px; outline: 2px solid var(--focus); }
+    @media (max-width: 600px){
+      header { padding: 40px 20px 16px; }
+      main { grid-template-columns: 1fr; padding: 16px; }
+      .card { border-radius: 14px; }
+    }
+    .cta-buttons { display: flex; gap: 12px; justify-content: center; margin-top: 30px; }
+.cta-buttons a { background: var(--primary); color: #0a2e23; text-decoration: none; padding: 12px 20px; border-radius: 8px; font-weight: 600; transition: background 0.3s ease; }
+.cta-buttons a:hover { background: var(--primary-dark); }
+
+.badge.level-badge{
+  gap: 4px;                /* smaller space between icon + text */
+  padding: 3px 6px;        /* reduce size */
+  font-size: 11px;         /* smaller text */
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: rgba(41,144,234,.10);
+  color: var(--ink);
+  font-weight: 600;        /* slightly lighter for readability */
+  white-space: nowrap;
+
+}
+
+/* Use Cases Slider (CSS Scroll Snap) */
+.uc-controls { display: grid; grid-template-columns: 40px 1fr 40px; align-items: center; gap: 8px; margin: 6px 0 12px; }
+.uc-prev, .uc-next { appearance: none; border: 1px solid var(--border); background: var(--surface-elev); color: var(--ink); width: 40px; height: 40px; border-radius: 999px; font-size: 20px; line-height: 1; cursor: pointer; box-shadow: var(--shadow); }
+.uc-prev:hover, .uc-next:hover { background: rgba(41,144,234,.10); }
+.uc-dots { display: flex; justify-content: center; gap: 6px; }
+.uc-dots button { width: 10px; height: 10px; border-radius: 50%; border: 1px solid var(--border); background: rgba(0,0,0,0.06); cursor: pointer; }
+.uc-dots button[aria-selected="true"] { background: var(--primary); border-color: var(--primary); }
+.uc-track { display: grid; grid-auto-flow: column; grid-auto-columns: min(100%, 420px); gap: 18px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; padding-bottom: 6px; }
+.uc-track:focus { outline: 2px solid var(--focus); outline-offset: 4px; }
+.uc-slide { scroll-snap-align: start; }
+@media (min-width: 740px) { .uc-track { grid-auto-columns: min(50%, 420px); } }
+@media (min-width: 1024px) { .uc-track { grid-auto-columns: min(33%, 420px); } }
+
+
+
+
+  
+/* Slider single-case fallback */
+.uc-static{grid-auto-flow:row;grid-auto-columns:100%;overflow:visible;scroll-snap-type:none;}
+
+/* Use Cases: one slide per view */
+.uc-track{grid-auto-columns:100% !important}
+
+/* Hero style: background image on the card with readable overlay */
+.uc-slide.uc-hero{position:relative;min-height:420px;display:flex;flex-direction:column;justify-content:flex-end;background-size:cover;background-position:center;border:1px solid var(--border);border-radius:16px;overflow:hidden;box-shadow:var(--shadow)}
+.uc-slide.uc-hero::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.25) 0%, rgba(0,0,0,.55) 70%)}
+.uc-slide.uc-hero > *{position:relative;z-index:1}
+.uc-slide.uc-hero h2{color:#fff;margin:0 0 8px 0;font-weight:800;text-shadow:0 2px 8px rgba(0,0,0,.45)}
+.uc-slide.uc-hero p{color:#f0f7f5;margin:0 0 14px 0;line-height:1.6;text-shadow:0 2px 8px rgba(0,0,0,.35)}
+
+@media (max-width:600px){ .uc-slide.uc-hero{min-height:320px} }
+
+
+.header-actions {
+  display: flex;
+  justify-content: space-between; /* left item at far left, right item at far right */
+  align-items: center;
+  gap: 12px;                       /* optional spacing */
+}
+
+/* Prevent 'Go to the platform' button from stretching */
+.header-actions{flex-wrap:wrap;gap:12px}
+.header-cta{flex:0 0 auto;align-self:flex-start}
+
+
+/* Scope chips (below the CTA + Developing ANSPs) */
+.meta-badges{display:flex;flex-direction:column;gap:8px;margin-top:6px}
+.meta-badges .meta-label{font-size:12px;font-weight:800;color:var(--text-secondary);text-transform:uppercase;letter-spacing:.04em}
+.meta-badges .chips{display:flex;flex-wrap:wrap;gap:10px}
+.badge-chip{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;border:1px solid var(--border);background:linear-gradient(180deg, rgba(255,255,255,.9) 0%, rgba(245,249,255,.8) 100%);color:var(--ink);font-size:12px;font-weight:700;box-shadow:0 2px 10px rgba(0,0,0,.06)}
+.badge-chip .chip-icon{width:20px;height:20px;display:inline-grid;place-items:center;background:rgba(0,159,110,.12);color:var(--primary-dark);border-radius:50%;font-size:12px}
+
+</style>
+  
+</head>
+<body>
+<a class="skip-link" href="#main-content">Skip to content</a>
+<div class="topbar" role="banner">
+<div class="topbar-inner">
+<a aria-label="Homepage" class="brand" href="index.html">AVENIR Catalogue</a>
+<button aria-controls="menu-list" aria-expanded="false" aria-label="Open menu" class="menu-toggle" id="menu-toggle">☰</button>
+<nav aria-label="Primary navigation" class="primary">
+<ul class="menu" id="menu-list">
+<li><a href="index.html">Introduction</a></li>
+<li><a href="tools.html">Tools</a></li>
+<li class="active"><a aria-current="page" href="dashboard.html">Dashboards</a></li>
+<li><a href="use-cases.html">Use Cases</a></li>
+<li><a href="faq.html">FAQ</a></li>
+<li><a href="downloads.html">Downloads</a></li>
+</ul>
+</nav>
+</div>
+</div>
+<header>
+<h1 id="main-content">TMA Flight Efficiency Dashboard</h1>
+<p class="subtitle">Detailed information about the dashboard, its methodology, requirements, limitations, and future developments.</p>
+</header>
+
+<main>
+<div class="header-actions">
+<a class="btn header-cta" href="https://public.tableau.com/app/profile/eurocontrol.ino.tma/viz/TMAFlightefficiency/Dashboard" target="_blank" rel="noopener" margin-left="left">Go to the dashboard</a>
+</div>
+
+<div class="meta-badges" role="group" aria-label="AEM scope badges">
+  <div class="meta-label">Scope</div>
+  <div class="chips">
+    <span class="badge-chip">
+      <span class="chip-icon" aria-hidden="true">🎯</span>
+      <span class="chip-text">Focus: CO₂</span>
+    </span>
+    <span class="badge-chip">
+      <span class="chip-icon" aria-hidden="true">🛫</span>
+      <span class="chip-text">Phases: Descent/Arrival</span>
+    </span>
+    <span class="badge-chip">
+      <span class="chip-icon" aria-hidden="true">📊</span>
+      <span class="chip-text">Metrics:Non‑SES HFE, Non‑SES VFE, Fuel burn/CO₂</span>
+    </span>
+  </div>
+</div>
+
+<section>
+<h2>Overview</h2>
+<p>The <strong>EUROCONTROL TMA Flight Efficiency Dashboard</strong>&nbsp;is an interactive tool that helps analyse and improve the efficiency of flight operations within terminal areas. It also helps identify and prioritise sources for improvement as part of a collaborative process involving all parties (service providers, airspace users, authorities).</p>
+<p>The dashboard provides operational insights into both permanent and variable inefficiencies as proxies for airspace versus operations. It provides a detailed view per airport, runway and flow.</p>
+<p>Permanent inefficiencies (such as level-off or path extension) are related to airspace design (e.g., because of flow segregation or noise constraints), while variable inefficiencies (such as vectoring) are linked to operational practices caused by sequencing, metering and obviously separation. This distinction helps in targeting specific areas for improvement.</p>
+<p style="text-align: center;"><img src="figure/tma_1.png" alt="" /></p>
+<p>The observations are based using the following trajectories:</p>
+<ul>
+<li><strong>Flown trajectory</strong>, which is the observed trajectory based on radar track (typically from 50Nm to 5NM to the runway threshold but can be adapted).</li>
+<li><strong>Constrained reference</strong>, a sort of ideal flyable trajectory that incorporates any horizontal, vertical or speed restriction applicable to arrivals to an airport, defined statistically (10th percentile of the flown trajectories).</li>
+<li><strong>Unconstrained reference</strong>, a sort of ideal flyable trajectory without any constraint, defined by a common principle for all airports (continuous descent, direct to intercept from entry and intercept at 2000ft AGL).</li>
+</ul>
+<p style="text-align: center;"><img src="figure/tma_2.png" alt="" width="650" height="251" /></p>
+<p>The inefficiencies are determined using principles of deviations from references:</p>
+<p>- &ldquo;<em>airspace</em>&rdquo; related deviation is obtained by the difference between unconstrained and constrained references;</p>
+<p>- &ldquo;<em>operations</em>&rdquo; related deviation by the difference between the constrained and flown trajectory.</p>
+<p>&nbsp;</p>
+<p style="text-align: center;"><img src="figure/tma_3.png" alt="" width="650" height="351"/></p>
+<p>The tool has the following key features and functionalities:</p>
+<ul>
+<li><strong>Data Visualisation</strong>: The dashboard provides a visual representation of flight efficiency metrics. This includes graphs and charts that display various aspects of flight performance, and includes representations of flown, constrained and unconstrained profiles, making it easier for stakeholders to understand and analyse data.</li>
+<li><strong>Efficiency Metrics</strong>: Several indicators are proposed to support the measurement of flight efficiency along different dimensions: horizontal (time, distance deviations), vertical (altitude, average altitude deviations) and 3D (excess fuel burn in kg, or %). Different aggregations (average, median, sum over the year) and detailed view allow the detailed identification and prioritisation of arrival inefficiencies per flow.</li>
+<li><strong>Interactive Analysis</strong>: Users can interact with the dashboard to drill down into specific airport, runway and flow, and analyse trends over a year. This interactivity allows for a more detailed and customised analysis.</li>
+<li><strong>Stakeholder Engagement</strong>: It is designed to be used by various stakeholders, including operational staff, airspace users, data analysts and decision-makers. The dashboard facilitates information sharing and collaborative decision-making.</li>
+<li><strong>Environmental Impact</strong>: By quantifying the reduction in fuel and excess fuel consumption, the dashboard helps in assessing the environmental benefits of different operational improvements.</li>
+</ul>
+
+</section>
+<section>
+<h2>Provider</h2>
+<p>The dashboard has been developed by the EUROCONTROL Innovation Hub with the support of the Aviation Sustainability Unit, as a contribution to the ATM/ANS Environmental Transparency Working Group.</p>
+</section>
+<section>
+<h2>Limitations</h2>
+<p>The dashboard presents data for the top 30 European airports (and with a maximal range of 50NM around the airport).</p>
+<p>The accuracy of the dashboard insights depends on the quality and completeness of the data it receives. Incomplete or inaccurate data can lead to misleading conclusions.</p>
+<p>The dashboard provides historical information for the last three years (currently 2022, 2023 and 2024). It does not present real-time data.</p>
+</section>
+<section>
+<h2>Future Developments</h2>
+<p>Future Developments will include the analysis of departures (in progress).</p>
+</section>
+
+
+</main>
+<footer>
+<p> <strong>Open‑Source Governance: </strong>The Avenir Catalogue is developed as an open‑source, collaborative reference. Its evolution is driven by operational experience, user feedback, and contributions from ANSPs, ensuring that methods, tools and practices remain aligned with real-world challenges and emerging needs.</p>
+<p style="margin-bottom: 1rem;"></p>
+<p>© 2025 Eurocontrol Sustainability Unit. All rights reserved.</p>
+</footer>
+
+
+
+
+
+
+<script>
+
+// Menu toggle
+    const toggle = document.getElementById('menu-toggle');
+    const list = document.getElementById('menu-list');
+    toggle?.addEventListener('click', () => {
+      const open = list.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', String(open));
+      toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    });
+
+(function(){
+  const track = document.getElementById('uc-track');
+  if (!track) return;
+
+  const slides = Array.from(track.querySelectorAll('.uc-slide'));
+  const prev = document.querySelector('.uc-prev');
+  const next = document.querySelector('.uc-next');
+  const dotsWrap = document.querySelector('.uc-dots');
+
+  // Turn <img> into background image for each slide and apply hero class
+  slides.forEach(slide => {
+    const img = slide.querySelector('img');
+    if (img && img.getAttribute('src')){
+      slide.style.backgroundImage = `url('${img.getAttribute('src')}')`;
+      img.remove();
+    }
+    slide.classList.add('uc-hero');
+  });
+
+  // Single-slide fallback
+  if (slides.length <= 1) {
+    const controls = document.querySelector('.uc-controls');
+    if (controls) controls.remove();
+    track.classList.add('uc-static');
+    track.removeAttribute('aria-roledescription');
+    track.setAttribute('aria-label','Use case');
+    return;
+  }
+
+  // Build dots (per slide)
+  const dots = slides.map((_, i) => {
+    const b = document.createElement('button');
+    b.setAttribute('role','tab');
+    b.setAttribute('aria-label', `Go to slide ${i+1}`);
+    b.addEventListener('click', () => goTo(i));
+    dotsWrap.appendChild(b);
+    return b;
+  });
+
+  let index = 0;
+
+  function updateUI(i){
+    index = Math.max(0, Math.min(i, slides.length - 1));
+    dots.forEach((d, k) => d.setAttribute('aria-selected', String(k === index)));
+    slides.forEach((s, k) => s.setAttribute('aria-label', `${k+1} of ${slides.length}${k===index?' (current)':''}`));
+  }
+
+  function slideWidth(){
+    const slide = slides[0];
+    const styles = getComputedStyle(track);
+    const gap = parseFloat(styles.columnGap || styles.gap || 0);
+    return slide.getBoundingClientRect().width + gap;
+  }
+
+  function goTo(i){
+    updateUI(i);
+    track.scrollTo({ left: slideWidth() * index, behavior: 'smooth' });
+  }
+
+  // Prev/Next move by exactly one slide (one use case at a time)
+  prev && prev.addEventListener('click', () => goTo(index - 1));
+  next && next.addEventListener('click', () => goTo(index + 1));
+
+  // Keyboard support
+  track.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight') { e.preventDefault(); goTo(index + 1); }
+    if (e.key === 'ArrowLeft')  { e.preventDefault(); goTo(index - 1); }
+  });
+
+  // Sync index after native scroll
+  let t;
+  track.addEventListener('scroll', () => {
+    window.clearTimeout(t);
+    t = window.setTimeout(() => {
+      const i = Math.round(track.scrollLeft / slideWidth());
+      updateUI(i);
+    }, 80);
+  }, { passive: true });
+
+  // On resize, keep alignment to current slide
+  window.addEventListener('resize', () => {
+    track.scrollTo({ left: slideWidth() * index, behavior: 'auto' });
+  });
+
+  // Init
+  updateUI(0);
+})();
+</script>
+
+</body>
+</html>

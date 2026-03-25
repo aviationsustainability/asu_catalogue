@@ -83,10 +83,6 @@ display: inline-flex;
   white-space: nowrap;
 
 }
-.badge.level-badge.strategic{background:rgba(255,193,7,.15);border-color:rgba(255,193,7,.35)}
-.badge.level-badge.tactical{background:rgba(41,144,234,.12);border-color:rgba(41,144,234,.35)}
-.badge.level-badge.operational{background:rgba(0,159,110,.18);border-color:rgba(0,159,110,.35)}
-.badge-usage{position:absolute;top:12px;right:12px}
 
   </style>
 </head>
@@ -139,9 +135,6 @@ display: inline-flex;
       <button class="tab" role="tab" aria-controls="group-metric" aria-selected="false" data-target="metric">
         <i class="ph ph-chart-line-up" aria-hidden="true"></i> Indicators & metrics <span class="count" aria-hidden="true">0</span>
       </button>
-      <button class="tab" role="tab" aria-controls="group-usage" aria-selected="false" data-target="usage">
-  <i class="ph ph-user-switch" aria-hidden="true"></i> Usage level <span class="count" aria-hidden="true">0</span>
-</button>
       <div class="spacer"></div>
       <button id="clear-all" class="clear" title="Clear all filters"><i class="ph ph-broom" aria-hidden="true"></i> Clear</button>
     </div>
@@ -151,7 +144,7 @@ display: inline-flex;
         <button class="chip chip-n" data-group="focus" data-tag="CO₂">CO₂</button>
         <button class="chip chip-n" data-group="focus" data-tag="Non‑CO₂">Non‑CO₂</button>
         <button class="chip chip-n" data-group="focus" data-tag="Noise">Noise</button>
-        <button class="chip chip-n" data-group="focus" data-tag="LAQ">LAQ</button>
+        <button class="chip chip-n" data-group="focus" data-tag="LAQ">Local Air Quality (LAQ)</button>
       </div>
     </div>
 
@@ -162,7 +155,7 @@ display: inline-flex;
         <button class="chip chip-n" data-group="phase" data-tag="Cruise">Cruise</button>
         <button class="chip chip-n" data-group="phase" data-tag="Descent/Arrival">Descent/Arrival</button>
         <button class="chip chip-n" data-group="phase" data-tag="Taxi‑in">Taxi‑in</button>
-        <button class="chip chip-n" data-group="phase" data-tag="Wheels‑up/‑down">Wheels‑up/‑down</button>
+        <button class="chip chip-n" data-group="phase" data-tag="Wheels‑up/‑down">Wheels‑up/-down</button>
         <button class="chip chip-n" data-group="phase" data-tag="Gate‑to‑Gate">Gate‑to‑Gate</button>
       </div>
     </div>
@@ -176,16 +169,8 @@ display: inline-flex;
         <button class="chip chip-n" data-group="metric" data-tag="Fuel burn/CO₂">Fuel burn/CO₂</button>
         <button class="chip chip-n" data-group="metric" data-tag="metric-Non‑CO₂">Non‑CO₂</button>
         <button class="chip chip-n" data-group="metric" data-tag="metric-Noise">Noise</button>
-        <button class="chip chip-n" data-group="metric" data-tag="metric-LAQ">LAQ</button>
+        <button class="chip chip-n" data-group="metric" data-tag="metric-LAQ">Local Air Quality (LAQ)</button>
       </div>
-    </div>
-
-      <div class="filter-group" id="group-usage" role="region" aria-labelledby="tab-usage" hidden>
-      <div class="chips" data-group="usage">
-        <button class="chip chip-n" data-group="usage" data-tag="strategic">Strategic / Management</button>
-        <button class="chip chip-n" data-group="usage" data-tag="tactical">Tactical / Planning</button>
-        <button class="chip chip-n" data-group="usage" data-tag="operational">Operational / Expert</button>
-      </div> 
     </div>
 
     <div class="active-summary" id="active-summary" aria-live="polite"></div>
@@ -197,7 +182,6 @@ display: inline-flex;
              data-focus="CO₂,Non‑CO₂"
              data-phase="Taxi‑out,Departure/Climb,Cruise,Descent/Arrival,Taxi‑in,Wheels‑up/‑down,Gate‑to‑Gate"
              data-metric="Fuel burn/CO₂,metric-Non‑CO₂">
-      <span class="badge level-badge strategic badge-usage">Strategic / Management</span>
       <div class="card-icon"><i class="ph ph-factory"></i></div>
       <h2>Advanced Emission Model (AEM)</h2>
       <p>Suite for calculating aircraft engine emissions across 4D trajectories (LTO + CCD), supporting ~24 pollutants (CO₂, NOx, SOx, PM, HC, …). BADA and CAEP methodologies, CLI/GUI/API variants.</p>
@@ -209,11 +193,10 @@ display: inline-flex;
              data-focus="CO₂,LAQ,Non‑CO₂"
              data-phase="Taxi‑out,Departure/Climb,Descent/Arrival,Taxi‑in"
              data-metric="Fuel burn/CO₂,metric-Non‑CO₂,metric-LAQ">
-      <span class="badge level-badge tactical badge-usage">Tactical / Planning</span>
       <div class="card-icon"><i class="ph ph-cloud-fog"></i></div>
       <h2>Open‑ALAQS</h2>
       <p>Airport Local Air Quality Studies: QGIS plugin for inventory & dispersion (AUSTAL), covering aircraft and non‑aircraft sources (roads, GSE). Public code, flexible source selection.</p>
-      <a class="btn" href="#aLAQs-details">Details <i class="ph ph-arrow-right"></i></a>
+      <a class="btn" href="openalaqs.html">Details <i class="ph ph-arrow-right"></i></a>
     </article>
 
     <!-- IMPACT / INTACT -->
@@ -221,23 +204,21 @@ display: inline-flex;
              data-focus="Noise,CO₂,Non‑CO₂"
              data-phase="Taxi‑out,Departure/Climb,Cruise,Descent/Arrival,Taxi‑in,Wheels‑up/‑down,Gate‑to‑Gate"
              data-metric="metric-Noise,metric-Non‑CO₂,Fuel burn/CO₂">
-             <span class="badge level-badge tactical badge-usage">Tactical / Planning</span>
       <div class="card-icon"><i class="ph ph-wave-sine"></i></div>
       <h2>IMPACT & INTACT</h2>
       <p>Web platform for Noise, gaseous and particulate assessments (BADA4 TEM). ICAO/ECAC‑aligned. INTACT enables automated, near‑real‑time local impact maps and graphics.</p>
-      <a class="btn" href="#impact-details">Details <i class="ph ph-arrow-right"></i></a>
+      <a class="btn" href="impact_intact.html">Details <i class="ph ph-arrow-right"></i></a>
     </article>
 
     <!-- NEST -->
     <article class="card" data-usage="operational"
              data-focus="CO₂,Non‑CO₂"
              data-phase="Wheels‑up/‑down"
-             data-metric="Fuel burn/CO₂">
-      <span class="badge level-badge operational badge-usage">Operational / Expert</span>
+             data-metric="Fuel burn/CO₂,metric-Non‑CO₂">
       <div class="card-icon"><i class="ph ph-circles-three"></i></div>
       <h2>NEST</h2>
       <p>Network Strategic Tool for scenario‑based planning and airspace design via DDR datasets. Simulates trajectories, CAPA/ENV/Cost‑EFF impacts; AIRAC‑aligned updates.</p>
-      <a class="btn" href="#nest-details">Details <i class="ph ph-arrow-right"></i></a>
+      <a class="btn" href="nest.html">Details <i class="ph ph-arrow-right"></i></a>
     </article>
 
     <!-- R‑NEST -->
@@ -245,24 +226,22 @@ display: inline-flex;
              data-focus="CO₂,Non‑CO₂"
              data-phase="Taxi‑out,Departure/Climb,Cruise,Descent/Arrival,Taxi‑in,Wheels‑up/‑down,Gate‑to‑Gate"
              data-metric="Fuel burn/CO₂,metric-Non‑CO₂">
-      <span class="badge level-badge operational badge-usage">Operational / Expert </span>
       <div class="card-icon"><i class="ph ph-flask"></i></div>
       <h2>R‑NEST</h2>
       <p>Research‑grade network simulation tool (CASA delay model, 3D HMI) for concept validation, scenario comparison and SESAR projects; very high performance.</p>
-      <a class="btn" href="#rnest-details">Details <i class="ph ph-arrow-right"></i></a>
+      <a class="btn" href="r-nest.html">Details <i class="ph ph-arrow-right"></i></a>
     </article>
 
     <!-- ACROPOLE -->
     <article class="card" data-usage="strategic"
              data-focus="CO₂"
              data-phase="Departure/Climb,Cruise,Descent/Arrival,Gate‑to‑Gate"
-             data-metric="Non‑SES HFE,Non‑SES VFE, Fuel burn/CO₂,metric-Non‑CO₂">
-    <span class="badge level-badge strategic badge-usage">Strategic / Management</span>
+             data-metric="Non‑SES HFE,Non‑SES VFE, Fuel burn/CO₂">
 
       <div class="card-icon"><i class="ph ph-brain"></i></div>
       <h2>ACROPOLE</h2>
       <p>AI‑based fuel flow & burn from radar/ADS‑B (QAR‑trained proxies; ICAO EDB/BFFM2 for emissions). Supports indicators (CDO/CCO) and ops inefficiency analysis.</p>
-      <a class="btn" href="#acropole-details">Details <i class="ph ph-arrow-right"></i></a>
+      <a class="btn" href="acropole.html">Details <i class="ph ph-arrow-right"></i></a>
     </article>
 
     <!-- AEDT -->
@@ -270,12 +249,11 @@ display: inline-flex;
              data-focus="CO₂,Non‑CO₂,Noise,LAQ"
              data-phase="Taxi‑out,Departure/Climb,Cruise,Descent/Arrival,Taxi‑in,Wheels‑up/‑down,Gate‑to‑Gate"
              data-metric="Non‑SES HFE,Non‑SES VFE,Fuel burn/CO₂,metric-Non‑CO₂,metric-Noise,metric-LAQ">
-  <span class="badge level-badge operational badge-usage">Operational / Expert </span>
 
       <div class="card-icon"><i class="ph ph-soundcloud-logo"></i></div>
       <h2>AEDT</h2>
       <p>FAA’s 4D aviation environmental design tool for fuel, emissions, Noise & dispersion; scalable (airport→global). Uses ANP, BADA3/4, ICAO EDB; Windows + SQL Server.</p>
-      <a class="btn" href="#aedt-details">Details <i class="ph ph-arrow-right"></i></a>
+      <a class="btn" href="aedt.html">Details <i class="ph ph-arrow-right"></i></a>
     </article>
   </main>
 
@@ -325,8 +303,8 @@ display: inline-flex;
     (function(){
       const panel = document.getElementById('filters'); if(!panel) return;
       const tabs = Array.from(panel.querySelectorAll('.filter-tabs .tab'));
-      const groups = { focus: document.getElementById('group-focus'), phase: document.getElementById('group-phase'), metric: document.getElementById('group-metric'), usage: document.getElementById('group-usage') };
-      const chips = Array.from(panel.querySelectorAll('.chip-n'));
+      const groups = { focus: document.getElementById('group-focus'), phase: document.getElementById('group-phase'), metric: document.getElementById('group-metric') };
+      const chips = Array.from(panel.querySelectorAll('.chips .chip'));
       const clearAll = document.getElementById('clear-all');
       const summary = document.getElementById('active-summary');
       const state = { focus:new Set(), phase:new Set(), metric:new Set(), usage:new Set() };
@@ -346,8 +324,7 @@ display: inline-flex;
           const f=(card.getAttribute('data-focus')||'').split(',').map(s=>s.trim()).filter(Boolean);
           const p=(card.getAttribute('data-phase')||'').split(',').map(s=>s.trim()).filter(Boolean);
           const m=(card.getAttribute('data-metric')||'').split(',').map(s=>s.trim()).filter(Boolean);
-          const u=(card.getAttribute('data-usage')||'').split(',').map(s=>s.trim()).filter(Boolean);
-      const visible = match(f,state.focus) && match(p,state.phase) && match(m,state.metric) && match(u,state.usage);
+      const visible = match(f,state.focus) && match(p,state.phase) && match(m,state.metric)
           card.classList.toggle('hidden', !visible);
         });
       }

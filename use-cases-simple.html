@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AVENIR Pillar 2 Catalogue</title>
+  <!-- Fonts + Icons (from tools.html) -->
+  <link href="https://fonts.googleapis.com/css2?family=Exo:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+  <style>
+    :root {
+      --primary: #009F6E; --primary-dark: #075E54; --accent: #009F6E;
+      --ink: #212121; --paper: #FCFCFC;
+      --bg-gradient-start: #FCFCFC; --bg-gradient-end: #EAF4FF;
+      --surface: #FFFFFF; --surface-elev: rgba(255,255,255,0.8);
+      --border: rgba(0,0,0,0.08);
+      --text-primary: #212121; --text-secondary: #455A64; --text-inverse: #FFFFFF;
+      --focus: #009F6E; --shadow: 0 10px 30px rgba(0,0,0,0.08);
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:'Exo';background:linear-gradient(135deg,var(--bg-gradient-start),var(--bg-gradient-end));color:var(--text-primary);min-height:100vh;display:flex;flex-direction:column;overflow-x:hidden}
+    body::before{content:'';position:fixed;top:-20%;left:-10%;width:700px;height:700px;background:radial-gradient(circle,rgba(0,159,110,.12) 0%,transparent 65%);filter:blur(60px);z-index:-1;pointer-events:none}
+
+    .topbar{position:sticky;top:0;z-index:1000;background:rgba(252,252,252,0.85);backdrop-filter:saturate(140%) blur(10px);border-bottom:1px solid var(--border)}
+    .topbar-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;gap:12px;padding:12px 16px}
+    .brand{color:var(--ink);text-decoration:none;font-weight:800;letter-spacing:.2px}
+    .brand:hover{color:var(--primary-dark)}
+    .menu-toggle{margin-left:auto;font-size:1.6rem;line-height:1;background:transparent;color:var(--ink);border:0;cursor:pointer;padding:4px 8px}
+    .menu-toggle:focus{outline:2px solid var(--focus);outline-offset:2px;border-radius:6px}
+    nav.primary .menu{list-style:none;display:none;flex-direction:column;gap:0;width:100%;background:transparent;margin-top:8px}
+    nav.primary .menu.open{display:flex}
+    nav.primary .menu a{display:block;color:var(--ink);text-decoration:none;padding:10px 12px;border-radius:8px}
+    nav.primary .menu a:hover,nav.primary .menu a:focus{background:rgba(41,144,234,0.12);outline:none}
+    nav.primary .menu li.active>a,nav.primary .menu a[aria-current="page"]{background:rgba(0,159,110,0.12);font-weight:600}
+    @media(min-width:768px){.menu-toggle{display:none}.topbar-inner{display:grid;grid-template-columns:auto 1fr;align-items:center}nav.primary{justify-self:end}nav.primary .menu{display:flex!important;flex-direction:row;align-items:center;gap:8px;background:transparent;margin-top:0}nav.primary .menu a{padding:8px 10px}}
+
+    header{text-align:center;padding:64px 24px 24px}
+    h1{font-size:clamp(2rem,6vw,3.25rem);font-weight:800;letter-spacing:-.02em;margin-bottom:12px;color:var(--primary-dark)}
+    p.subtitle{font-size:clamp(1rem,3.2vw,1.1rem);color:var(--text-secondary);max-width:1200px;margin:0 auto;line-height:1.65}
+
+    .grid{max-width:1200px;margin:0 auto;padding:20px;display:grid;grid-template-columns:repeat(auto-fit,minmax(1fr,1fr));gap:20px;width:100%}
+    .card{background:var(--surface-elev);border:1px solid var(--border);border-radius:16px;padding:clamp(18px,3.5vw,24px);box-shadow:var(--shadow);transition:transform .25s ease, box-shadow .25s ease;display:flex;flex-direction:column}
+    .card:hover{transform:translateY(-3px);box-shadow:0 16px 36px rgba(0,0,0,.12)}
+    .card-icon{font-size:28px;color:var(--accent);margin-bottom:12px;background:rgba(0,159,110,.10);width:52px;height:52px;display:flex;align-items:center;justify-content:center;border-radius:12px}
+    .card h2{font-size:1.25rem;margin-bottom:10px;font-weight:700;color:var(--ink)}
+    .card p{color:var(--text-secondary);font-size:.98rem;line-height:1.6;margin-bottom:14px;margin-top:14px;text-align:justify}
+    .card img{max-width:100%;height:auto;display:block;border-radius:10px}
+
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;color:var(--text-inverse);background:var(--focus);padding:12px 18px;border-radius:999px;font-weight:700;transition:background .2s ease, transform .05s ease}
+    .btn:hover{background:var(--primary-dark)} .btn:active{transform:scale(.98)}
+
+    footer{text-align:center;padding:40px 20px;color:#607D8B;font-size:.9rem}
+    .skip-link{position:absolute;left:-999px;top:0;background:var(--paper);color:var(--ink);padding:8px 12px;border-radius:4px}
+    .skip-link:focus{left:8px;outline:2px solid var(--focus)}
+
+    /* Filter panel (tabs + groups) */
+    .filter-panel{max-width:1200px;margin:0 auto 6px;padding:8px 20px 0}
+    .filter-tabs{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+    .filter-tabs .tab{font-family:'Exo';display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border:1px solid var(--border);border-radius:999px;background:#fff;color:var(--ink);cursor:pointer;font-weight:800}
+    .filter-tabs .tab[aria-selected="true"], .filter-tabs .tab:hover{background:rgba(41,144,234,.12)}
+    .filter-tabs .tab .count{background:rgba(0,159,110,.18);color:#075E54;border:1px solid rgba(0,159,110,.35);padding:2px 8px;border-radius:999px;font-size:.78rem;font-weight:700}
+    .filter-tabs .clear{font-family:'Exo';margin-left:auto;display:inline-flex;align-items:center;gap:6px;padding:8px 12px;border-radius:999px;background:rgba(41,144,234,.10);border:1px solid var(--border);color:var(--ink);cursor:pointer}
+    .filter-group{background:var(--surface-elev);border:1px solid var(--border);border-radius:12px;padding:10px;margin:8px 0 0}
+    .filter-group[hidden]{display:none}
+    .filter-group .chips{display:flex;gap:8px;flex-wrap:wrap}
+    .chip{font-family:'Exo';background:rgba(41,144,234,.10);color:var(--ink);border:1px solid var(--border);padding:6px 10px;border-radius:999px;cursor:pointer;font-size:.85rem}
+    .chip.active{font-family:'Exo';background:rgba(0,159,110,.18);border-color:rgba(0,159,110,.35)}
+    .active-summary{display:flex;align-items:center;gap:8px;flex-wrap:wrap;min-height:36px;padding:8px 0;color:var(--text-secondary)}
+    .active-summary .chip{background:rgba(0,159,110,.18));border:1px solid var(--border)}
+    .hidden{display:none !important}
+    .spacer{flex:1 1 auto}
+
+    .card{position:relative}
+
+    .uc-slide.uc-hero{position:relative;min-height:420px;display:flex;flex-direction:column;justify-content:flex-end;background-size:cover;background-position:center;border:1px solid var(--border);border-radius:16px;overflow:hidden;box-shadow:var(--shadow)}
+.uc-slide.uc-hero::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.25) 0%, rgba(0,0,0,.55) 70%)}
+.uc-slide.uc-hero > *{position:relative;z-index:1}
+.uc-slide.uc-hero h2{color:#fff;margin:0 0 8px 0;font-weight:800;text-shadow:0 2px 8px rgba(0,0,0,.45)}
+.uc-slide.uc-hero p{color:#f0f7f5;margin:0 0 14px 0;line-height:1.6;text-shadow:0 2px 8px rgba(0,0,0,.35)}
+
+.badge.level-badge{
+  
+display: inline-flex;
+  align-items: center;
+  gap: 4px;                /* smaller space between icon + text */
+  padding: 3px 6px;        /* reduce size */
+  font-size: 11px;         /* smaller text */
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: rgba(41,144,234,.10);
+  color: var(--ink);
+  font-weight: 600;        /* slightly lighter for readability */
+  white-space: nowrap;
+
+}
+.badge.level-badge.early{background:rgba(255,193,7,.15);border-color:rgba(255,193,7,.35)}
+.badge.level-badge.developing{background:rgba(41,144,234,.12);border-color:rgba(41,144,234,.35)}
+.badge.level-badge.advanced{background:rgba(0,159,110,.18);border-color:rgba(0,159,110,.35)}
+.badge-usage{position:absolute;top:12px;right:12px}
+
+    @media(max-width:600px){header{padding:46px 20px 20px}.grid{grid-template-columns:1fr;padding:16px}.card{border-radius:14px}}
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+
+  <div class="topbar" role="banner">
+    <div class="topbar-inner">
+      <a class="brand" href="index.html" aria-label="Homepage">AVENIR Catalogue</a>
+      <button id="menu-toggle" class="menu-toggle" aria-controls="menu-list" aria-expanded="false" aria-label="Open menu">☰</button>
+      <nav class="primary" aria-label="Primary navigation">
+        <ul id="menu-list" class="menu">
+          <li><a href="index.html">Introduction</a></li>
+          <li><a href="tools.html">Tools</a></li>
+          <li><a href="dashboard.html">Dashboards</a></li>
+          <li class="active"><a href="use-cases.html" aria-current="page">Use Cases</a></li>
+          <li><a href="#questions">FAQs</a></li>
+          <li><a href="#questions">Downloads</a></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+
+  <header>
+    <h1 id="main-content">Use Cases</h1>
+  </header>
+
+  <!-- Filter panel (copied from tools.html) -->
+  <section class="filter-panel" id="filters" aria-label="Dashboard filters">
+    <div class="filter-tabs" role="tablist">
+      <button class="tab" role="tab" aria-controls="group-focus" aria-selected="false" data-target="focus">
+        <i class="ph ph-target" aria-hidden="true"></i> Focus areas <span class="count" aria-hidden="true">0</span>
+      </button>
+      <button class="tab" role="tab" aria-controls="group-phase" aria-selected="false" data-target="phase">
+        <i class="ph ph-airplane-takeoff" aria-hidden="true"></i> Flight phases <span class="count" aria-hidden="true">0</span>
+      </button>
+      <button class="tab" role="tab" aria-controls="group-metric" aria-selected="false" data-target="metric">
+        <i class="ph ph-chart-line-up" aria-hidden="true"></i> Indicators & metrics <span class="count" aria-hidden="true">0</span>
+      </button>
+
+      <button class="tab" role="tab" aria-controls="group-usage" aria-selected="false" data-target="usage">
+  <i class="ph ph-user-switch" aria-hidden="true"></i> Usage level <span class="count" aria-hidden="true">0</span>
+</button>
+
+      <div class="spacer"></div>
+      <button id="clear-all" class="clear" title="Clear all filters"><i class="ph ph-broom" aria-hidden="true"></i> Clear</button>
+    </div>
+
+    <!-- Focus -->
+    <div class="filter-group" id="group-focus" role="region" aria-labelledby="tab-focus" hidden>
+      <div class="chips" data-group="focus">
+        <button class="chip chip-n" data-group="focus" data-tag="CO₂">CO₂</button>
+        <button class="chip chip-n" data-group="focus" data-tag="Non‑CO₂">Non‑CO₂</button>
+        <button class="chip chip-n" data-group="focus" data-tag="Noise">Noise</button>
+        <button class="chip chip-n" data-group="focus" data-tag="LAQ">LAQ</button>
+      </div>
+    </div>
+    <!-- Phase -->
+    <div class="filter-group" id="group-phase" role="region" aria-labelledby="tab-phase" hidden>
+      <div class="chips" data-group="phase">
+        <button class="chip chip-n" data-group="phase" data-tag="Taxi‑out">Taxi‑out</button>
+        <button class="chip chip-n" data-group="phase" data-tag="Departure/Climb">Departure/Climb</button>
+        <button class="chip chip-n" data-group="phase" data-tag="Cruise">Cruise</button>
+        <button class="chip chip-n" data-group="phase" data-tag="Descent/Arrival">Descent/Arrival</button>
+        <button class="chip chip-n" data-group="phase" data-tag="Taxi‑in">Taxi‑in</button>
+        <button class="chip chip-n" data-group="phase" data-tag="Wheels‑up/‑down">Wheels‑up/‑down</button>
+        <button class="chip chip-n" data-group="phase" data-tag="Gate‑to‑Gate">Gate‑to‑Gate</button>
+      </div>
+    </div>
+    <!-- Metric -->
+    <div class="filter-group" id="group-metric" role="region" aria-labelledby="tab-metric" hidden>
+      <div class="chips" data-group="metric">
+        <button class="chip chip-n" data-group="metric" data-tag="ICAO KPIs">ICAO KPIs</button>
+        <button class="chip chip-n" data-group="metric" data-tag="SES KPIs/PIs">SES KPIs/PIs</button>
+        <button class="chip chip-n" data-group="metric" data-tag="Non‑SES HFE">Non‑SES HFE</button>
+        <button class="chip chip-n" data-group="metric" data-tag="Non‑SES VFE">Non‑SES VFE</button>
+        <button class="chip chip-n" data-group="metric" data-tag="Fuel burn/CO₂">Fuel burn/CO₂</button>
+        <button class="chip chip-n" data-group="metric" data-tag="metric‑Non‑CO₂">Non‑CO₂</button>
+        <button class="chip chip-n" data-group="metric" data-tag="metric‑Noise">Noise</button>
+        <button class="chip chip-n" data-group="metric" data-tag="metric‑LAQ">LAQ</button>
+      </div>
+    </div>
+
+    <div class="filter-group" id="group-usage" role="region" aria-labelledby="tab-usage" hidden>
+      <div class="chips" data-group="usage">
+        <button class="chip chip-n" data-group="usage" data-tag="Early stage">Early stage ANSPs</button>
+        <button class="chip chip-n" data-group="usage" data-tag="Developing">Developing ANSPs</button>
+        <button class="chip chip-n" data-group="usage" data-tag="Advanced">Advanced ANSPs</button>
+      </div> 
+    </div>
+
+    <div class="active-summary" id="active-summary" aria-live="polite"></div>
+  </section>
+
+  <main class="grid">
+
+    <article class="card uc-slide" role="group" aria-roledescription="slide" aria-label="1 of 3">
+      <h2>MUAC - Pre-flight efficiency optimisation  </h2>
+      <img src="figure/muac.png" alt="MUAC ATM Portal">
+      <p>The Pre-Flight Check (PFC) initiative, launched by the Maastricht Upper Area Control Centre (MUAC) in 2020, aims to enhance flight efficiency during the pre-flight phase. The PFC’s goal is to optimise flight plan routes before departure, by filing a flight plan trajectory closer to the expected actual flight path, improving operational efficiency and environmental sustainability. </p>
+    </article>
+
+    <article class="card"
+    data-usage="Early stage"
+      data-focus="CO₂"
+      data-phase="Descent/Arrival"
+      data-metric="Non‑SES HFE,Non‑SES VFE,Fuel burn/CO₂">
+      <div class="card-icon"><i class="ph ph-factory"></i></div>
+      <h2>MUAC - Pre-flight efficiency optimisation</h2>
+      <img src="figure/muac.png" alt="MUAC - Pre-flight efficiency optimisation">
+      <p>The Pre-Flight Check (PFC) initiative, launched by the Maastricht Upper Area Control Centre (MUAC) in 2020, aims to enhance flight efficiency during the pre-flight phase. The PFC’s goal is to optimise flight plan routes before departure, by filing a flight plan trajectory closer to the expected actual flight path, improving operational efficiency and environmental sustainability.</p>
+      <a class="btn" href="aem-details.html">Details<i class="ph ph-arrow-right"></i></a>
+      <span class="badge level-badge early badge-usage">Early stage ANSPs</span>
+    </article>
+
+  </main>
+
+  <!-- Optional inline details anchors (to preserve deep links) -->
+  <section id="aem-details" class="hidden"></section>
+
+<footer>
+<p> <strong>Open‑Source Governance: </strong>The Avenir Catalogue is developed as an open‑source, collaborative reference. Its evolution is driven by operational experience, user feedback, and contributions from ANSPs, ensuring that methods, tools and practices remain aligned with real-world challenges and emerging needs.</p>
+<p style="margin-bottom: 1rem;"></p>
+<p>© 2025 Eurocontrol Sustainability Unit. All rights reserved.</p>
+</footer>
+
+  <script>
+    // Menu toggle
+    const toggle = document.getElementById('menu-toggle');
+    const list = document.getElementById('menu-list');
+    toggle?.addEventListener('click', () => {
+      const open = list.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', String(open));
+      toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    });
+
+   // Flat tag filtering (existing)
+    (function(){
+      const chips = Array.from(document.querySelectorAll('.tagbar:first-of-type .chip'));
+      const cards = Array.from(document.querySelectorAll('main.grid .card'));
+      let active = null;
+      function apply(tag){
+        active = tag;
+        chips.forEach(c => c.classList.toggle('active', c.dataset.tag===tag));
+        cards.forEach(card => {
+          const tags = (card.getAttribute('data-tags')||'').toLowerCase();
+          card.classList.toggle('hidden', !tags.includes(tag.toLowerCase()));
+        });
+      }
+      function clear(){ active=null; chips.forEach(c=>c.classList.remove('active')); cards.forEach(card=>card.classList.remove('hidden')); }
+      chips.forEach(chip => chip.addEventListener('click', () => { if(active===chip.dataset.tag) clear(); else apply(chip.dataset.tag); }));
+    })();
+
+    // Collapsible filter panel (top only): tabs + nested filtering (AND across groups; OR within group)
+    (function(){
+      const panel = document.getElementById('filters'); if(!panel) return;
+      const tabs = Array.from(panel.querySelectorAll('.filter-tabs .tab'));
+      const groups = { focus: document.getElementById('group-focus'), phase: document.getElementById('group-phase'), metric: document.getElementById('group-metric'), usage: document.getElementById('group-usage') };
+      const chips = Array.from(panel.querySelectorAll('.chip-n'));
+      const clearAll = document.getElementById('clear-all');
+      const summary = document.getElementById('active-summary');
+      const state = { focus:new Set(), phase:new Set(), metric:new Set(), usage:new Set() };
+
+      function updateCounts(){
+        tabs.forEach(t => { const key=t.dataset.target; const node=t.querySelector('.count'); if(node) node.textContent = (state[key]||new Set()).size; });
+      }
+      function renderSummary(){
+        const frag = document.createDocumentFragment();
+        Object.entries(state).forEach(([group,set])=>{ set.forEach(tag=>{ const b=document.createElement('button'); b.className='chip'; b.textContent=tag; b.title='Remove '+tag+' from '+group; b.addEventListener('click',()=>{ set.delete(tag); sync(); }); frag.appendChild(b); }); });
+        summary.innerHTML=''; if(frag.childNodes.length){ const label=document.createElement('span'); label.textContent='Active:'; summary.appendChild(label); summary.appendChild(frag); }
+      }
+      function filterCards(){
+        const cards = Array.from(document.querySelectorAll('main.grid .card'));
+        const match = (arr,set) => !set.size || arr.some(v=>set.has(v));
+        cards.forEach(card=>{
+          const f=(card.getAttribute('data-focus')||'').split(',').map(s=>s.trim()).filter(Boolean);
+          const p=(card.getAttribute('data-phase')||'').split(',').map(s=>s.trim()).filter(Boolean);
+          const m=(card.getAttribute('data-metric')||'').split(',').map(s=>s.trim()).filter(Boolean);
+          const u=(card.getAttribute('data-usage')||'').split(',').map(s=>s.trim()).filter(Boolean);
+      const visible = match(f,state.focus) && match(p,state.phase) && match(m,state.metric) && match(u,state.usage);
+          card.classList.toggle('hidden', !visible);
+        });
+      }
+      function sync(){ chips.forEach(ch=>ch.classList.toggle('active', state[ch.dataset.group].has(ch.dataset.tag))); updateCounts(); renderSummary(); filterCards(); }
+
+      // Tab toggle: show dependencies only when the main tab is clicked
+      tabs.forEach(tab=>tab.addEventListener('click',()=>{ const key=tab.dataset.target; const group=groups[key]; const isOpen = !group.hasAttribute('hidden'); Object.values(groups).forEach(g=>g.setAttribute('hidden','')); if(!isOpen) group.removeAttribute('hidden'); tabs.forEach(t=>t.setAttribute('aria-selected', String(t===tab && !isOpen))); }));
+
+      // Chip selection
+      chips.forEach(ch=>ch.addEventListener('click',()=>{ const set=state[ch.dataset.group]; if(set.has(ch.dataset.tag)) set.delete(ch.dataset.tag); else set.add(ch.dataset.tag); sync(); }));
+      clearAll?.addEventListener('click',()=>{ Object.values(state).forEach(s=>s.clear()); sync(); });
+      sync();
+    })();
+  </script>
+</body>
+</html>
