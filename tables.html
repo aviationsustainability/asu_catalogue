@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Aviation Intelligence Portal – Flight Efficiency</title>
+<title>Catalogue Coverage and Mapping</title>
 <link href="https://fonts.googleapis.com/css2?family=Exo:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 <style>
     :root {
@@ -144,6 +144,98 @@
 @media (min-width: 1024px) { .uc-track { grid-auto-columns: min(33%, 420px); } }
 
 
+.avenir-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: 'Exo', 'Roboto', Arial, sans-serif;
+  font-size: 0.85rem;
+  color: #212121;
+}
+
+/* Base cells */
+.avenir-table th,
+.avenir-table td {
+  border: 1px solid rgba(0,0,0,0.12);
+  padding: 6px 8px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+/* Top headers */
+.avenir-table thead th {
+  background: #075E54;
+  color: #ffffff;
+  font-weight: 700;
+}
+
+/* TOOLS / DASHBOARDS headers */
+.avenir-table .group-tools {
+  background: #075E54;
+}
+
+.avenir-table .group-dashboards {
+  background: #009F6E;
+}
+
+/* Tool name header */
+.avenir-table .name-col {
+  background: #E6F3EF;
+  color: #075E54;
+  font-weight: 700;
+}
+
+/* Vertical CRITERIA column */
+.avenir-table .criteria {
+  background: #CFEDEA;
+  color: #075E54;
+  font-weight: 700;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+}
+
+/* Section labels (vertical) */
+.avenir-table .section-label {
+  background: #CFEDEA;
+  color: #075E54;
+  font-weight: 700;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+}
+
+/* Section rows background */
+.avenir-table .focus td {
+  background: #F5FAF8;
+}
+
+.avenir-table .focus td:first-child {
+  background: #E6F3EF;
+  text-align: left;
+  font-weight: 600;
+  color: #075E54;
+}
+
+.avenir-table .flight td {
+  background: #F5FAF8;
+}
+
+.avenir-table .flight td:first-child {
+  background: #CFEDEA;
+  color: #075E54;
+  text-align: left;
+  font-weight: 600;
+  color: #075E54;
+}
+
+/* Grey cells (not applicable) */
+.avenir-table td:empty {
+  background: #E0E0E0;
+}
+
+/* X marker */
+.avenir-table td:not(:empty) {
+  font-weight: 600;
+}
+
 
 
   
@@ -177,7 +269,7 @@
 
 /* Scope chips (below the CTA + Developing ANSPs) */
 .meta-badges{display:flex;flex-direction:column;gap:8px;margin-top:6px}
-.meta-badges .meta-label{font-size:12px;font-weight:800;color:var(--text-secondary);text-transform:uppercase;letter-spacing:.04em}
+.meta-badges .meta-label {font-size:12px;font-weight:800;color:var(--text-secondary);text-transform:uppercase;letter-spacing:.04em}
 .meta-badges .chips{display:flex;flex-wrap:wrap;gap:10px}
 .badge-chip{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;border:1px solid var(--border);background:linear-gradient(180deg, rgba(255,255,255,.9) 0%, rgba(245,249,255,.8) 100%);color:var(--ink);font-size:12px;font-weight:700;box-shadow:0 2px 10px rgba(0,0,0,.06)}
 .badge-chip .chip-icon{width:20px;height:20px;display:inline-grid;place-items:center;background:rgba(0,159,110,.12);color:var(--primary-dark);border-radius:50%;font-size:12px}
@@ -195,7 +287,7 @@
 <ul class="menu" id="menu-list">
 <li><a href="index.html">Introduction</a></li>
 <li><a href="tools.html">Tools</a></li>
-<li class="active"><a aria-current="page" href="dashboard.html">Dashboards</a></li>
+<li><a href="dashboard.html">Dashboards</a></li>
 <li><a href="use-cases.html">Use Cases</a></li>
 <li><a href="faq.html">FAQ</a></li>
 <li><a href="downloads.html">Downloads</a></li>
@@ -204,61 +296,190 @@
 </div>
 </div>
 <header>
-<h1 id="main-content">Aviation Intelligence Portal – Flight Efficiency</h1>
-<p class="subtitle">Detailed information about the dashboard, its methodology, limitations, and future developments.</p>
+<h1 id="main-content">Catalogue Coverage and Mapping</h1>
+<p class="subtitle">This section provides an overview of how the tools and dashboards included in the catalogue relate to different performance indicators, flight phases and environmental topics.</p>
 </header>
 
 <main>
-<div class="header-actions">
-<a class="btn header-cta" href="https://ansperformance.eu/efficiency/" target="_blank" rel="noopener" margin-left="left">Go to the dashboard</a>
-</div>
 
-<div class="meta-badges" role="group" aria-label="AEM scope badges">
-  <div class="meta-label">Scope</div>
-  <div class="chips">
-    <span class="badge-chip">
-      <span class="chip-icon" aria-hidden="true">🎯</span>
-      <span class="chip-text">Focus: CO₂</span>
-    </span>
-    <span class="badge-chip">
-      <span class="chip-icon" aria-hidden="true">🛫</span>
-      <span class="chip-text">Phases: Taxi‑out, Departure/Climb, Cruise, Descent/Arrival, Taxi‑in, Wheels‑up/‑down, Gate‑to‑Gate</span>
-    </span>
-    <span class="badge-chip">
-      <span class="chip-icon" aria-hidden="true">📊</span>
-      <span class="chip-text">Metrics: ICAO KPIs, SES KPIs/PIs, Non‑SES HFE, Non‑SES VFE, Fuel burn/CO₂</span>
-    </span>
+
+
+<section>
+<p><span data-olk-copy-source="MessageBody">The tables below are intended to help users identify which tools or dashboards may be relevant for a specific performance area or operational question.</span></p>
+<p style="text-align: center;"><strong>Table 1 &ndash; Tools and Dashboards vs Performance Indicators</strong></p>
+
+<table class="avenir-table">
+  <thead>
+    <tr>
+      <th rowspan="3" class="criteria">CRITERIA</th>
+      <th rowspan="4" class="criteria">METRICS</th>
+      <th colspan="7" class="group-tools">TOOLS</th>
+      <th colspan="8" class="group-dashboards">DASHBOARDS</th>
+    </tr>
+    <tr>
+      <th>AEM</th>
+      <th>Open‑ALAQS</th>
+      <th>IMPACT</th>
+      <th>NEST</th>
+      <th>R‑NEST</th>
+      <th>ACROPOLE</th>
+      <th>AEDT</th>
+      <th class="group-dashboards">TMA Flight</th>
+      <th class="group-dashboards">FATHOM</th>
+      <th class="group-dashboards">CO₂MPASS</th>
+      <th class="group-dashboards">Flair</th>
+      <th class="group-dashboards">FlyingGreen</th>
+      <th class="group-dashboards">LTO Est.</th>
+      <th class="group-dashboards">Aviation Int.</th>
+      <th class="group-dashboards">SES Portal</th>
+    </tr>
+  </thead>
+
+  <tbody>
+     <td rowspan="9" class="section-label">INDICATORS AND METRICS</td>
+    <tr class="flight">
+      <td>ICAO KPIs</td>
+      <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+      <td></td><td></td><td></td><td></td><td></td><td></td><td>X</td><td>X</td>
+    </tr>
+    <tr class="flight">
+      <td >SES KPIs/PIs</td>
+      <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+      <td></td><td></td><td></td><td>X</td><td></td><td></td><td>X</td><td>X</td>
+    </tr>
+    <tr class="flight">
+      <td>Non-SES HFE</td>
+      <td></td><td></td><td></td><td></td><td></td><td>X</td><td>X</td>
+      <td>X</td><td></td><td></td><td></td><td></td><td></td><td>X</td><td></td>
+    </tr>
+    <tr class="flight">
+      <td>Non-SES VFE</td>
+      <td></td><td></td><td></td><td></td><td></td><td>X</td><td>X</td>
+      <td>X</td><td></td><td></td><td>X</td><td></td><td></td><td>X</td><td></td>
+    </tr>
+    <tr class="flight">
+      <td>Fuel Burn/CO₂ emissions</td>
+      <td>X</td><td>X</td><td>X</td><td>X</td><td>X</td><td>X</td><td>X</td>
+      <td>X</td><td>X</td><td>X</td><td></td><td>X</td><td>X</td><td>X</td><td></td>
+    </tr>
+    <tr class="flight">
+      <td>Non‑CO₂ emissions</td>
+      <td>X</td><td>X</td><td>X</td><td>X</td><td>X</td><td></td><td>X</td>
+      <td></td><td></td><td></td><td></td><td></td><td>X</td><td></td><td></td>
+    </tr>
+    <tr class="flight">
+      <td>Noise</td>
+      <td></td><td></td><td>X</td><td></td><td></td><td></td><td>X</td>
+      <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+    </tr>
+    <tr class="flight">
+      <td>Local Air Quality (LAQ)</td>
+      <td></td><td>X</td><td></td><td></td><td></td><td></td><td>X</td>
+      <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>&nbsp;</p>
+<p style="text-align: center;"><strong>Table 2 &ndash; Tools and Dashboards vs Flight Phases / Performance Areas</strong></p>
+<table class="avenir-table">
+  <thead>
+    <tr>
+      <th rowspan="3" class="criteria">CRITERIA</th>
+      <th rowspan="4" class="criteria">METRICS</th>
+      <th colspan="7" class="group-tools">TOOLS</th>
+      <th colspan="8" class="group-dashboards">DASHBOARDS</th>
+    </tr>
+    <tr>
+      <th>AEM</th>
+      <th>Open‑ALAQS</th>
+      <th>IMPACT</th>
+      <th>NEST</th>
+      <th>R‑NEST</th>
+      <th>ACROPOLE</th>
+      <th>AEDT</th>
+      <th class="group-dashboards">TMA Flight</th>
+      <th class="group-dashboards">FATHOM</th>
+      <th class="group-dashboards">CO₂MPASS</th>
+      <th class="group-dashboards">Flair</th>
+      <th class="group-dashboards">FlyingGreen</th>
+      <th class="group-dashboards">LTO Est.</th>
+      <th class="group-dashboards">Aviation Int.</th>
+      <th class="group-dashboards">SES Portal</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <!-- FOCUS AREAS -->
+     
+    <tr class="focus">
+      <td rowspan="5" class="section-label">FOCUS AREAS</td>
+      </tr>
+    <tr class="focus">
+      <td>CO₂ emissions</td>
+      <td>X</td><td>X</td><td>X</td><td>X</td><td>X</td><td>X</td><td>X</td>
+      <td>X</td><td>X</td><td>X</td><td></td><td>X</td><td>X</td><td>X</td><td>X</td>
+    </tr>
+    <tr class="focus">
+      <td>Non‑CO₂ emissions</td>
+      <td>X</td><td>X</td><td>X</td><td>X</td><td>X</td><td></td><td>X</td>
+      <td></td><td></td><td></td><td></td><td>X</td><td>X</td><td></td><td></td>
+    </tr>
+    <tr class="focus">
+      <td>Noise</td>
+      <td></td><td></td><td>X</td><td></td><td></td><td></td><td>X</td>
+      <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+    </tr>
+    <tr class="focus">
+      <td>Local Air Quality (LAQ)</td>
+      <td></td><td>X</td><td></td><td></td><td></td><td></td><td>X</td>
+      <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+    </tr>
+
+    <!-- OUTPUT AVAILABLE PER FLIGHT PHASE -->
+     <td rowspan="8" class="section-label">OUTPUT PER FLIGHT PHASE</td>
+    <tr class="flight">
+      <td>Taxi‑out</td>
+      <td>X</td><td>X</td><td>X</td><td></td><td>X</td><td></td><td>X</td>
+      <td></td><td></td><td></td><td></td><td>X</td><td>X</td><td>X</td><td>X</td>
+    </tr>
+    <tr class="flight">
+      <td >Departure / Climb</td>
+      <td>X</td><td>X</td><td>X</td><td></td><td>X</td><td>X</td><td>X</td>
+      <td></td><td></td><td>X</td><td></td><td>X</td><td>X</td><td>X</td><td>X</td>
+    </tr>
+    <tr class="flight">
+      <td>Cruise</td>
+      <td>X</td><td></td><td>X</td><td></td><td>X</td><td>X</td><td>X</td>
+      <td></td><td></td><td>X</td><td>X</td><td>X</td><td></td><td>X</td><td>X</td>
+    </tr>
+    <tr class="flight">
+      <td>Descent / Arrival</td>
+      <td>X</td><td>X</td><td>X</td><td></td><td>X</td><td>X</td><td>X</td>
+      <td>X</td><td></td><td>X</td><td></td><td>X</td><td>X</td><td>X</td><td>X</td>
+    </tr>
+    <tr class="flight">
+      <td>Taxi‑in</td>
+      <td>X</td><td>X</td><td>X</td><td></td><td>X</td><td></td><td>X</td>
+      <td></td><td></td><td></td><td></td><td>X</td><td>X</td><td>X</td><td>X</td>
+    </tr>
+    <tr class="flight">
+      <td>Wheels‑up / Wheels‑down</td>
+      <td>X</td><td></td><td>X</td><td>X</td><td>X</td><td></td><td>X</td>
+      <td></td><td>X</td><td></td><td></td><td>X</td><td></td><td>X</td><td></td>
+    </tr>
+    <tr class="flight">
+      <td>Gate‑to‑Gate</td>
+      <td>X</td><td></td><td>X</td><td></td><td>X</td><td>X</td><td>X</td>
+      <td></td><td></td><td></td><td></td><td>X</td><td></td><td>X</td><td></td>
+    </tr>
+  </tbody>
+</table>
+</p>
+<p><em><strong>Important note:</strong> These tables provide a simplified overview of the typical scope of each tool or dashboard. They are intended as a navigation aid and do not represent a detailed methodological comparison.</em></span></p>
+</section>
+
   </div>
-</div>
-
-<section>
-<h2>Overview</h2>
-<p>The <strong>Efficiency and Environment&nbsp;section</strong> of the <em>Aviation Intelligence (AIU) Portal</em> is a EUROCONTROL dashboard that provides data-driven insights into the efficiency and environmental impact of European aviation.</p>
-<p>It provides historical data on flight efficiency, fuel consumption, CO₂ emissions and air traffic management efficiency.</p>
-<p>The portal sources its data from EUROCONTROL&rsquo;s aviation databases including flight tracking systems and environmental performance assessments.</p>
-<p>The portal provides information on the following performance indicators:</p>
-<ul>
-<li>Horizontal en-route flight efficiency.</li>
-<li>Vertical flight efficiency.</li>
-<li>Terminal holdings (ASMA).</li>
-<li>Taxi-out efficiency.</li>
-<li>Taxi-in efficiency.</li>
-</ul>
-<p>The <strong>main goal</strong> of the portal is to support sustainability efforts and enhance operational efficiency in European aviation.</p>
-<p>Users can explore interactive visualisations, key performance indicators and trend analyses to assess aviation efficiency and sustainability. The portal is designed for a wide range of stakeholders, including ANSPs, airlines, airport operators, EU policymakers and researchers, supporting efforts to improve operational efficiency and reduce aviation&rsquo;s environmental footprint.</p>
-<p>It is accessible via a web-based platform (best viewed in Chrome or Firefox), offering access for informed decision-making and strategic planning.</p>
-<p>All the data used for the various dashboards is available for download in the corresponding download section of the AIU Portal.</p>
-<p style="text-align: center;"><img src="figure/aiu_1.png" alt="" width="700" height="480" /></p>
-<p style="text-align: center;font-size: 0.7rem;"><em><span style="color: #999999;">AIU Portal – Efficiency and environment overview (from webpage)</span></em></p>
-</section>
-<section>
-<h2>Limitations</h2>
-<p>There are no significant limitations. The AIU Team strives to provide the underlying data with a high level of granularity, encouraging users to conduct their own complementary analyses. </p>
-</section>
-<section>
-<h2>Future Developments</h2>
-<p>After summer 2025 and guided by user feedback, the dashboards, indicators and datasets will continue to be developed and enhanced to support performance improvements in the European aviation system.</p>
-</section>
 
 
 </main>

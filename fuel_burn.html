@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Aviation Intelligence Portal – Flight Efficiency</title>
+<title>Fuel Burn Results</title>
 <link href="https://fonts.googleapis.com/css2?family=Exo:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 <style>
     :root {
@@ -144,6 +144,100 @@
 @media (min-width: 1024px) { .uc-track { grid-auto-columns: min(33%, 420px); } }
 
 
+.avenir-table {
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  border-collapse: collapse;
+  font-family: 'Exo', 'Roboto', Arial, sans-serif;
+  font-size: 0.85rem;
+  color: #212121;
+}
+
+/* Base cells */
+.avenir-table th,
+.avenir-table td {
+  border: 1px solid rgba(0,0,0,0.12);
+  padding: 6px 8px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+/* Top headers */
+.avenir-table thead th {
+  background: #075E54;
+  color: #ffffff;
+  font-weight: 700;
+}
+
+/* TOOLS / DASHBOARDS headers */
+.avenir-table .group-tools {
+  background: #075E54;
+}
+
+.avenir-table .group-dashboards {
+  background: #009F6E;
+}
+
+/* Tool name header */
+.avenir-table .name-col {
+  background: #E6F3EF;
+  color: #075E54;
+  font-weight: 700;
+}
+
+/* Vertical CRITERIA column */
+.avenir-table .criteria {
+  background: #CFEDEA;
+  color: #075E54;
+  font-weight: 700;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+}
+
+/* Section labels (vertical) */
+.avenir-table .section-label {
+  background: #CFEDEA;
+  color: #075E54;
+  font-weight: 700;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+}
+
+/* Section rows background */
+.avenir-table .focus td {
+  background: #F5FAF8;
+}
+
+.avenir-table .focus td:first-child {
+  background: #E6F3EF;
+  text-align: left;
+  font-weight: 600;
+  color: #075E54;
+}
+
+.avenir-table .flight td {
+  background: #F5FAF8;
+}
+
+.avenir-table .flight td:first-child {
+  background: #CFEDEA;
+  color: #075E54;
+  text-align: left;
+  font-weight: 600;
+  color: #075E54;
+}
+
+/* Grey cells (not applicable) */
+.avenir-table td:empty {
+  background: #E0E0E0;
+}
+
+/* X marker */
+.avenir-table td:not(:empty) {
+  font-weight: 600;
+}
+
 
 
   
@@ -177,7 +271,7 @@
 
 /* Scope chips (below the CTA + Developing ANSPs) */
 .meta-badges{display:flex;flex-direction:column;gap:8px;margin-top:6px}
-.meta-badges .meta-label{font-size:12px;font-weight:800;color:var(--text-secondary);text-transform:uppercase;letter-spacing:.04em}
+.meta-badges .meta-label {font-size:12px;font-weight:800;color:var(--text-secondary);text-transform:uppercase;letter-spacing:.04em}
 .meta-badges .chips{display:flex;flex-wrap:wrap;gap:10px}
 .badge-chip{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;border:1px solid var(--border);background:linear-gradient(180deg, rgba(255,255,255,.9) 0%, rgba(245,249,255,.8) 100%);color:var(--ink);font-size:12px;font-weight:700;box-shadow:0 2px 10px rgba(0,0,0,.06)}
 .badge-chip .chip-icon{width:20px;height:20px;display:inline-grid;place-items:center;background:rgba(0,159,110,.12);color:var(--primary-dark);border-radius:50%;font-size:12px}
@@ -195,7 +289,7 @@
 <ul class="menu" id="menu-list">
 <li><a href="index.html">Introduction</a></li>
 <li><a href="tools.html">Tools</a></li>
-<li class="active"><a aria-current="page" href="dashboard.html">Dashboards</a></li>
+<li><a href="dashboard.html">Dashboards</a></li>
 <li><a href="use-cases.html">Use Cases</a></li>
 <li><a href="faq.html">FAQ</a></li>
 <li><a href="downloads.html">Downloads</a></li>
@@ -204,61 +298,114 @@
 </div>
 </div>
 <header>
-<h1 id="main-content">Aviation Intelligence Portal – Flight Efficiency</h1>
-<p class="subtitle">Detailed information about the dashboard, its methodology, limitations, and future developments.</p>
+<h1 id="main-content">Fuel Burn Results</h1>
+<p class="subtitle">How to Interpret Outputs from Different EUROCONTROL Tools</p>
 </header>
 
 <main>
-<div class="header-actions">
-<a class="btn header-cta" href="https://ansperformance.eu/efficiency/" target="_blank" rel="noopener" margin-left="left">Go to the dashboard</a>
-</div>
-
-<div class="meta-badges" role="group" aria-label="AEM scope badges">
-  <div class="meta-label">Scope</div>
-  <div class="chips">
-    <span class="badge-chip">
-      <span class="chip-icon" aria-hidden="true">🎯</span>
-      <span class="chip-text">Focus: CO₂</span>
-    </span>
-    <span class="badge-chip">
-      <span class="chip-icon" aria-hidden="true">🛫</span>
-      <span class="chip-text">Phases: Taxi‑out, Departure/Climb, Cruise, Descent/Arrival, Taxi‑in, Wheels‑up/‑down, Gate‑to‑Gate</span>
-    </span>
-    <span class="badge-chip">
-      <span class="chip-icon" aria-hidden="true">📊</span>
-      <span class="chip-text">Metrics: ICAO KPIs, SES KPIs/PIs, Non‑SES HFE, Non‑SES VFE, Fuel burn/CO₂</span>
-    </span>
-  </div>
-</div>
 
 <section>
-<h2>Overview</h2>
-<p>The <strong>Efficiency and Environment&nbsp;section</strong> of the <em>Aviation Intelligence (AIU) Portal</em> is a EUROCONTROL dashboard that provides data-driven insights into the efficiency and environmental impact of European aviation.</p>
-<p>It provides historical data on flight efficiency, fuel consumption, CO₂ emissions and air traffic management efficiency.</p>
-<p>The portal sources its data from EUROCONTROL&rsquo;s aviation databases including flight tracking systems and environmental performance assessments.</p>
-<p>The portal provides information on the following performance indicators:</p>
+<p>Several <strong>EUROCONTROL aviation environmental tools</strong> provide fuel burn and CO₂-related outputs. These values are sometimes interpreted as directly comparable. In practice, differences in results are expected and arise mainly from differences in methodology, scope, system boundaries, level of aggregation and intended use of each tool/dashboard.</p>
+<p>The table below provides a simplified overview of the <strong>typical scope</strong> and <strong>purpose</strong> of selected tools in order to support correct interpretation of results. Differences in outputs should be understood in this context.</p>
+<p>&nbsp;</p>
+
+
+<table class="avenir-table">
+  <thead>
+    <tr>
+      <th class="name-col">Tool</th>
+      <th>Primary users</th>
+      <th>Typical fuel burn scope</th>
+      <th>Spatial / aggregation level</th>
+      <th>Phase-of-flight coverage</th>
+      <th>Typical use context</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr class="focus">
+      <th class="name-col">AEM<br>(Advanced Emissions Model)</th>
+      <td>Analysts, researchers, modelling community, ANSPs, policy support</td>
+      <td>Segment-based modelling of fuel burn and emissions</td>
+      <td>Flight / trajectory level, scalable</td>
+      <td>Supports gate-to-gate</td>
+      <td>Emissions modelling and analytical studies</td>
+    </tr>
+
+    <tr class="focus">
+      <th class="name-col">SET<br>(Small Emitters Tool)</th>
+      <td>Small operators; administering States (ETS context)</td>
+      <td>Simplified statistical estimation of fuel burn and CO&#8322;</td>
+      <td>Operator / flight list level</td>
+      <td>Entire flight, based on statistical models and flight characteristics</td>
+      <td>ETS monitoring and reporting support</td>
+    </tr>
+
+    <tr class="focus">
+      <th class="name-col">IMPACT</th>
+      <td>Environmental assessment users</td>
+      <td>Scenario-based modelling of fuel burn and noise</td>
+      <td>Study-based / scenario outputs</td>
+      <td>Typically airport / TMA focus</td>
+      <td>Impact and trade-off studies</td>
+    </tr>
+
+    <tr class="focus">
+      <th class="name-col">FlyingGreen</th>
+      <td>ANSPs, States, airports, policy makers</td>
+      <td>Fuel burn and emissions indicators derived from multiple data sources (using AEM)</td>
+      <td>Configurable: ANSP, airport, State, or network views</td>
+      <td>Gate-to-gate, phase-dependent, module-specific</td>
+      <td>Transparency, stakeholder dialogue, awareness, decision support</td>
+    </tr>
+
+    <tr class="focus">
+      <th class="name-col">FATHOM</th>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+
+    <tr class="focus">
+      <th class="name-col">CO&#8322;MPASS</th>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+
+    <tr class="focus">
+      <th class="name-col">AIU Dashboard</th>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+
+
+<p>&nbsp;</p>
+<blockquote>
+<p style="text-align: center;"><strong>NOTE: The&nbsp;<u>detailed descriptions of each tool must be reviewed and validated by the respective product/tool owners prior to publication</u>.</strong></p>
+</blockquote>
+</section>
+
+<section>
+<em>
+<p><strong>Important interpretation note</strong><br />Different tools quantify different aspects of fuel burn and emissions and are designed for different decision-making contexts (e.g. operational analysis, environmental reporting, scenario assessment, policy support). Differences in results therefore reflect differences in methodological design and intended use, and do not indicate inconsistency or relative accuracy of one tool compared to another. Results should not be directly compared without understanding the scope and assumptions of each tool.</p>
+<p>&nbsp;For detailed methodology, assumptions and calculation factors, see EUROCONTROL Standard Inputs for Economic Analyses:</p>
 <ul>
-<li>Horizontal en-route flight efficiency.</li>
-<li>Vertical flight efficiency.</li>
-<li>Terminal holdings (ASMA).</li>
-<li>Taxi-out efficiency.</li>
-<li>Taxi-in efficiency.</li>
+<li>Rate of fuel burn&nbsp;<a title="Original URL: https://ansperformance.eu/economics/cba/standard-inputs/latest/chapters/rate_of_fuel_burn.html. Click or tap if you trust this link." href="https://eur01.safelinks.protection.outlook.com/?url=https%3A%2F%2Fansperformance.eu%2Feconomics%2Fcba%2Fstandard-inputs%2Flatest%2Fchapters%2Frate_of_fuel_burn.html&amp;data=05%7C02%7Cfabio.de-filippo.ext%40eurocontrol.int%7Cb7801fd1ed4f479cb7b708de8e6dee88%7C76f33c2059794408adf78b3c4be95e52%7C0%7C0%7C639104800003818093%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C0%7C%7C%7C&amp;sdata=XvGxodfkFmb9lHZeclkFSJ8JURisH2Y9hH1zijcO6bE%3D&amp;reserved=0" data-auth="NotApplicable" data-linkindex="0">https://ansperformance.eu/economics/cba/standard-inputs/latest/chapters/rate_of_fuel_burn.html</a></li>
+<li style="text-align: left;">Amount of emissions released by fuel burn&nbsp;<a title="Original URL: https://ansperformance.eu/economics/cba/standard-inputs/latest/chapters/amount_of_emissions_released_by_fuel_burn.html. Click or tap if you trust this link." href="https://eur01.safelinks.protection.outlook.com/?url=https%3A%2F%2Fansperformance.eu%2Feconomics%2Fcba%2Fstandard-inputs%2Flatest%2Fchapters%2Famount_of_emissions_released_by_fuel_burn.html&amp;data=05%7C02%7Cfabio.de-filippo.ext%40eurocontrol.int%7Cb7801fd1ed4f479cb7b708de8e6dee88%7C76f33c2059794408adf78b3c4be95e52%7C0%7C0%7C639104800003849859%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C0%7C%7C%7C&amp;sdata=G6dUfiPlfVNBVY8eIF3PJ%2F%2BbdGvxlzEBGmswZ18OAv8%3D&amp;reserved=0" data-auth="NotApplicable" data-linkindex="1">https://ansperformance.eu/economics/cba/standard-inputs/latest/chapters/amount_of_emissions_released_by_fuel_burn.html</a></li>
 </ul>
-<p>The <strong>main goal</strong> of the portal is to support sustainability efforts and enhance operational efficiency in European aviation.</p>
-<p>Users can explore interactive visualisations, key performance indicators and trend analyses to assess aviation efficiency and sustainability. The portal is designed for a wide range of stakeholders, including ANSPs, airlines, airport operators, EU policymakers and researchers, supporting efforts to improve operational efficiency and reduce aviation&rsquo;s environmental footprint.</p>
-<p>It is accessible via a web-based platform (best viewed in Chrome or Firefox), offering access for informed decision-making and strategic planning.</p>
-<p>All the data used for the various dashboards is available for download in the corresponding download section of the AIU Portal.</p>
-<p style="text-align: center;"><img src="figure/aiu_1.png" alt="" width="700" height="480" /></p>
-<p style="text-align: center;font-size: 0.7rem;"><em><span style="color: #999999;">AIU Portal – Efficiency and environment overview (from webpage)</span></em></p>
+</em>
 </section>
-<section>
-<h2>Limitations</h2>
-<p>There are no significant limitations. The AIU Team strives to provide the underlying data with a high level of granularity, encouraging users to conduct their own complementary analyses. </p>
-</section>
-<section>
-<h2>Future Developments</h2>
-<p>After summer 2025 and guided by user feedback, the dashboards, indicators and datasets will continue to be developed and enhanced to support performance improvements in the European aviation system.</p>
-</section>
+  </div>
 
 
 </main>

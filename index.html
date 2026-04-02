@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>AVENIR Pillar 2 Catalogue</title>
+<title>AVENIR Environmental Catalogue</title>
 <link href="https://fonts.googleapis.com/css2?family=Exo:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
 <script src="https://unpkg.com/@phosphor-icons/web"></script>
 <style>
@@ -65,21 +65,34 @@ h1 { font-size: clamp(2rem, 6vw, 3.25rem); font-weight: 800; letter-spacing: -0.
 h5 { font-size: 1.4rem; margin-bottom: 10px; color: var(--primary-dark); }
 p.subtitle { font-size: clamp(1rem, 3.2vw, 1.15rem); color: var(--text-secondary); max-width: 900px; margin: 0 auto; line-height: 1.65; }
 main { flex: 1; max-width: 1200px; margin: 0 auto; padding: 24px; display: grid; grid-template-columns: 1fr; gap: 28px; width: 100%; }
-section { background: var(--surface-elev); border: 1px solid var(--border); border-radius: 16px; padding: clamp(18px, 3.5vw, 28px); box-shadow: var(--shadow); }
-section h2 { font-size: 1.4rem; margin-bottom: 10px; color: white; }
-section p, section li { color: white; line-height: 1.65; }
-.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px; }
+.id_section { background: var(--surface-elev); border: 1px solid var(--border); border-radius: 16px; padding: clamp(18px, 3.5vw, 28px); box-shadow: var(--shadow); }
+.id_section h2 { font-size: 1.4rem; margin-bottom: 10px; color: white; }
+.id_section p { color: white; line-height: 1.65; }
+.id_section_1 { background: var(--surface-elev); border: 1px solid var(--border); border-radius: 16px; padding: clamp(18px, 3.5vw, 28px); box-shadow: var(--shadow); }
+.id_section_1 h2 { font-size: 1.4rem; margin-bottom: 10px; color:var(--primary-dark); }
+.id_section_1 p { color:var(--text-secondary); line-height: 1.65; }
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(330px, 1fr)); gap: 18px; }
 .card { background: var(--surface-elev); border: 1px solid var(--border); border-radius: 16px; padding: clamp(18px, 3.5vw, 28px); box-shadow: var(--shadow); transition: transform .25s ease, box-shadow .25s ease; display: flex; flex-direction: column; }
 .card:hover { transform: translateY(-4px); box-shadow: 0 16px 36px rgba(0,0,0,0.12); }
 .card-icon { font-size: 28px; color: var(--accent); margin-bottom: 14px; background: rgba(0,159,110,0.10); width: 52px; height: 52px; display: flex; align-items: center; justify-content: center; border-radius: 12px; }
 .card h2 { font-size: 1.25rem; margin-bottom: 10px; font-weight: 700; color: var(--ink); }
 .card p { color: var(--text-secondary); font-size: 0.98rem; line-height: 1.6; margin-bottom: 16px; }
  /* Card with background image + overlay */
-.cards{position:relative;border:1px solid var(--border);border-radius:16px;box-shadow:var(--shadow);overflow:hidden;min-height:360px;display:flex;flex-direction:column;justify-content:flex-end;padding:20px;background-size:cover;background-position:center}
-.cards::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.55) 70%)}
+.cards{position:relative;border:1px solid var(--border);border-radius:16px;box-shadow:var(--shadow);overflow:hidden;min-height:360px;display:flex;flex-direction:column;padding:20px;background-size:cover;background-position:center}
+.cards::before{content:"";position:absolute;inset:0;background:
+linear-gradient(
+  180deg,
+  rgba(0, 0, 0, 0.5) 30%,
+  rgba(0, 0, 0, 0.5) 30%
+)
+}
 .cards > *{position:relative;z-index:1}
-.cards h2{color:#fff;font-size:1.25rem;margin:0 0 8px 0;font-weight:800;text-shadow:0 2px 8px rgba(0,0,0,.45)}
-.cards p{color:#f0f7f5;font-size:.98rem;line-height:1.6;margin:0 0 14px 0;text-shadow:0 2px 8px rgba(0,0,0,.35)}
+.cards h2{color:#fff;font-size:1.25rem;margin:0 0 8px 0;font-weight:800;text-shadow:0 2px 8px rgba(0,0,0,.45);min-height: 2em;}
+.cards h3{color:#01dd9b;font-weight:bold;font-size:.90rem;line-height:1.6;margin:0 0 14px 0;text-shadow:0 2px 8px rgba(0,0,0,.35);min-height: 2.8em;}
+.cards p{color:#f0f7f5;font-size:.98rem;line-height:1.6;margin:0 0 14px 0;text-shadow:0 2px 8px rgba(0,0,0,0.05);min-height: 3.6em;}
+.cards .btn {
+  margin-top: auto;
+}
 .cards img{display:none}
 .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; text-decoration: none; color: var(--text-inverse); background: var(--primary); padding: 12px 18px; border-radius: 999px; font-weight: 700; transition: background .2s ease, transform .05s ease; width: fit-content; }
 .btn:hover { background: var(--primary-dark); }
@@ -93,6 +106,71 @@ section p, section li { color: white; line-height: 1.65; }
   from { opacity: 0; transform: translateY(-2px); }
   to { opacity: 1; transform: translateY(0); }
 }
+
+
+.intro-wrapper {
+    display: flex;
+    gap: 32px;
+    align-items: flex-start;
+    background: transparent;
+}
+.intro-content {
+    flex: 2;
+    padding: 18px;
+}
+
+.intro-content h5 {
+    color: #075E54;
+    margin-top: 0;
+    font-size: 38px;
+}
+
+.intro-content p {
+    color: #455A64;
+    line-height: 1.65;
+    text-align: justify;
+}
+
+.intro-aside {
+    flex: 1;
+    background: #ffffff;
+    color: #455A64;
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+}
+
+.intro-aside h3 {
+    margin-top: 0;
+    color: #075E54;
+    font-weight: 700;
+}
+
+.intro-aside h4 {
+    color: #455A64;
+    margin-top: 12px;
+    margin-bottom: 12px;
+}
+
+.intro-aside ul {
+    line-height: 1.6;
+    padding-left: 18px;
+}
+
+.intro-content {
+    flex: 2;
+    max-width: 760px;       /* prevents the text from feeling lost */
+}
+
+
+/* Responsive */
+@media (max-width: 768px) {
+    .intro-wrapper {
+        flex-direction: column;
+    }
+}
+
+
 footer { text-align: center; padding: 36px 20px; color: #607D8B; font-size: 0.9rem; }
 .skip-link { position: absolute; left: -999px; top: 0; background: var(--paper); color: var(--ink); padding: 8px 12px; border-radius: 4px; }
 .skip-link:focus { left: 8px; outline: 2px solid var(--focus); }
@@ -117,46 +195,66 @@ footer { text-align: center; padding: 36px 20px; color: #607D8B; font-size: 0.9r
 </div>
 </div>
 <header id="main-content" role="heading" aria-level="1">
-<h1>AVENIR Pillar 2 Catalogue</h1>
-<p class="subtitle">An <strong>open-source</strong> resource for Air Navigation Service Providers (ANSPs). It helps teams across <strong>all organisational levels</strong> — from operational experts to senior management — to understand, select, and apply tools and methodologies that improve environmental performance in ATM. The catalogue is <strong>non‑prescriptive</strong>, practical, and easy to navigate, avoiding any perception of assessment, ranking, or compliance pressure.</p>
+<h1>AVENIR Environmental Catalogue</h1>
+<p class="subtitle"></p>
 </header>
 <main>
-<section style="background:linear-gradient(120deg,#01512C,#006A3B,#003E74)" id="context_1" aria-labelledby="context-title">
-<h2 id="context-title">The scope</h2>
-<div style="text-align: justify;">
-<p style="margin-bottom: 20px">
-The AVENIR Working Group (WG) explores how Air Navigation Service Providers (ANSPs) can enhance environmental performance through the adoption of new technologies and operational procedures. A central objective of the group is the exchange and structuring of best practices, particularly regarding how the environmental impact of operational changes is measured, analysed, and communicated.
-</p>
-<p style="margin-bottom: 20px">
-Within this framework, AVENIR WG developed a shared knowledge repository, a catalogue of tools and methodologies used to evaluate fuel consumption, emissions, noise, and their interdependencies.
-</p>
-<p>
-The catalogue serves as a practical reference for ANSPs by:
-</p>
-<ul style="margin-left: 20px;">
-<li>Providing a structured overview of available analytical and modelling solutions</li>
-<li>Supporting transparent and data-driven assessment of environmental impacts</li>
-<li>Promoting knowledge sharing and methodological consistency across organisations</li>
-<li>Reducing duplication of effort</li>
-<li>Assisting in the selection of tools suited to specific operational environments</li>
-</ul>
-</div>
+
+  
+
+<section class="intro-wrapper">
+      <div class="intro-content">
+        <h5>Find tools, dashboards and operational use cases supporting environmental performance in ATM.</h5>
+        <p>
+            This catalogue brings together existing tools, dashboards and operational use cases used across Europe 
+            to support environmental performance monitoring, analysis and improvement in Air Traffic Management (ATM).
+            It provides a practical entry point to help users navigate available solutions and understand how they can
+            support operational, analytical and reporting activities within ANSPs.
+        </p>
+    </div>
+
+    <section class="intro-aside">
+        <h3>Who is this for?</h3>
+        <h4>This catalogue is intended for ANSP teams who want to:</h4>
+        <ul>
+            <li>Monitor environmental performance</li>
+            <li>Analyse ATM inefficiencies and fuel burn</li>
+            <li>Support environmental reporting</li>
+            <li>Evaluate operational or technical measures</li>
+            <li>Explore monitoring dashboards</li>
+            <li>Learn from practical ANSP use cases and methodologies</li>
+        </ul>
+    </section>
 </section>
 
-<!-- === INSERTED NEW CONTENT BELOW === -->
-
-<section>
+<section class="id_section_1">
 <h5>
 Solutions
 </h5>
+
+<p style="margin-bottom:10px">Choose the solution that best matches your need. The catalogue is designed to help users move quickly from a practical question to the most relevant examples, tools or monitoring products.</p>
+
 <div class="grid">
+
+<div class="cards"
+     style="
+       background-image:url('figure/use.avif');
+     ">
+<h2>Use Cases</h2>
+<h3>Start here if you have an operational question</h3>
+<p >Practical examples of how ANSPs have addressed environmental challenges in operations, performance monitoring or reporting.
+Use cases may include the use of specific tools and dashboards, or may describe internal methodologies and operational approaches.</p>
+<a href="use-cases.html" class="btn">Explore Use Cases</a>
+</div>
+
 <div class="cards"
      style="
        background-image:url('figure/tools.avif');
      ">
 <h2>Tools</h2>
-<p>Providing analytical or modeling capability</p>
-<a href="tools.html" class="btn">Find more</a>
+<h3>For modelling and analytical capability</h3>
+<p>Modelling and analysis tools used to assess fuel burn, emissions, ATM performance and the impact of operational or technical measures.</p>
+<a href="tools.html" class="btn">Browse Tools</a>
 </div>
 
 
@@ -166,71 +264,46 @@ Solutions
        background-image:url('figure/dashboard.avif');
      ">
     <h2>Dashboards</h2>
-    <p>Providing visualization and monitoring.
+    <h3>For monitoring, reporting and visualization</h3>
+    <p>Monitoring and reporting dashboards used to track environmental performance indicators and support reporting and performance management.
     </p>
-    <a href="dashboard.html" class="btn">Find more</a>
+    <a href="dashboard.html" class="btn">Open Dashboards</a>
 </div>
 
 
 
+</section>
+
+<section class="id_section_1">
+<h2>Coverage at a glance</h2>
+<p>The catalogue covers tools, dashboards and use cases across different environmental focus areas, flight phases and performance indicators. Summary mapping tables are available to help users understand which tools and dashboards are relevant for different types of analysis and monitoring.</p>
+<a href="tables.html" class="btn" style="margin-top: 10px">See the tables</a>
+</section>
+
+<section class="id_section_1">
 <div class="cards"
      style="
-       background-image:url('figure/use.avif');
+       background-image:url('figure/fuel.avif');
      ">
-<h2>Use Cases</h2>
-<p>Providing real-world solution and guidance.</p>
-<a href="use-cases.html" class="btn">Find more</a>
+    <h2>Fuel Burn Results</h2>
+    <h3>How to Interpret Outputs from Different EUROCONTROL Tools
+    </h3>
+    <p>Several EUROCONTROL aviation environmental tools provide fuel burn and CO₂-related outputs. These values are sometimes interpreted as directly comparable. In practice, differences in results are expected and arise mainly from differences in methodology, scope, system boundaries, level of aggregation and intended use of each tool/dashboard.</p>
+    <a href="fuel_burn.html" class="btn">Find more</a>
 </div>
 </section>
-</section>
 
-<section class="grid">
-<div class="card">
-<h2>Focus Areas</h2>
-<button class="btn-ghost usage-toggle" aria-expanded="false" aria-controls="focus-list">
-<i class="ph ph-list-bullets"></i> Show list
-</button>
-<div id="focus-list" class="placeholder-list" hidden>
-<p>• Fuel efficiency</p>
-<p>• CO₂ and emissions modelling</p>
-<p>• Noise exposure assessment</p>
-<p>• Operational optimisations</p>
-<p>• Environmental performance metrics</p>
-</div>
-</div>
-
-<div class="card">
-<h2>Output Available</h2>
-<button class="btn-ghost usage-toggle" aria-expanded="false" aria-controls="output-list">
-<i class="ph ph-list-bullets"></i> Show list
-</button>
-<div id="output-list" class="placeholder-list" hidden>
-<p>• Reports and summary sheets</p>
-<p>• Data tables and model outputs</p>
-<p>• Visualisations and KPIs</p>
-<p>• Tool‑ready input datasets</p>
-</div>
-</div>
-
-<div class="card">
-<h2>Indicators</h2>
-<button class="btn-ghost usage-toggle" aria-expanded="false" aria-controls="indicators-list">
-<i class="ph ph-list-bullets"></i> Show list
-</button>
-<div id="indicators-list" class="placeholder-list" hidden>
-<p>• Fuel burn indicators</p>
-<p>• Emissions factors and CO₂ KPIs</p>
-<p>• Noise metrics</p>
-<p>• Operational efficiency scores</p>
-</div>
-</div>
+<section class="id_section_1">
+<h2>About AVENIR</h2>
+<p>The catalogue was developed under AVENIR Working Group as a shared knowledge repository for ANSPs. It is intended as a practical, non-prescriptive resource supporting knowledge sharing, transparency and easier navigation across available environmental tools and practices.
+</p>
 </section>
 
 </main>
 <footer>
 <p><strong>Open‑Source Governance: </strong>The Avenir Catalogue is developed as an open‑source, collaborative reference. Its evolution is driven by operational experience, user feedback, and contributions from ANSPs, ensuring that methods, tools and practices remain aligned with real-world challenges and emerging needs.</p>
 <p style="margin-bottom: 1rem;"></p>
-<p>© 2025 Eurocontrol Sustainability Unit. All rights reserved.</p>
+<p>© 2026 Eurocontrol Sustainability Unit. All rights reserved.</p>
 </footer>
 <script>
 const toggle = document.getElementById('menu-toggle');
