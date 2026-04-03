@@ -34,7 +34,7 @@
     @media(min-width:768px){.menu-toggle{display:none}.topbar-inner{display:grid;grid-template-columns:auto 1fr;align-items:center}nav.primary{justify-self:end}nav.primary .menu{display:flex!important;flex-direction:row;align-items:center;gap:8px;background:transparent;margin-top:0}nav.primary .menu a{padding:8px 10px}}
     header{text-align:center;padding:64px 24px 24px}
     h1{font-size:clamp(2rem,6vw,3.25rem);font-weight:800;letter-spacing:-.02em;margin-bottom:12px;color:var(--primary-dark)}
-    p.subtitle{font-size:clamp(1rem,3.2vw,1.1rem);color:var(--text-secondary);max-width:1200px;margin:0 auto;line-height:1.65}
+    p.subtitle{font-size:15px;color:var(--text-secondary);max-width:1200px;margin:0 auto;line-height:1.65;text-align: justify;}
     .grid{max-width:1200px;margin:0 auto;padding:20px;display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:20px;width:100%}
     .card{background:var(--surface-elev);border:1px solid var(--border);border-radius:16px;padding:clamp(18px,3.5vw,24px);box-shadow:var(--shadow);transition:transform .25s ease, box-shadow .25s ease;display:flex;flex-direction:column}
     .card:hover{transform:translateY(-3px);box-shadow:0 16px 36px rgba(0,0,0,.12)}
@@ -108,12 +108,17 @@ display: inline-flex;
   <header>
 
 <h1 id="main-content">Tools</h1>
-<p class="subtitle" style="font-size:15px;text-align:justify">
-      The various tools described in this document help estimate fuel consumption, emissions and Noise to better analyse environmental impacts, address interdependencies and facilitate constructive exchanges with aircraft operators and local communities. The tools have been designed to objectify pollution (not nuisance) and the emission of gaseous pollutants, and to create a solid basis for further steps. None of the software packages are meant to “judge”, they just provide factual outputs based on the inputs made by the users. Some of the tools focus on the analysis of completed flights, while others are designed for the calculation of planned procedures. Some applications offer both functionalities, while others include the capability for Noise impact assessments.
-      <br><br>
-      
-<strong>Note:</strong> the information presented in this section has been collected via presentations made to the sub-group by experts from the organisations providing the tools or using them, and/or from information publicly made available on the websites of those organisations. Since the document targets experts, and to avoid making it unreadable, it does not provide the explanation of the acronyms in the description of the tools or dashboards itself. The acronyms can be found in Section 7.
-    </p>
+<p class="subtitle">
+    This page presents <strong>analytical tools</strong> that can be used to assess aviation environmental performance, perform calculations, or analyse scenarios.
+In this catalogue, a “tool” typically allows the user to perform calculations, simulations, or scenario analyses based on specific inputs and assumptions.
+  <br></br><strong>Tools are typically used for:</strong>
+     </p>
+     
+<p class="subtitle">• Scenario analysis and what-if assessments</p>
+<p class="subtitle">• Environmental impact calculations</p>
+<p class="subtitle">• Research and analytical studies</p><br></br>
+<p class="subtitle">
+If you are looking for platforms that monitor and visualise environmental performance indicators, please refer to the <a href="dashboard.html">Dashboards section</a>.</p>
 
 
 
@@ -267,9 +272,9 @@ display: inline-flex;
   <section id="aedt-details" class="hidden"></section>
 
 <footer>
-<p> <strong>Open‑Source Governance: </strong>The AVENIR Catalogue is developed as an open‑source, collaborative reference. Its evolution is driven by operational experience, user feedback, and contributions from ANSPs, ensuring that methods, tools and practices remain aligned with real-world challenges and emerging needs.</p>
+<p> The AVENIR Catalogue is developed under the EUROCONTROL–EASA AVENIR initiative and is maintained with contributions from aviation stakeholders and subject-matter experts.</p>
 <p style="margin-bottom: 1rem;"></p>
-<p>© 2026 Eurocontrol Sustainability Unit. All rights reserved.</p>
+<p>© 2026 EUROCONTROL. All rights reserved.</p>
 </footer>
 
   <script>

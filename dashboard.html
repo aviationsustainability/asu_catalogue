@@ -37,7 +37,7 @@
 
     header{text-align:center;padding:64px 24px 24px}
     h1{font-size:clamp(2rem,6vw,3.25rem);font-weight:800;letter-spacing:-.02em;margin-bottom:12px;color:var(--primary-dark)}
-    p.subtitle{font-size:clamp(1rem,3.2vw,1.1rem);color:var(--text-secondary);max-width:1200px;margin:0 auto;line-height:1.65}
+    p.subtitle{font-size:15px;color:var(--text-secondary);max-width:1200px;margin:0 auto;line-height:1.65;text-align: justify;}
 
     .grid{max-width:1200px;margin:0 auto;padding:20px;display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:20px;width:100%}
     .card{background:var(--surface-elev);border:1px solid var(--border);border-radius:16px;padding:clamp(18px,3.5vw,24px);box-shadow:var(--shadow);transition:transform .25s ease, box-shadow .25s ease;display:flex;flex-direction:column}
@@ -113,7 +113,19 @@ display: inline-flex;
 
   <header>
     <h1 id="main-content">Dashboards</h1>
+    <p class="subtitle" style="font-size:15px;text-align:justify">
+     This page presents <strong>dashboards</strong> and <strong>monitoring platforms</strong> that visualise and track aviation environmental performance indicators. In this catalogue, a &ldquo;dashboard&rdquo; typically provides visualisation and monitoring of predefined indicators based on existing datasets, rather than calculation or scenario modelling by the user.
+     <br></br><strong>Dashboards are typically used for:</strong>
+     </p>
+     
+<p class="subtitle">• Monitoring environmental performance</p>
+<p class="subtitle">• Tracking indicators over time</p>
+<p class="subtitle">• High-level analysis and visualisation</p><br></br>
+<p class="subtitle">
+If you are looking for analytical or scenario-based tools, please refer to the <a href="tools.html">Tools section</a>.</p>
   </header>
+
+
 
   <!-- Filter panel (copied from tools.html) -->
   <section class="filter-panel" id="filters" aria-label="Dashboard filters">
@@ -172,6 +184,8 @@ display: inline-flex;
   </section>
 
   <main class="grid">
+
+  
     <article class="card"
       data-focus="CO₂"
       data-phase="Descent/Arrival"
@@ -257,9 +271,9 @@ display: inline-flex;
   <section id="aem-details" class="hidden"></section>
 
 <footer>
-<p> <strong>Open‑Source Governance: </strong>The AVENIR Catalogue is developed as an open‑source, collaborative reference. Its evolution is driven by operational experience, user feedback, and contributions from ANSPs, ensuring that methods, tools and practices remain aligned with real-world challenges and emerging needs.</p>
+<p> The AVENIR Catalogue is developed under the EUROCONTROL–EASA AVENIR initiative and is maintained with contributions from aviation stakeholders and subject-matter experts.</p>
 <p style="margin-bottom: 1rem;"></p>
-<p>© 2026 Eurocontrol Sustainability Unit. All rights reserved.</p>
+<p>© 2026 EUROCONTROL. All rights reserved.</p>
 </footer>
 
   <script>
