@@ -5,7 +5,7 @@
     <nav class="primary" aria-label="Back navigation">
       <ul class="menu">
         <li class="nav-back">
-          <a href="#" onclick="goBack(); return false;">← Back</a>
+          <a onclick="goBack(); return false;">← Back</a>
         </li>
       </ul>
     </nav>
@@ -31,6 +31,7 @@
   </div>
 </div>
 
+
 <script>
 function goBack() {
   if (history.length > 1) {
@@ -47,7 +48,8 @@ function searchSite(q) {
 
 /* Active menu item */
 (function () {
-  const currentPage = window.location.pathname.split("/").pop() || "index.html";
+  const currentPage =
+    window.location.pathname.split("/").pop() || "index.html";
 
   document.querySelectorAll('.menu a').forEach(link => {
     const href = link.getAttribute('href');
@@ -58,3 +60,4 @@ function searchSite(q) {
   });
 })();
 </script>
+
