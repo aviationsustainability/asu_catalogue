@@ -266,13 +266,6 @@ If you are looking for platforms that monitor and visualise environmental perfor
 <div id="footer-placeholder"></div>
 
   <script>
-function goBack() {
-  if (history.length > 1) {
-    history.back();
-  } else {
-    window.location.href = "index.html";
-  }
-}
 
 
     // Menu toggle
@@ -312,10 +305,15 @@ fetch("header.html")
     .then(res => res.text())
     .then(data => {
       document.getElementById("header-placeholder").innerHTML = data;
+      
+requestAnimationFrame(() => {
+      highlightActiveMenu();
+    });
     });
 
     /* Active menu item */
-(function () {
+
+function highlightActiveMenu() {
   const currentPage =
     window.location.pathname.split("/").pop() || "index.html";
 
@@ -326,7 +324,7 @@ fetch("header.html")
       link.parentElement.classList.add('active');
     }
   });
-})();
+}
 
     // Collapsible filter panel (top only): tabs + nested filtering (AND across groups; OR within group)
     (function(){
