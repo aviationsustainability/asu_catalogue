@@ -163,16 +163,22 @@ linear-gradient(
 }
 
   
-.nav-bar {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
 
-.nav-btn {
-  padding: 6px 10px;
+.nav-back a {
+  display: block;
+  color: var(--ink);
+  text-decoration: none;
+  padding: 10px 12px;
+  border-radius: 8px;
   cursor: pointer;
 }
+
+.nav-back a:hover,
+.nav-back a:focus {
+  background: rgba(41,144,234,0.12);
+  outline: none;
+}
+
 
 
 
@@ -195,12 +201,13 @@ footer { text-align: center; padding: 36px 20px; color: #607D8B; font-size: 0.9r
 <div class="topbar-inner">
 <a class="brand" href="index.html" aria-label="Homepage">AVENIR Catalogue</a>
 <button id="menu-toggle" class="menu-toggle" aria-controls="menu-list" aria-expanded="false" aria-label="Open menu">☰</button>
-<button class="nav-btn" onclick="history.back()" title="Back to the previous page">
-      ← Back
-    </button>
+
 <nav class="primary" aria-label="Primary navigation">
 
 <ul id="menu-list" class="menu">
+<li class="nav-back">
+  ← Back</a>
+</li>
 <li class="active"><a href="index.html" aria-current="page">Introduction</a></li>
 <li><a href="tools.html">Tools</a></li>
 <li><a href="dashboard.html">Dashboards</a></li>
@@ -211,3 +218,15 @@ footer { text-align: center; padding: 36px 20px; color: #607D8B; font-size: 0.9r
 </nav>
 </div>
 </div>
+
+  
+<script>
+  function goBack() {
+    if (history.length > 1) {
+      history.back();
+    } else {
+      window.location.href = "index.html";
+    }
+  }
+</script>
+</body>
