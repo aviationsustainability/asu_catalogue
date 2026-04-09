@@ -274,24 +274,6 @@ function goBack() {
   }
 }
 
-function searchSite(q) {
-  if (!q) return;
-  window.location.href = "search.html?q=" + encodeURIComponent(q);
-}
-
-/* Active menu item */
-(function () {
-  const currentPage =
-    window.location.pathname.split("/").pop() || "index.html";
-
-  document.querySelectorAll('.menu a').forEach(link => {
-    const href = link.getAttribute('href');
-    if (href === currentPage) {
-      link.setAttribute('aria-current', 'page');
-      link.parentElement.classList.add('active');
-    }
-  });
-})();
 
     // Menu toggle
     const toggle = document.getElementById('menu-toggle');
@@ -325,11 +307,26 @@ function searchSite(q) {
     document.getElementById("footer-placeholder").innerHTML = data;
   });
 
+
 fetch("header.html")
     .then(res => res.text())
     .then(data => {
       document.getElementById("header-placeholder").innerHTML = data;
     });
+
+    /* Active menu item */
+(function () {
+  const currentPage =
+    window.location.pathname.split("/").pop() || "index.html";
+
+  document.querySelectorAll('.menu a').forEach(link => {
+    const href = link.getAttribute('href');
+    if (href === currentPage) {
+      link.setAttribute('aria-current', 'page');
+      link.parentElement.classList.add('active');
+    }
+  });
+})();
 
     // Collapsible filter panel (top only): tabs + nested filtering (AND across groups; OR within group)
     (function(){
