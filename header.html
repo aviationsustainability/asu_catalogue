@@ -1,60 +1,60 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AVENIR Environmental Catalogue</title>
-  <link href="https://fonts.googleapis.com/css2?family=Exo:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
-  <style>
-    body { margin:0; font-family: 'Exo', sans-serif; }
-    .topbar { position: sticky; top:0; z-index:1000; background:#fff; border-bottom:1px solid #e0e0e0; }
-    .topbar-inner { max-width:1200px; margin:0 auto; display:flex; align-items:center; gap:12px; padding:12px 16px; }
-    .brand { font-weight:800; text-decoration:none; color:#212121; }
-    nav.primary .menu { list-style:none; display:flex; gap:8px; margin:0; padding:0; align-items:center; }
-    nav.primary .menu a { display:block; padding:8px 10px; border-radius:8px; color:#212121; text-decoration:none; }
-    nav.primary .menu a:hover { background:rgba(0,159,110,0.12); }
-    .nav-search input { padding:8px 10px; border-radius:8px; border:1px solid #ccc; }
-  </style>
-</head>
-<body>
-  <div class="topbar">
-    <div class="topbar-inner">
-      <nav class="primary" aria-label="Back navigation">
-        <ul class="menu">
-          <li class="nav-back"><a href="#" onclick="goBack(); return false;">← Back</a></li>
-        </ul>
-      </nav>
-      <a class="brand" href="index.html">AVENIR Catalogue</a>
-      <nav class="primary" aria-label="Primary navigation" style="margin-left:auto">
-        <ul class="menu">
-          <li><a href="index.html">Introduction</a></li>
-          <li><a href="use-cases.html">Use Cases</a></li>
-          <li><a href="tools.html">Tools</a></li>
-          <li><a href="dashboard.html">Dashboards</a></li>
-          <li><a href="faq.html">FAQ</a></li>
-          <li><a href="downloads.html">Downloads</a></li>
-          <li class="nav-search"><input type="search" placeholder="Search…" onkeydown="if(event.key==='Enter') searchSite(this.value)"></li>
-        </ul>
-      </nav>
-    </div>
+
+<div class="topbar">
+  <div class="topbar-inner">
+
+    <nav class="primary" aria-label="Back navigation">
+      <ul class="menu">
+        <li class="nav-back">
+          <a href="#" onclick="goBack(); return false;">← Back</a>
+        </li>
+      </ul>
+    </nav>
+
+    <a class="brand" href="index.html">AVENIR Catalogue</a>
+
+    <nav class="primary" aria-label="Primary navigation" style="margin-left:auto">
+      <ul class="menu">
+        <li><a href="index.html">Introduction</a></li>
+        <li><a href="use-cases.html">Use Cases</a></li>
+        <li><a href="tools.html">Tools</a></li>
+        <li><a href="dashboard.html">Dashboards</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="downloads.html">Downloads</a></li>
+        <li class="nav-search">
+          <input type="search"
+                 placeholder="Search…"
+                 onkeydown="if(event.key==='Enter') searchSite(this.value)">
+        </li>
+      </ul>
+    </nav>
+
   </div>
+</div>
 
 <script>
-function goBack(){ if(history.length>1){ history.back(); } else { window.location.href='index.html'; } }
-function searchSite(q){ if(!q) return; window.location.href='search.html?q='+encodeURIComponent(q); }
-document.addEventListener("DOMContentLoaded", () => {
-  const currentPage = window.location.pathname.split("/").pop();
+function goBack() {
+  if (history.length > 1) {
+    history.back();
+  } else {
+    window.location.href = "index.html";
+  }
+}
 
-  document.querySelectorAll('#menu-list a').forEach(link => {
+function searchSite(q) {
+  if (!q) return;
+  window.location.href = "search.html?q=" + encodeURIComponent(q);
+}
+
+/* Active menu item */
+(function () {
+  const currentPage = window.location.pathname.split("/").pop() || "index.html";
+
+  document.querySelectorAll('.menu a').forEach(link => {
     const href = link.getAttribute('href');
-
-    if (href === currentPage || (href === 'index.html' && currentPage === '')) {
+    if (href === currentPage) {
       link.setAttribute('aria-current', 'page');
       link.parentElement.classList.add('active');
     }
   });
-});
-
+})();
 </script>
-</body>
-</html>
