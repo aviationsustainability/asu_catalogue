@@ -162,6 +162,19 @@ linear-gradient(
     max-width: 760px;       /* prevents the text from feeling lost */
 }
 
+  
+.nav-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.nav-btn {
+  padding: 6px 10px;
+  cursor: pointer;
+}
+
+
 
 /* Responsive */
 @media (max-width: 768px) {
@@ -183,6 +196,11 @@ footer { text-align: center; padding: 36px 20px; color: #607D8B; font-size: 0.9r
 <a class="brand" href="index.html" aria-label="Homepage">AVENIR Catalogue</a>
 <button id="menu-toggle" class="menu-toggle" aria-controls="menu-list" aria-expanded="false" aria-label="Open menu">☰</button>
 <nav class="primary" aria-label="Primary navigation">
+  
+<button class="nav-btn" onclick="history.back()" title="Back to the previous page">
+      ← Back
+    </button>
+
 <ul id="menu-list" class="menu">
 <li class="active"><a href="index.html" aria-current="page">Introduction</a></li>
 <li><a href="tools.html">Tools</a></li>
