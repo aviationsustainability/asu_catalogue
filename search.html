@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Search – AVENIR Environmental Catalogue</title>
+  <link href="https://fonts.googleapis.com/css2?family=Exo:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
+  <style>
+    body { font-family: 'Exo', sans-serif; margin:0; padding:24px; background:#FCFCFC; }
+    h1 { color:#075E54; }
+    input[type=search] {
+      padding:10px 12px;
+      width:100%;
+      max-width:420px;
+      font-size:1rem;
+      border-radius:8px;
+      border:1px solid #ccc;
+    }
+    .result { margin-top:24px; }
+    .result p { color:#455A64; }
+  </style>
+</head>
+<body>
+
+<h1>Search results</h1>
+
+<input type="search" id="searchInput" placeholder="Search…" />
+
+<div class="result" id="result"></div>
+
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const query = params.get('q');
+
+  const input = document.getElementById('searchInput');
+  const result = document.getElementById('result');
+
+  if (query) {
+    input.value = query;
+    result.innerHTML = `<p>Showing results for <strong>"${query}"</strong></p>`;
+  }
+
+  input.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      window.location.href = 'search.html?q=' + encodeURIComponent(input.value);
+    }
+  });
+</script>
+
+</body>
+</html>
