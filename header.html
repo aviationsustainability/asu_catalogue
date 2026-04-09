@@ -165,6 +165,21 @@ linear-gradient(
 
 .nav-back a:hover,
 
+  
+.nav-search input {
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  font-family: inherit;
+  font-size: 0.95rem;
+}
+
+.nav-search input:focus {
+  outline: 2px solid var(--focus);
+  border-color: var(--focus);
+}
+
+
 
 
 
@@ -186,9 +201,11 @@ footer { text-align: center; padding: 36px 20px; color: #607D8B; font-size: 0.9r
 <a class="skip-link" href="#main-content">Skip to content</a>
 <div class="topbar" role="banner">
 <div class="topbar-inner">
+  <ul id="menu-list" class="menu">
   <li class="nav-back"><a>
   ← Back</a>
 </li>
+  </ul>
 <a class="brand" href="index.html" aria-label="Homepage">AVENIR Catalogue</a>
 <button id="menu-toggle" class="menu-toggle" aria-controls="menu-list" aria-expanded="false" aria-label="Open menu">☰</button>
 
@@ -201,6 +218,14 @@ footer { text-align: center; padding: 36px 20px; color: #607D8B; font-size: 0.9r
 <li><a href="use-cases.html">Use</a></li>
 <li><a href="faq.html">FAQ</a></li>
 <li><a href="downloads.html">Downloads</a></li>
+  
+<li class="nav-search">
+          <input type="search"
+                 placeholder="Search…"
+                 aria-label="Search"
+                 onkeydown="if(event.key==='Enter') searchSite(this.value)">
+        </li>
+
 </ul>
 </nav>
 </div>
@@ -215,5 +240,12 @@ footer { text-align: center; padding: 36px 20px; color: #607D8B; font-size: 0.9r
       window.location.href = "index.html";
     }
   }
+  
+function searchSite(query) {
+    if (!query) return;
+    window.location.href = "search.html?q=" + encodeURIComponent(query);
+  }
+</script>
+
 </script>
 </body>
