@@ -87,23 +87,7 @@ display: inline-flex;
   </style>
 </head>
 <body>
-  <a class="skip-link" href="#main-content">Skip to content</a>
-  <div class="topbar" role="banner">
-    <div class="topbar-inner">
-      <a class="brand" href="index.html" aria-label="Homepage">AVENIR Catalogue</a>
-      <button id="menu-toggle" class="menu-toggle" aria-controls="menu-list" aria-expanded="false" aria-label="Open menu">☰</button>
-      <nav class="primary" aria-label="Primary navigation">
-        <ul id="menu-list" class="menu">
-          <li><a href="index.html">Introduction</a></li>
-          <li class="active"><a href="tools.html" aria-current="page">Tools</a></li>
-          <li><a href="dashboard.html">Dashboards</a></li>
-          <li><a href="use-cases.html">Use Cases</a></li>
-         <li><a href="faq.html">FAQ</a></li>
-          <li><a href="downloads.html">Downloads</a></li>
-        </ul>
-      </nav>
-    </div>
-  </div>
+  <div id="header-placeholder"></div>
 
   <header>
 
@@ -271,11 +255,7 @@ If you are looking for platforms that monitor and visualise environmental perfor
   <section id="acropole-details" class="hidden"></section>
   <section id="aedt-details" class="hidden"></section>
 
-<footer>
-<p> The AVENIR Catalogue is developed under the EUROCONTROL–EASA AVENIR initiative and is maintained with contributions from aviation stakeholders and subject-matter experts.</p>
-<p style="margin-bottom: 1rem;"></p>
-<p>© 2026 EUROCONTROL. All rights reserved.</p>
-</footer>
+<div id="footer-placeholder"></div>
 
   <script>
     // Menu toggle
@@ -303,6 +283,18 @@ If you are looking for platforms that monitor and visualise environmental perfor
       function clear(){ active=null; chips.forEach(c=>c.classList.remove('active')); cards.forEach(card=>card.classList.remove('hidden')); }
       chips.forEach(chip => chip.addEventListener('click', () => { if(active===chip.dataset.tag) clear(); else apply(chip.dataset.tag); }));
     })();
+
+    fetch("footer.html")
+  .then(res => res.text())
+  .then(data => {
+    document.getElementById("footer-placeholder").innerHTML = data;
+  });
+
+fetch("header.html")
+    .then(res => res.text())
+    .then(data => {
+      document.getElementById("header-placeholder").innerHTML = data;
+    });
 
     // Collapsible filter panel (top only): tabs + nested filtering (AND across groups; OR within group)
     (function(){
