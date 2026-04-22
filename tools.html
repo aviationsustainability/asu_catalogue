@@ -95,9 +95,24 @@ display: inline-flex;
   </style>
 </head>
 <body>
-  <div id="header-placeholder"></div>
+  <a class="skip-link" href="#main-content">Skip to content</a>
 
-  <header>
+  <div class="topbar" role="banner">
+    <div class="topbar-inner">
+      <a class="brand" href="index.html" aria-label="Homepage">AVENIR Catalogue</a>
+      <button id="menu-toggle" class="menu-toggle" aria-controls="menu-list" aria-expanded="false" aria-label="Open menu">☰</button>
+      <nav class="primary" aria-label="Primary navigation">
+        <ul id="menu-list" class="menu">
+          <li><a href="index.html">Introduction</a></li>
+          <li class="active"><a href="tools.html"  aria-current="page">Tools</a></li>
+          <li><a href="dashboard.html">Dashboards</a></li>
+          <li><a href="use-cases.html">Use Cases</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="downloads.html">Downloads</a></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
 
 <h1 id="main-content">Tools</h1>
 <p class="subtitle">
