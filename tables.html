@@ -143,6 +143,15 @@
 @media (min-width: 740px) { .uc-track { grid-auto-columns: min(50%, 420px); } }
 @media (min-width: 1024px) { .uc-track { grid-auto-columns: min(33%, 420px); } }
 
+.bar-logos {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+  margin-top: 25px;
+  padding-bottom: 20px;
+
+}
 
 .avenir-table {
   width: 100%;
@@ -323,7 +332,7 @@
       <th>NEST</th>
       <th>R‑NEST</th>
       <th>ACROPOLE</th>
-      <th>AEDT</th>
+      <th>SET</th>
       <th class="group-dashboards">TMA Flight</th>
       <th class="group-dashboards">FATHOM</th>
       <th class="group-dashboards">CO₂MPASS</th>
@@ -349,12 +358,12 @@
     </tr>
     <tr class="flight">
       <td>Non-SES HFE</td>
-      <td></td><td></td><td></td><td></td><td></td><td>X</td><td>X</td>
+      <td></td><td></td><td></td><td></td><td></td><td>X</td><td></td>
       <td>X</td><td></td><td></td><td></td><td></td><td></td><td>X</td><td></td>
     </tr>
     <tr class="flight">
       <td>Non-SES VFE</td>
-      <td></td><td></td><td></td><td></td><td></td><td>X</td><td>X</td>
+      <td></td><td></td><td></td><td></td><td></td><td>X</td><td></td>
       <td>X</td><td></td><td></td><td>X</td><td></td><td></td><td>X</td><td></td>
     </tr>
     <tr class="flight">
@@ -364,17 +373,17 @@
     </tr>
     <tr class="flight">
       <td>Non‑CO₂ emissions</td>
-      <td>X</td><td>X</td><td>X</td><td>X</td><td>X</td><td></td><td>X</td>
+      <td>X</td><td>X</td><td>X</td><td>X</td><td>X</td><td></td><td></td>
       <td></td><td></td><td></td><td></td><td></td><td>X</td><td></td><td></td>
     </tr>
     <tr class="flight">
       <td>Noise</td>
-      <td></td><td></td><td>X</td><td></td><td></td><td></td><td>X</td>
+      <td></td><td></td><td>X</td><td></td><td></td><td></td><td></td>
       <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
     </tr>
     <tr class="flight">
       <td>Local Air Quality (LAQ)</td>
-      <td></td><td>X</td><td></td><td></td><td></td><td></td><td>X</td>
+      <td></td><td>X</td><td></td><td></td><td></td><td></td><td></td>
       <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
     </tr>
   </tbody>
@@ -397,7 +406,7 @@
       <th>NEST</th>
       <th>R‑NEST</th>
       <th>ACROPOLE</th>
-      <th>AEDT</th>
+      <th>SET</th>
       <th class="group-dashboards">TMA Flight</th>
       <th class="group-dashboards">FATHOM</th>
       <th class="group-dashboards">CO₂MPASS</th>
@@ -422,17 +431,17 @@
     </tr>
     <tr class="focus">
       <td>Non‑CO₂ emissions</td>
-      <td>X</td><td>X</td><td>X</td><td>X</td><td>X</td><td></td><td>X</td>
+      <td>X</td><td>X</td><td>X</td><td>X</td><td>X</td><td></td><td></td>
       <td></td><td></td><td></td><td></td><td>X</td><td>X</td><td></td><td></td>
     </tr>
     <tr class="focus">
       <td>Noise</td>
-      <td></td><td></td><td>X</td><td></td><td></td><td></td><td>X</td>
+      <td></td><td></td><td>X</td><td></td><td></td><td></td><td></td>
       <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
     </tr>
     <tr class="focus">
       <td>Local Air Quality (LAQ)</td>
-      <td></td><td>X</td><td></td><td></td><td></td><td></td><td>X</td>
+      <td></td><td>X</td><td></td><td></td><td></td><td></td><td></td>
       <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
     </tr>
 
@@ -440,32 +449,32 @@
      <td rowspan="8" class="section-label">OUTPUT PER FLIGHT PHASE</td>
     <tr class="flight">
       <td>Taxi‑out</td>
-      <td>X</td><td>X</td><td>X</td><td></td><td>X</td><td></td><td>X</td>
+      <td>X</td><td>X</td><td>X</td><td></td><td>X</td><td></td><td></td>
       <td></td><td></td><td></td><td></td><td>X</td><td>X</td><td>X</td><td>X</td>
     </tr>
     <tr class="flight">
       <td >Departure / Climb</td>
-      <td>X</td><td>X</td><td>X</td><td></td><td>X</td><td>X</td><td>X</td>
+      <td>X</td><td>X</td><td>X</td><td></td><td>X</td><td>X</td><td></td>
       <td></td><td></td><td>X</td><td></td><td>X</td><td>X</td><td>X</td><td>X</td>
     </tr>
     <tr class="flight">
       <td>Cruise</td>
-      <td>X</td><td></td><td>X</td><td></td><td>X</td><td>X</td><td>X</td>
+      <td>X</td><td></td><td>X</td><td></td><td>X</td><td>X</td><td></td>
       <td></td><td></td><td>X</td><td>X</td><td>X</td><td></td><td>X</td><td>X</td>
     </tr>
     <tr class="flight">
       <td>Descent / Arrival</td>
-      <td>X</td><td>X</td><td>X</td><td></td><td>X</td><td>X</td><td>X</td>
+      <td>X</td><td>X</td><td>X</td><td></td><td>X</td><td>X</td><td></td>
       <td>X</td><td></td><td>X</td><td></td><td>X</td><td>X</td><td>X</td><td>X</td>
     </tr>
     <tr class="flight">
       <td>Taxi‑in</td>
-      <td>X</td><td>X</td><td>X</td><td></td><td>X</td><td></td><td>X</td>
+      <td>X</td><td>X</td><td>X</td><td></td><td>X</td><td></td><td></td>
       <td></td><td></td><td></td><td></td><td>X</td><td>X</td><td>X</td><td>X</td>
     </tr>
     <tr class="flight">
       <td>Wheels‑up / Wheels‑down</td>
-      <td>X</td><td></td><td>X</td><td>X</td><td>X</td><td></td><td>X</td>
+      <td>X</td><td></td><td>X</td><td>X</td><td>X</td><td></td><td></td>
       <td></td><td>X</td><td></td><td></td><td>X</td><td></td><td>X</td><td></td>
     </tr>
     <tr class="flight">
@@ -487,6 +496,10 @@
 <p> The AVENIR Catalogue is developed under the EUROCONTROL–EASA AVENIR initiative and is maintained with contributions from aviation stakeholders and subject-matter experts.</p>
 <p style="margin-bottom: 1rem;"></p>
 <p>© 2026 EUROCONTROL. All rights reserved.</p>
+<div class="bar-logos">
+    <img src="figure/eurocontrol-boxed-slogan-right-rgb.png" style="height: 70px;">
+    <img src="figure/easa.png" style="height: 60px;">
+  </div>
 </footer>
 
 

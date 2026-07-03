@@ -144,6 +144,15 @@
 @media (min-width: 1024px) { .uc-track { grid-auto-columns: min(33%, 420px); } }
 
 
+.bar-logos {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+  margin-top: 25px;
+  padding-bottom: 20px;
+
+}
 
 
   
@@ -194,9 +203,9 @@
 <nav aria-label="Primary navigation" class="primary">
 <ul class="menu" id="menu-list">
 <li><a href="index.html">Introduction</a></li>
-<li class="active"><a aria-current="page" href="tools.html">Tools</a></li>
+<li><a href="tools.html">Tools</a></li>
 <li><a href="dashboard.html">Dashboards</a></li>
-<li><a href="use-cases.html">Use Cases</a></li>
+<li class="active"><a aria-current="page" href="use-cases.html">Use Cases</a></li>
 <li><a href="faq.html">FAQ</a></li>
 <li><a href="downloads.html">Downloads</a></li>
 </ul>
@@ -205,7 +214,6 @@
 </div>
 <header>
 <h1 id="main-content">AEDT</h1>
-<p class="subtitle">Detailed information about the tool, its methodology, requirements, limitations, and future developments.</p>
 </header>
 
 <main>
@@ -282,12 +290,8 @@
 <p>&nbsp;</p>
 <p style="text-align: center;"><img src="figure/aedt_1.png" alt="AEDT &ndash; Sample noise exposure contour (U.S. DOT Volpe Center/FAA graphic)" /></p>
 <p style="text-align: center;font-size: 0.7rem;"><em><span style="color: #999999;">AEDT – Sample noise exposure contour (U.S. DOT Volpe Center/FAA graphic)</span></em></p>
-</section>
-<section>
 <h2>Provider</h2>
 <p>AEDT provider is the FAA's Office of Environment and Energy</p>
-</section>
-<section>
 <h2>Versions and OS Requirements</h2>
 <p>The latest version is AEDT 3g which was released on August 28, 2024.</p>
 <p>AEDT is a stand-alone Windows based application. However, using Microsoft SQL Server connectivity, it is possible to connect multiple computational clients to one central database server.</p>
@@ -297,8 +301,6 @@
 <li>BADA 3 and 4.</li>
 <li>ICAO EDB.</li>
 </ul>
-</section>
-<section>
 <h2>Data Requirements</h2>
 <p>The following data is required for calculation:</p>
 <ul>
@@ -307,12 +309,8 @@
 <li>Aircraft type.</li>
 <li>Number of movements.</li>
 </ul>
-</section>
-<section>
 <h2>Limitations</h2>
 <p>The Population Exposure Report only works with the US Census data. For international users, one possible option is to generate and export noise contours from AEDT as a shapefile, then overlay that against population data in a separate GIS tool. Another option is to use the population point receptors in AEDT.</p>
-</section>
-<section>
 <h2>Future Developments</h2>
 <p>There is currently no information available about future developments.</p>
 </section>
@@ -323,6 +321,10 @@
 <p> The AVENIR Catalogue is developed under the EUROCONTROL–EASA AVENIR initiative and is maintained with contributions from aviation stakeholders and subject-matter experts.</p>
 <p style="margin-bottom: 1rem;"></p>
 <p>© 2026 EUROCONTROL. All rights reserved.</p>
+ <div class="bar-logos">
+    <img src="figure/eurocontrol-boxed-slogan-right-rgb.png" style="height: 70px;">
+    <img src="figure/easa.png" style="height: 60px;">
+  </div>
 </footer>
 
 

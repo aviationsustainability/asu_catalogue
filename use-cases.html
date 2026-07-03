@@ -79,6 +79,17 @@
     .active-summary .chip{background:rgba(0,159,110,.18);border:1px solid var(--border)}
 
     .hidden{display:none !important}
+
+  .bar-logos {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+  margin-top: 25px;
+  padding-bottom: 20px;
+
+}
+
   </style>
 </head>
 <body>
@@ -164,16 +175,16 @@
   </section>
 
   <main class="grid">
-   
-    <article class="card"
-      data-focus="CO₂,Non‑CO₂"
-      data-phase="Wheels‑up/‑down"
-      data-metric="Fuel burn/CO₂,metric‑Non‑CO₂">
-      <h2>MUAC – Pre‑flight efficiency optimisation</h2>
-      <img src="figure/muac.png" alt="">
-      <a class="btn" href="muac.html">Details <i class="ph ph-arrow-right" aria-hidden="true"></i></a>
-    </article>
 
+     <article class="card"
+      data-focus="CO₂, Non‑CO₂, Noise, LAQ"
+      data-phase="Taxi‑out, Departure/Climb, Cruise, Descent/Arrival, Taxi‑in, Wheels‑up/‑down, Gate‑to‑Gate"
+      data-metric="Non‑SES HFE, Non‑SES VFE, Fuel burn/CO₂, metric-Non‑CO₂, metric-Noise, metric-LAQ">
+      <h2>AEDT</h2>
+      <img src="figure/aedt.avif" alt="">
+     <a class="btn" href="aedt.html">Details <i class="ph ph-arrow-right" aria-hidden="true"></i></a>
+    </article>
+   
     <article class="card"
       data-focus="Noise"
       data-phase="Descent/Arrival"
@@ -183,22 +194,23 @@
      <a class="btn" href="austrocontrol.html">Details <i class="ph ph-arrow-right" aria-hidden="true"></i></a>
     </article>
 
-     <article class="card"
-      data-focus="CO₂,Noise"
-      data-phase="Descent/Arrival"
-      data-metric="Fuel burn/CO₂,metric‑Noise">
-      <h2>skeyes – RNP trials</h2>
-      <img src="figure/skeyes.jpg" alt="">
-      <a class="btn" href="skeyes.html">Details <i class="ph ph-arrow-right" aria-hidden="true"></i></a>
-    </article>
 
     <article class="card"
-      data-focus="Noise"
+      data-focus="CO₂"
       data-phase="Descent/Arrival"
-      data-metric="metric‑Noise">
-      <h2>LVNL and FABEC - Curved night arrival routes</h2>
-      <img src="figure/schipol.jpg" alt="">
-      <a class="btn" href="lvnl.html">Details <i class="ph ph-arrow-right" aria-hidden="true"></i></a>
+      data-metric="">
+      <h2>DFS – Improved STAR distances</h2>
+      <img src="figure/dfs.avif" alt="">
+      <a class="btn" href="dfs.html">Details <i class="ph ph-arrow-right" aria-hidden="true"></i></a>
+    </article>
+
+     <article class="card"
+      data-focus="Noise"
+      data-phase=""
+      data-metric="metric-Noise">
+      <h2>Dynamic Noise Maps at Heathrow Airport</h2>
+      <img src="figure/heathrow.jpg" alt="">
+     <a class="btn" href="heathrow.html">Details <i class="ph ph-arrow-right" aria-hidden="true"></i></a>
     </article>
 
     <article class="card"
@@ -211,6 +223,24 @@
     </article>
 
     <article class="card"
+      data-focus="Noise"
+      data-phase="Descent/Arrival"
+      data-metric="metric‑Noise">
+      <h2>LVNL and FABEC - Curved night arrival routes</h2>
+      <img src="figure/schipol.jpg" alt="">
+      <a class="btn" href="lvnl.html">Details <i class="ph ph-arrow-right" aria-hidden="true"></i></a>
+    </article>
+
+     <article class="card"
+      data-focus="CO₂,Non‑CO₂"
+      data-phase="Wheels‑up/‑down"
+      data-metric="Fuel burn/CO₂,metric‑Non‑CO₂">
+      <h2>MUAC – Pre‑flight efficiency optimisation</h2>
+      <img src="figure/muac.png" alt="">
+      <a class="btn" href="muac.html">Details <i class="ph ph-arrow-right" aria-hidden="true"></i></a>
+    </article>
+
+    <article class="card"
       data-focus="CO₂"
       data-phase="Descent/Arrival"
       data-metric="Fuel burn/CO₂">
@@ -219,13 +249,22 @@
       <a class="btn" href="nats.html">Details <i class="ph ph-arrow-right" aria-hidden="true"></i></a>
     </article>
 
-    <article class="card"
-      data-focus="CO₂"
+     <article class="card"
+      data-focus="CO₂,Noise"
       data-phase="Descent/Arrival"
-      data-metric="">
-      <h2>DFS – Improved STAR distances</h2>
-      <img src="figure/dfs.avif" alt="">
-      <a class="btn" href="dfs.html">Details <i class="ph ph-arrow-right" aria-hidden="true"></i></a>
+      data-metric="Fuel burn/CO₂,metric‑Noise">
+      <h2>skeyes – RNP trials</h2>
+      <img src="figure/skeyes.jpg" alt="">
+      <a class="btn" href="skeyes.html">Details <i class="ph ph-arrow-right" aria-hidden="true"></i></a>
+    </article>
+
+    <article class="card"
+      data-focus="CO₂,Non‑CO₂"
+      data-phase="Taxi‑out, Taxi‑in"
+      data-metric="Fuel burn/CO₂, metric-Non‑CO₂">
+      <h2>Simulation Model for Estimation of Aircraft Emissions at Airport Podgorica</h2>
+      <img src="figure/podgorica.jpg" alt="">
+     <a class="btn" href="podgorica.html">Details <i class="ph ph-arrow-right" aria-hidden="true"></i></a>
     </article>
     
   </main>
@@ -236,6 +275,10 @@
 <p> The AVENIR Catalogue is developed under the EUROCONTROL–EASA AVENIR initiative and is maintained with contributions from aviation stakeholders and subject-matter experts.</p>
 <p style="margin-bottom: 1rem;"></p>
 <p>© 2026 EUROCONTROL. All rights reserved.</p>
+<div class="bar-logos">
+    <img src="figure/eurocontrol-boxed-slogan-right-rgb.png" style="height: 70px;">
+    <img src="figure/easa.png" style="height: 60px;">
+  </div>
 </footer>
 
   <script>

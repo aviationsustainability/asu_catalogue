@@ -84,6 +84,16 @@ display: inline-flex;
 
 }
 
+.bar-logos {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+  margin-top: 25px;
+  padding-bottom: 20px;
+
+}
+
   </style>
 </head>
 <body>
@@ -193,16 +203,18 @@ If you are looking for platforms that monitor and visualise environmental perfor
       <a class="btn" href="aem-details.html">Details <i class="ph ph-arrow-right"></i></a>
     </article>
 
-    <!-- Open‑ALAQS -->
-    <article class="card" data-usage="tactical"
-             data-focus="CO₂,LAQ,Non‑CO₂"
-             data-phase="Taxi‑out,Departure/Climb,Descent/Arrival,Taxi‑in"
-             data-metric="Fuel burn/CO₂,metric-Non‑CO₂,metric-LAQ">
-      <div class="card-icon"><i class="ph ph-cloud-fog"></i></div>
-      <h2>Open‑ALAQS</h2>
-      <p>Airport Local Air Quality Studies: QGIS plugin for inventory & dispersion (AUSTAL), covering aircraft and non‑aircraft sources (roads, GSE). Public code, flexible source selection.</p>
-      <a class="btn" href="openalaqs.html">Details <i class="ph ph-arrow-right"></i></a>
+    <!-- ACROPOLE -->
+    <article class="card" data-usage="strategic"
+             data-focus="CO₂"
+             data-phase="Departure/Climb,Cruise,Descent/Arrival,Gate‑to‑Gate"
+             data-metric="Non‑SES HFE,Non‑SES VFE, Fuel burn/CO₂">
+
+      <div class="card-icon"><i class="ph ph-brain"></i></div>
+      <h2>ACROPOLE</h2>
+      <p>AI‑based fuel flow & burn from radar/ADS‑B (QAR‑trained proxies; ICAO EDB/BFFM2 for emissions). Supports indicators (CDO/CCO) and ops inefficiency analysis.</p>
+      <a class="btn" href="acropole.html">Details <i class="ph ph-arrow-right"></i></a>
     </article>
+
 
     <!-- IMPACT / INTACT -->
     <article class="card" data-usage="tactical"
@@ -226,6 +238,17 @@ If you are looking for platforms that monitor and visualise environmental perfor
       <a class="btn" href="nest.html">Details <i class="ph ph-arrow-right"></i></a>
     </article>
 
+    <!-- Open‑ALAQS -->
+    <article class="card" data-usage="tactical"
+             data-focus="CO₂,LAQ,Non‑CO₂"
+             data-phase="Taxi‑out,Departure/Climb,Descent/Arrival,Taxi‑in"
+             data-metric="Fuel burn/CO₂,metric-Non‑CO₂,metric-LAQ">
+      <div class="card-icon"><i class="ph ph-cloud-fog"></i></div>
+      <h2>Open‑ALAQS</h2>
+      <p>Airport Local Air Quality Studies: QGIS plugin for inventory & dispersion (AUSTAL), covering aircraft and non‑aircraft sources (roads, GSE). Public code, flexible source selection.</p>
+      <a class="btn" href="openalaqs.html">Details <i class="ph ph-arrow-right"></i></a>
+    </article>
+
     <!-- R‑NEST -->
     <article class="card" data-usage="operational"
              data-focus="CO₂,Non‑CO₂"
@@ -237,44 +260,29 @@ If you are looking for platforms that monitor and visualise environmental perfor
       <a class="btn" href="r-nest.html">Details <i class="ph ph-arrow-right"></i></a>
     </article>
 
-    <!-- ACROPOLE -->
-    <article class="card" data-usage="strategic"
+
+    <!-- SET -->
+    <article  class="card" data-usage="operational"
              data-focus="CO₂"
-             data-phase="Departure/Climb,Cruise,Descent/Arrival,Gate‑to‑Gate"
-             data-metric="Non‑SES HFE,Non‑SES VFE, Fuel burn/CO₂">
-
-      <div class="card-icon"><i class="ph ph-brain"></i></div>
-      <h2>ACROPOLE</h2>
-      <p>AI‑based fuel flow & burn from radar/ADS‑B (QAR‑trained proxies; ICAO EDB/BFFM2 for emissions). Supports indicators (CDO/CCO) and ops inefficiency analysis.</p>
-      <a class="btn" href="acropole.html">Details <i class="ph ph-arrow-right"></i></a>
-    </article>
-
-    <!-- AEDT -->
-    <article id="card-aedt" class="card" data-usage="operational"
-             data-focus="CO₂,Non‑CO₂,Noise,LAQ"
-             data-phase="Taxi‑out,Departure/Climb,Cruise,Descent/Arrival,Taxi‑in,Wheels‑up/‑down,Gate‑to‑Gate"
-             data-metric="Non‑SES HFE,Non‑SES VFE,Fuel burn/CO₂,metric-Non‑CO₂,metric-Noise,metric-LAQ">
+             data-phase="Gate‑to‑Gate"
+             data-metric="Fuel burn/CO₂">
 
       <div class="card-icon"><i class="ph ph-soundcloud-logo"></i></div>
-      <h2>AEDT</h2>
-      <p>FAA’s 4D aviation environmental design tool for fuel, emissions, Noise & dispersion; scalable (airport→global). Uses ANP, BADA3/4, ICAO EDB; Windows + SQL Server.</p>
-      <a class="btn" href="aedt.html">Details <i class="ph ph-arrow-right"></i></a>
+      <h2>Small Emitters Tool (SET)</h2>
+      <p>A simplified emissions estimation tool developed and maintained by EUROCONTROL to support compliance with the EU Emissions Trading System (EU ETS)</p>
+      <a class="btn" href="set.html">Details <i class="ph ph-arrow-right"></i></a>
     </article>
   </main>
 
-  <!-- Hidden anchors -->
-  <section id="aem-details" class="hidden"></section>
-  <section id="aLAQs-details" class="hidden"></section>
-  <section id="impact-details" class="hidden"></section>
-  <section id="nest-details" class="hidden"></section>
-  <section id="rnest-details" class="hidden"></section>
-  <section id="acropole-details" class="hidden"></section>
-  <section id="aedt-details" class="hidden"></section>
 
 <footer>
 <p> The AVENIR Catalogue is developed under the EUROCONTROL–EASA AVENIR initiative and is maintained with contributions from aviation stakeholders and subject-matter experts.</p>
 <p style="margin-bottom: 1rem;"></p>
 <p>© 2026 EUROCONTROL. All rights reserved.</p>
+<div class="bar-logos">
+    <img src="figure/eurocontrol-boxed-slogan-right-rgb.png" style="height: 70px;">
+    <img src="figure/easa.png" style="height: 60px;">
+  </div>
 </footer>
 
   <script>

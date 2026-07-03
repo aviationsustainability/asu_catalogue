@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FlyingGreen Platform - NetZero Pillar</title>
+<title>Simulation Model for Estimation of Aircraft Emissions at Airport Podgorica</title>
 <link href="https://fonts.googleapis.com/css2?family=Exo:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 <style>
     :root {
@@ -186,7 +186,7 @@
 
 /* Scope chips (below the CTA + Developing ANSPs) */
 .meta-badges{display:flex;flex-direction:column;gap:8px;margin-top:6px}
-.meta-badges .meta-label{font-size:12px;font-weight:800;color:var(--text-secondary);text-transform:uppercase;letter-spacing:.04em}
+.meta-badges .meta-label {font-size:12px;font-weight:800;color:var(--text-secondary);text-transform:uppercase;letter-spacing:.04em}
 .meta-badges .chips{display:flex;flex-wrap:wrap;gap:10px}
 .badge-chip{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;border:1px solid var(--border);background:linear-gradient(180deg, rgba(255,255,255,.9) 0%, rgba(245,249,255,.8) 100%);color:var(--ink);font-size:12px;font-weight:700;box-shadow:0 2px 10px rgba(0,0,0,.06)}
 .badge-chip .chip-icon{width:20px;height:20px;display:inline-grid;place-items:center;background:rgba(0,159,110,.12);color:var(--primary-dark);border-radius:50%;font-size:12px}
@@ -204,8 +204,8 @@
 <ul class="menu" id="menu-list">
 <li><a href="index.html">Introduction</a></li>
 <li><a href="tools.html">Tools</a></li>
-<li class="active"><a aria-current="page" href="dashboard.html">Dashboards</a></li>
-<li><a href="use-cases.html">Use Cases</a></li>
+<li><a href="dashboard.html">Dashboards</a></li>
+<li class="active"><a aria-current="page" href="use-cases.html">Use Cases</a></li>
 <li><a href="faq.html">FAQ</a></li>
 <li><a href="downloads.html">Downloads</a></li>
 </ul>
@@ -213,87 +213,63 @@
 </div>
 </div>
 <header>
-<h1 id="main-content">FlyingGreen Platform - NetZero Pillar</h1>
-<p class="subtitle">Detailed information about the dashboard, its methodology, requirements, limitations, and future developments.</p>
+<h1 id="main-content">Simulation Model for Estimation of Aircraft Emissions at Airport Podgorica</h1>
 </header>
 
 <main>
-<div class="header-actions">
-<a class="btn header-cta" href="https://flying-green.eurocontrol.int/" target="_blank" rel="noopener" margin-left="left">Go to the dashboard</a>
-</div>
+
 
 <div class="meta-badges" role="group" aria-label="AEM scope badges">
   <div class="meta-label">Scope</div>
   <div class="chips">
     <span class="badge-chip">
       <span class="chip-icon" aria-hidden="true">🎯</span>
-      <span class="chip-text">Focus: CO₂, Non‑CO₂</span>
+      <span class="chip-text">Focus: CO₂,Non‑CO₂</span>
     </span>
     <span class="badge-chip">
       <span class="chip-icon" aria-hidden="true">🛫</span>
-      <span class="chip-text">Phases: Taxi‑out, Departure/Climb, Cruise, Descent/Arrival, Taxi‑in, Wheels‑up/‑down, Gate‑to‑Gate</span>
+      <span class="chip-text">Phases: Taxi‑in,Taxi‑out</span>
     </span>
     <span class="badge-chip">
       <span class="chip-icon" aria-hidden="true">📊</span>
-      <span class="chip-text">Metrics: Fuel burn/CO₂</span>
+      <span class="chip-text">Metrics: Fuel burn/CO₂, Non‑CO₂</span>
     </span>
   </div>
 </div>
 
+<div class="meta-badges" role="group" aria-label="AEM scope badges">
+  <div class="meta-label">Tools used</div>
+    <a class="btn" href="impact_intact.html">IMPACT<i class="ph ph-arrow-right" aria-hidden="true"></i></a>
+</div>
+
+
+
 <section>
 <h2>Overview</h2>
-<p><strong>FlyingGreen</strong>&nbsp;is a comprehensive sustainability initiative launched by EUROCONTROL and managed by the Aviation Sustainability Unit. It provides a one-stop shop platform to support States, ANSPs, airports and other aviation stakeholders in reducing their environmental impact. FlyingGreen is structured around four strategic pillars, with the NetZero pillar focusing on reducing emissions and tracking fuel burn at various operational levels &mdash; from the Network down to individual states, ANSPs or airports.</p>
-<p>The <strong>NetZero pillar</strong>&nbsp;offers a user-friendly dashboard that enables monitoring and forecasting of emissions based on operational improvements, fleet renewal and traffic growth scenarios. This centralised platform integrates operational radar data (Correlated Position reports for a Flight &ndash; CPF) and forecast data (STATFOR) to provide accurate estimations of fuel burn and CO₂ emissions. The use of EUROCONTROL's AEM tool further strengthens the reliability of these calculations.</p>
-<p>The FlyingGreen platform provides a dashboard to monitor fuel burn and emissions, and to forecast future emissions based on different growth scenarios&nbsp;with the following features:</p>
-<ul>
-<li><strong>Comprehensive Information:&nbsp;</strong>Centralised platform where stakeholders can access detailed information on fuel burn and emissions, impact of operational improvements, and in the other FlyingGreen pillars detailed information on fuel requirements and pathways, climate impact, adaptation and mitigation measures and financing options for sustainable developments.</li>
-<li><strong>User-Friendly Interface:&nbsp;</strong>An intuitive interface that allows users to easily navigate and find relevant data and tools.</li>
-<li><strong>Customisable Views:&nbsp;</strong>Options to view data at different levels (network, state, FAB, ANSP, airport) and customise the analysis based on specific needs.</li>
-</ul>
-<p>FlyingGreen/NetZero addresses several critical challenges in the aviation sector, including:</p>
-<ul>
-<li><strong>Emission Reduction: </strong>The need to reduce CO<sub>2</sub> emissions to meet net-zero targets.</li>
-<li><strong>Fuel Transition: </strong>Transitioning to sustainable aviation fuels (SAF) and other alternative energy sources.</li>
-<li><strong>Operational Efficiency: </strong>Improving operational efficiency to reduce fuel burn and emissions.</li>
-<li><strong>Data Utilisation: </strong>Leveraging comprehensive data for accurate emission tracking and forecasting.</li>
-</ul>
-<p>Concerning Data Processing, NetZero includes:</p>
-<ul>
-<li><strong>Trajectories: </strong>Using actual radar tracks (CPF) to create detailed trajectory segments. CPF is an airspace profile following as much as possible the actual flown trajectory derived from ATC surveillance systems (CPR).</li>
-<li><strong>Forecasting: </strong>Incorporating medium and long-term forecasts to predict future emissions and fuel burn.</li>
-<li><strong>Aircraft Allocation Tool: </strong>Replacing older aircraft with newer, and options to introduce more efficient models such as hydrogen and electric aircraft in the forecasts via What-If functionality.</li>
-<li><strong>Advanced Emission Modelling: </strong>Utilising the EUROCONTROL AEM tool to calculate fuel burn and emissions accurately.</li>
-</ul>
-<p style="text-align: center;"><img src="figure/fg_1.png" alt="" width="500" height="300" /></p>
-<p style="text-align: center;font-size: 0.7rem;"><em><span style="color: #999999;">FlyingGreen - NetZero page (from webpage)</span></em></p>
-<p>NetZero can be seen as a comprehensive toolkit for decarbonisation efforts that includes:</p>
-<ul>
-<li><strong>Fuel Burn and Emission: </strong>Detailed graphs and charts showing current and forecasted emissions and fuel consumption.</li>
-<li><strong>What-If Scenarios: </strong>Tools to model the impact of different operational improvements per flight phase together with fleet renewals and evolutions on emissions.</li>
-<li><strong>Cost Analysis: </strong>Simplified cost analysis for additional environmental costs related to fuel, ETS and CORSIA.</li>
-</ul>
+<p>Accurate estimation of aircraft emissions at airport level is essential for environmental reporting and the evaluation of operational improvement measures. Traditional emission inventories are typically based on the ICAO Landing and Take-Off (LTO) methodology, which uses standard assumptions for aircraft operating times during taxiing and other flight phases. These assumptions may not always reflect local airport conditions and can therefore affect the accuracy of calculated emissions.</p>
+<p>This use case presents a simulation-based approach developed for Airport Podgorica (LYPG) to estimate aircraft fuel consumption and emissions using airport-specific operational data.</p>
+<h2>Operational Context</h2>
+<p>Airport Podgorica is Montenegro&rsquo;s main international airport, operating a single runway and handling approximately 7,500 aircraft movements per year. Due to relatively short taxi distances and low operational complexity, local operating conditions differ significantly from the assumptions used in standard emissions methodologies.</p>
+<h2>Solution</h2>
+<p>A discrete-event simulation model was developed using MATLAB Simulink and SimEvents. The airport surface was modelled as a network of runways, taxiways, intersections and parking stands. The model simulated aircraft arrivals, departures, taxi movements, runway occupancy and queue formation under realistic operating conditions.</p>
+<p>Fuel consumption and emissions were calculated for individual aircraft types and compared with results generated using EUROCONTROL&rsquo;s IMPACT tool.</p>
+<h2>Results</h2>
+<p>The simulation estimated average taxi-in and taxi-out times of approximately 60 and 190 seconds respectively, significantly lower than standard ICAO assumptions. Comparison with IMPACT showed good agreement for fuel burn and CO₂ emissions calculations.</p>
+<p>The study demonstrated that the use of generic taxi-time assumptions can substantially overestimate airport emissions, particularly carbon monoxide (CO) and hydrocarbon (HC) emissions.</p>
+<h2>Benefits</h2>
+<p>The approach provides airports and ANSPs with a more realistic method for estimating aircraft emissions and assessing the environmental impact of airport operations. It can support environmental reporting, sustainability programmes and the evaluation of operational improvements.</p>
+<h2>Transferability</h2>
+<p>The methodology can be applied at other airports where local operational characteristics differ from standard assumptions and where more accurate emissions assessments are required.</p>
+<h2>Links and References</h2>
+<p>Nikola Lukačević, Bojana Mirković, Marko Đogatović, and Emir Ganić. 2022. &ldquo;Simulation Model for Estimation of Aircraft Emissions at Airport Podgorica.&rdquo; Transportation Research Procedia 65: 180&ndash;89. <a href="https://doi.org/10.1016/j.trpro.2022.11.021">https://doi.org/10.1016/j.trpro.2022.11.021</a>.</p>
+<p style="text-align: center;"><img src="figure/podgorica_1.png" alt="" width="480" height="250" />
+<p style="text-align: center;font-size: 0.7rem;"><em><span style="color: #999999;">Simulation Model</span></em></p>
+<p style="text-align: center;"><img src="figure/podgorica_2.png" alt="" width="480" height="250" />
+<p style="text-align: center;font-size: 0.7rem;"><em><span style="color: #999999;">Impact of Taxi Time Assumptions on Emissions</span></em></p>
+</blockquote>
+</section>
 
-</section>
-<section>
-<h2>Provider</h2>
-<p>FlyingGreen is provided by EUROCONTROL Aviation Sustainability Unit.</p>
-</section>
-<section>
-<h2>Limitations</h2>
-<p>There are no assumptions made about missing traffic or trajectory information (e.g., taxi phase missing, therefore emission values in certain phases (especially on the ground) can be slightly lower than official reported traffic numbers.</p>
-<p>Economic related indicators are at the moment calculated based on very basic business models, e.g., operational margins fixed, elasticity values fixed across market segments and routes, etc.</p>
-</section>
-<section>
-<h2>Future Developments</h2>
-<p>Further releases of NetZero will contain the following changes:</p>
-<ul>
-<li>Detailed emission and fuel burn presentations for ANSPs (based on major CTAs, TMAs).</li>
-<li>More detailed options for operational improvements, allowing users to tailor these improvements based on flight phases or operational concepts.</li>
-<li>Management dashboard: Development of a management dashboard with key indicators is underway. This dashboard will provide a high-level overview of important metrics and performance indicators.</li>
-<li>The environmental cost analysis feature will be enhanced to provide more specific information on additional environmental costs and the impact on ticket prices and demand. This will include a more detailed breakdown of costs per market segment and other relevant categories.</li>
-</ul>
-<p>The team is actively working on incorporating user feedback to optimise the platform. This includes improving the performance and usability of the tool based on user experiences and suggestions.</p>
-</section>
+  </div>
 
 
 </main>
