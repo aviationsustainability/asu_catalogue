@@ -49,61 +49,31 @@ body::before {
     nav.primary .menu a:hover,nav.primary .menu a:focus{background:rgba(41,144,234,0.12);outline:none}
     nav.primary .menu li.active>a,nav.primary .menu a[aria-current="page"]{background:rgba(0,159,110,0.12);font-weight:600}
     
-/* ===== MOBILE FIX ===== */
-@media (max-width: 768px) {
-
-  header {
-    padding: 40px 20px 20px;
-  }
-
-  .intro-wrapper {
+ @media (max-width: 600px){
+  
+.intro-wrapper {
     flex-direction: column;
     gap: 20px;
   }
 
-  .intro-content,
-  .intro-aside {
-    width: 100%;
-    max-width: 100%;
-    flex: none;
-  }
+      header { padding: 40px 20px 16px; }
+      main { grid-template-columns: 1fr; padding: 16px; }
+      .card { border-radius: 14px; }
+      .menu-toggle { display: none }
+      .topbar-inner { display: grid; grid-template-columns: auto 1fr; align-items: center }
+      nav.primary { justify-self: end }
+      nav.primary .menu { display: flex !important; flex-direction: row; align-items: center; gap: 8px; background: transparent; margin-top: 0 }
+      nav.primary .menu a { padding: 8px 10px }
+    }
 
-  .intro-content {
-    padding: 0;
-  }
-
-  .intro-content h5 {
-    font-size: 2rem;
-    line-height: 1.2;
-  }
-
-  .grid {
-    grid-template-columns: 1fr;
-  }
-
-  .cards {
-    min-height: auto;
-  }
-
-  .bar-logos {
-    flex-direction: column;
-    gap: 20px;
-  }
-
-  .bar-logos img {
-    max-width: 220px;
-    height: auto !important;
-  }
-
-  main {
-    padding: 16px;
-  }
-
-  .id_section_1,
-  .id_section {
-    padding: 20px;
-  }
-}
+    @media (min-width: 768px){
+      
+      .menu-toggle { display: none }
+      .topbar-inner { display: grid; grid-template-columns: auto 1fr; align-items: center }
+      nav.primary { justify-self: end }
+      nav.primary .menu { display: flex !important; flex-direction: row; align-items: center; gap: 8px; background: transparent; margin-top: 0 }
+      nav.primary .menu a { padding: 8px 10px }
+    }
 
 header { text-align: center; padding: 64px 24px 24px; }
 h1 { font-size: clamp(2rem, 6vw, 3.25rem); font-weight: 800; letter-spacing: -0.02em; margin-bottom: 12px; color: var(--primary-dark); }
