@@ -104,7 +104,6 @@
       to   { opacity: 1; transform: translateY(0); }
     }
 
-    footer { text-align: center; padding: 36px 20px; color: #607D8B; font-size: 0.9rem; }
     /* Accessibility helpers */
     .skip-link { position: absolute; left: -999px; top: 0; background: var(--paper); color: var(--ink); padding: 8px 12px; border-radius: 4px; }
     .skip-link:focus { left: 8px; outline: 2px solid var(--focus); }
@@ -116,6 +115,7 @@
     .cta-buttons { display: flex; gap: 12px; justify-content: center; margin-top: 30px; }
 .cta-buttons a { background: var(--primary); color: #0a2e23; text-decoration: none; padding: 12px 20px; border-radius: 8px; font-weight: 600; transition: background 0.3s ease; }
 .cta-buttons a:hover { background: var(--primary-dark); }
+img{max-width:100%;height:auto;}
 
 .badge.level-badge{
   gap: 4px;                /* smaller space between icon + text */
@@ -190,27 +190,159 @@
 .badge-chip{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;border:1px solid var(--border);background:linear-gradient(180deg, rgba(255,255,255,.9) 0%, rgba(245,249,255,.8) 100%);color:var(--ink);font-size:12px;font-weight:700;box-shadow:0 2px 10px rgba(0,0,0,.06)}
 .badge-chip .chip-icon{width:20px;height:20px;display:inline-grid;place-items:center;background:rgba(0,159,110,.12);color:var(--primary-dark);border-radius:50%;font-size:12px}
 
+/* header block */
+.hero{
+    background:linear-gradient(
+        90deg,
+        #004f97 0%,
+        #005f6b 55%,
+        #006b34 100%
+    );
+height: 100px; 
+background-position: center;
+background-repeat: no-repeat;
+    color:#fff;
+    position:relative;
+}
+
+.hero-inner{
+    max-width:1400px;
+    margin:auto;
+    padding:30px 40px 80px;
+}
+
+.hero-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:80px;
+}
+
+.logos{
+    display:flex;
+    align-items:center;
+    gap:20px;
+    margin:0;
+}
+
+.logos img{
+    height:40px;
+    width:auto;
+    display:block;
+}
+
+.nav {
+    display: flex;
+    gap: 12px;
+}
+
+.nav a {
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 14px;
+    border-radius: 8px;
+    transition: all 0.25s ease;
+}
+
+.nav a:hover {
+    background: rgba(255,255,255,0.15);
+    transform: translateY(-2px);
+}
+
+.nav a.active,
+.nav a[aria-current="page"] {
+    background: rgba(158,255,220,0.2);
+    color:#FCFCFC;
+    font-weight: 700;
+}
+
+@media (max-width:768px){
+
+    .hero-header{
+        position:relative;
+        flex-direction:row;
+        justify-content:space-between;
+        align-items:center;
+    }
+
+    .menu-toggle{
+        display:block;
+    }
+
+    .nav{
+        display:none;
+        position:absolute;
+        top:70px;
+        right:0;
+        width:220px;
+
+        flex-direction:column;
+        gap:0;
+
+        background:rgba(0,0,0,.90);
+        border-radius:12px;
+        overflow:hidden;
+    }
+
+    .nav.show{
+        display:flex;
+    }
+
+    .nav a{
+        padding:14px 18px;
+        width:100%;
+    }
+
+    .nav a:hover{
+        transform:none;
+    }
+}
+
+/* footer block */
+footer {
+    text-align: center;
+    background: linear-gradient(
+        90deg,
+        #004f97 0%,
+        #005f6b 55%,
+        #006b34 100%
+    );
+    height: 100px;
+    color: #fff;
+    font-size: .8rem;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: .5rem;
+    padding: .5rem 1rem;
+}
+
+footer p {
+    margin: 0;
+}
+.skip-link { position: absolute; left: -999px; top: 0; background: var(--paper); color: var(--ink); padding: 8px 12px; border-radius: 4px; }
+.skip-link:focus { left: 8px; outline: 2px solid var(--focus); }
 </style>
   
 </head>
 <body>
 <a class="skip-link" href="#main-content">Skip to content</a>
-<div class="topbar" role="banner">
-<div class="topbar-inner">
-<a aria-label="Homepage" class="brand" href="index.html">AVENIR Catalogue</a>
-<button aria-controls="menu-list" aria-expanded="false" aria-label="Open menu" class="menu-toggle" id="menu-toggle">☰</button>
-<nav aria-label="Primary navigation" class="primary">
-<ul class="menu" id="menu-list">
-<li><a href="index.html">Introduction</a></li>
-<li><a href="tools.html">Tools</a></li>
-<li><a href="dashboard.html">Dashboards</a></li>
-<li class="active"><a aria-current="page" href="use-cases.html">Use Cases</a></li>
-<li><a href="faq.html">FAQ</a></li>
-<li><a href="downloads.html">Downloads</a></li>
-</ul>
-</nav>
-</div>
-</div>
+<div class="hero"><div class="hero-inner">
+ <div class="hero-header">
+  <div class="logos"><img src="figure/eurocontrol-boxed-slogan-right-rgb.png"><img src="figure/easa.svg"></div>
+  <button class="menu-toggle" id="menuToggle">
+☰
+</button>
+    <nav class="nav" id="mainNav">
+      <a href="index.html">Introduction</a>
+      <a href="tools.html">Tools</a>
+      <a href="dashboard.html">Dashboards</a>
+      <a href="use-cases.html" aria-current="page">Use Cases</a>
+      <a href="faq.html">FAQ</a>
+      <a href="downloads.html">Downloads</a></nav></div>
+    </div></div>
 <header>
 <h1 id="main-content">DFS – Improved STAR distances</h1>
 </header>
@@ -240,17 +372,7 @@
 <p>The start point of the project is the observation that PBN standard arrival routes are often designed with a long downwind leg to allow for safe and fluent traffic flows in case of peak traffic resulting in delays as shown below with the STAR (in blue below).</p>
 <p>However, the actual traffic is usually not peak traffic, allowing air traffic controllers to provide shorter tracks and reduce the actual flown distance as shown with the visualisation of the radar tracks in yellow.</p>
 <p>&nbsp;</p>
-<table style="height: 54px;margin-left: auto; margin-right: auto;" width="1020">
-<tbody>
-<tr>
-<td style="width: 503.2px"><p style="text-align: center;">
-  <img src="figure/dfs_1.png" alt="" width="250" height="300" /></p></td>
-<td style="width: 503.2px;"><p style="text-align: center;">
-  <img src="figure/dfs_2.png" alt="" width="250" height="300" />
-</p></td>
-</tr>
-</tbody>
-</table>
+<img src="figure/dfs_6.png"/>
 <blockquote>
 <p style="text-align: center;font-size: 0.7rem;"><em><span style="color: #999999;">Figure 27 - Published STAR for EDDB (left) versus flown tracks (right)</span></em></p>
 </blockquote>
@@ -267,33 +389,12 @@
 <li>Monitor the actual arrival distances once or twice a year after the implementation / publication.</li>
 <li>Update the amendment of AIP for any deviations above 5 NM from published one before.</li>
 </ul>
-<table style="height: 297px;" width="1029">
-<tbody>
-<tr>
-<td style="width: 581.775px;">
-<p style="text-align: center;"><em><p style="text-align: center;">
-  <img src="figure/dfs_3.png" alt="" width="500" height="400" />
-</p></em></p>
-</td>
-<td style="width: 433.625px;">
-<p>&nbsp;</p>
-<p>&middot;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><span style="color: #ffcc00;"> Yellow:</span></strong> Radar tracks for KETAP arrivals EDDB RWY 24 L/R.</p>
-<p>&middot;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>Black:</strong> KETAP STAR in accordance with AIP-Germany.</p>
-<p>&middot;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong><span style="color: #ff0000;">Red:</span></strong> STAR entry line.</p>
-<p>&middot;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong><span style="color: #008000;">Green:</span></strong> 90<sup>th</sup> percentile of KETAP arrivals.</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p style="text-align: center;font-size: 0.7rem;"><em><span style="color: #999999;">Methodology example for KETAP STAR (EDDB)</span></em></p>
-</td>
-</tr>
-</tbody>
-</table>
+<img src="figure/dfs_7.png"/>
 <p>Potential fuel savings are not attributed to fewer track miles being flown before or after the information was published in AIP. In actual operations, there were no changes. The savings are due to a reduction in the planned distance. This decrease in planned distance leads to a reduced fuel uptake, which in turn results in a lower aircraft weight throughout the entire flight. The lower aircraft weight consequently causes a lower fuel consumption during the whole flight.</p>
 <p>Potential Fuel Saving per flight were calculated for all flights in 2023 on all STARs to EDDB using the 90<sup>th</sup> percentile. This was done by multiplying the Distance Saved by the Fuel Flow (for short- and long-range flights) and Cost of Weight. The Cost of Weight is calculated using the rule of thumb of 5kg fuel/NM for short range flights and 15 kg fuel/NM for long range flights.</p>
 <p>The potential savings amount to 845,063 kg of fuel (i.e., 2,662 tonnes of CO<sub>2</sub>) if all aircraft adopt the new distance as shown in the table below.</p>
 <p style="text-align: center;">
-  <img src="figure/dfs_4.png" alt="" width="500" height="300" />
+  <img src="figure/dfs_4.png"/>
 </p>
 <p style="text-align: center;font-size: 0.7rem;"><em><span style="color: #999999;">Table of potential savings for EDDB</span></em></p>
 <p>Dissemination and implementation aspects to ensure that AOCCs and CFSPs are aware were addressed as follows:</p>
@@ -350,14 +451,13 @@
 
 
 </main>
+
+<!-- Footer block -->
 <footer>
 <p> The AVENIR Catalogue is developed under the EUROCONTROL–EASA AVENIR initiative and is maintained with contributions from aviation stakeholders and subject-matter experts.</p>
-<p style="margin-bottom: 1rem;"></p>
-<p>© 2026 EUROCONTROL. All rights reserved.</p>
-<div class="bar-logos">
-    <img src="figure/eurocontrol-boxed-slogan-right-rgb.png" style="height: 70px;">
-    <img src="figure/easa.png" style="height: 60px;">
-  </div>
+<p></p>
+<p>© 2026 EUROCONTROL. All rights reserved.
+</p>
 </footer>
 
 
@@ -366,6 +466,13 @@
 
 
 <script>
+// Header script
+const menuToggle = document.getElementById("menuToggle");
+const mainNav = document.getElementById("mainNav");
+
+menuToggle.addEventListener("click", () => {
+    mainNav.classList.toggle("show");
+});
 
 // Menu toggle
     const toggle = document.getElementById('menu-toggle');

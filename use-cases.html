@@ -57,10 +57,6 @@
 
     .card img{display:none}
 
-    footer{text-align:center;padding:40px 20px;color:#607D8B;font-size:.9rem}
-    .skip-link{position:absolute;left:-999px;top:0;background:var(--paper);color:var(--ink);padding:8px 12px;border-radius:4px}
-    .skip-link:focus{left:8px;outline:2px solid #009F6E}
-
     /* Filters (as in original) */
     .filter-panel{max-width:1200px;margin:0 auto 6px;padding:8px 20px 0}
     .filter-tabs{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
@@ -90,27 +86,163 @@
 
 }
 
+/* header block */
+
+.hero{
+    background:linear-gradient(
+        90deg,
+        #004f97 0%,
+        #005f6b 55%,
+        #006b34 100%
+    );
+height: 100px; 
+background-position: center;
+background-repeat: no-repeat;
+    color:#fff;
+    position:relative;
+}
+
+.hero-inner{
+    max-width:1400px;
+    margin:auto;
+    padding:30px 40px 80px;
+}
+
+.hero-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:80px;
+}
+
+.logos{
+    display:flex;
+    align-items:center;
+    gap:20px;
+    margin:0;
+}
+
+.logos img{
+    height:40px;
+    width:auto;
+    display:block;
+}
+
+.nav {
+    display: flex;
+    gap: 12px;
+}
+
+.nav a {
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 14px;
+    border-radius: 8px;
+    transition: all 0.25s ease;
+}
+
+.nav a:hover {
+    background: rgba(255,255,255,0.15);
+    transform: translateY(-2px);
+}
+
+.nav a.active,
+.nav a[aria-current="page"] {
+    background: rgba(158,255,220,0.2);
+    color:#FCFCFC;
+    font-weight: 700;
+}
+
+@media (max-width:768px){
+
+    .hero-header{
+        position:relative;
+        flex-direction:row;
+        justify-content:space-between;
+        align-items:center;
+    }
+
+    .menu-toggle{
+        display:block;
+    }
+
+    .nav{
+        display:none;
+        position:absolute;
+        top:70px;
+        right:0;
+        width:220px;
+
+        flex-direction:column;
+        gap:0;
+
+        background:rgba(0,0,0,.90);
+        border-radius:12px;
+        overflow:hidden;
+    }
+
+    .nav.show{
+        display:flex;
+    }
+
+    .nav a{
+        padding:14px 18px;
+        width:100%;
+    }
+
+    .nav a:hover{
+        transform:none;
+    }
+}
+
+/* footer block */
+footer {
+    text-align: center;
+    background: linear-gradient(
+        90deg,
+        #004f97 0%,
+        #005f6b 55%,
+        #006b34 100%
+    );
+    height: 100px;
+    color: #fff;
+    font-size: .8rem;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: .5rem;
+    padding: .5rem 1rem;
+}
+
+footer p {
+    margin: 0;
+}
+.skip-link { position: absolute; left: -999px; top: 0; background: var(--paper); color: var(--ink); padding: 8px 12px; border-radius: 4px; }
+.skip-link:focus { left: 8px; outline: 2px solid var(--focus); }
+
   </style>
 </head>
 <body>
-  <a class="skip-link" href="#main-content">Skip to content</a>
+<a class="skip-link" href="#main-content">Skip to content</a>
+  <section class="hero"><div class="hero-inner">
+ <div class="hero-header">
+  <div class="logos"><img src="figure/eurocontrol-boxed-slogan-right-rgb.png"><img src="figure/easa.svg"></div>
+  <button class="menu-toggle" id="menuToggle">
+☰
+</button>
+    <nav class="nav" id="mainNav">
+      <a href="index.html">Introduction</a>
+      <a href="tools.html">Tools</a>
+      <a href="dashboard.html">Dashboards</a>
+      <a href="use-cases.html" aria-current="page">Use Cases</a>
+      <a href="faq.html">FAQ</a>
+      <a href="downloads.html">Downloads</a></nav></div>
+    </section>
 
-  <div class="topbar" role="banner">
-    <div class="topbar-inner">
-      <a class="brand" href="index.html" aria-label="Homepage">AVENIR Catalogue</a>
-      <button id="menu-toggle" class="menu-toggle" aria-controls="menu-list" aria-expanded="false" aria-label="Open menu">☰</button>
-      <nav class="primary" aria-label="Primary navigation">
-        <ul id="menu-list" class="menu">
-          <li><a href="index.html">Introduction</a></li>
-          <li><a href="tools.html">Tools</a></li>
-          <li><a href="dashboard.html">Dashboards</a></li>
-          <li class="active"><a href="use-cases.html" aria-current="page">Use Cases</a></li>
-          <li><a href="faq.html">FAQ</a></li>
-          <li><a href="downloads.html">Downloads</a></li>
-        </ul>
-      </nav>
-    </div>
-  </div>
+
+ 
 
   <header>
     <h1 id="main-content">Use Cases</h1>
@@ -271,25 +403,22 @@
 
   <section id="aem-details" class="hidden"></section>
 
- <footer>
+ <!-- Footer block -->
+<footer>
 <p> The AVENIR Catalogue is developed under the EUROCONTROL–EASA AVENIR initiative and is maintained with contributions from aviation stakeholders and subject-matter experts.</p>
-<p style="margin-bottom: 1rem;"></p>
-<p>© 2026 EUROCONTROL. All rights reserved.</p>
-<div class="bar-logos">
-    <img src="figure/eurocontrol-boxed-slogan-right-rgb.png" style="height: 70px;">
-    <img src="figure/easa.png" style="height: 60px;">
-  </div>
+<p></p>
+<p>© 2026 EUROCONTROL. All rights reserved.
+</p>
 </footer>
 
   <script>
-    // Menu toggle
-    const toggle = document.getElementById('menu-toggle');
-    const list = document.getElementById('menu-list');
-    toggle?.addEventListener('click', () => {
-      const open = list.classList.toggle('open');
-      toggle.setAttribute('aria-expanded', String(open));
-      toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
-    });
+    // Header script
+const menuToggle = document.getElementById("menuToggle");
+const mainNav = document.getElementById("mainNav");
+
+menuToggle.addEventListener("click", () => {
+    mainNav.classList.toggle("show");
+});
 
     // Promote each card's <img> to CSS background and build NON-interactive tagbar from data-attributes
     (function(){
