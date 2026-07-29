@@ -25,15 +25,6 @@
     }
     body::before{content:'';position:fixed;top:-20%;left:-10%;width:700px;height:700px;background:radial-gradient(circle, rgba(0,159,110,0.12) 0%, transparent 65%);filter:blur(60px);z-index:-1;pointer-events:none}
 
-    /* Topbar */
-    .topbar{position:sticky;top:0;z-index:1000;background:rgba(252,252,252,0.8);backdrop-filter:saturate(140%) blur(10px);border-bottom:1px solid var(--border)}
-    .topbar-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;gap:12px;padding:12px 16px}
-    .brand{color:var(--ink);text-decoration:none;font-weight:800;letter-spacing:.2px}
-    .brand:hover{color:var(--primary-dark)}
-    @media (min-width:768px){
-      .menu-toggle{display:none}
-    }
-
     header{text-align:center;padding:64px 24px 24px}
     h1{font-size:clamp(2rem,6vw,3.25rem);font-weight:800;letter-spacing:-0.02em;margin-bottom:12px;color:var(--primary-dark)}
     p.subtitle{font-size:clamp(1rem,3.2vw,1.15rem);color:var(--text-secondary);max-width:1200px;margin:0 auto;line-height:1.65}
@@ -48,7 +39,8 @@
     .card-icon{font-size:28px;color:var(--accent);margin-bottom:14px;background:rgba(0,159,110,0.10);width:52px;height:52px;display:flex;align-items:center;justify-content:center;border-radius:12px}
     .card h3{font-size:1.25rem;margin-bottom:10px;font-weight:700;color:var(--ink)}
     .card p{color:var(--text-secondary);font-size:0.98rem;line-height:1.6;margin-bottom:16px}
-
+    .menu-toggle{margin-left:auto;font-size:1.6rem;line-height:1;background:transparent;color:var(--ink);border:0;cursor:pointer;padding:4px 8px}
+    .menu-toggle:focus{outline:2px solid var(--primary);outline-offset:2px;border-radius:6px}
     .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;color:var(--text-inverse);background:var(--primary);padding:12px 18px;border-radius:999px;font-weight:700;transition:background .2s ease, transform .05s ease;width:fit-content}
     .btn:hover{background:var(--primary-dark)}
     .btn:active{transform:scale(0.98)}
@@ -58,8 +50,8 @@
     .placeholder-list.show{display:block}
     .placeholder-list p{margin:6px 0}
     @keyframes fadeIn{from{opacity:0;transform:translateY(-2px)}to{opacity:1;transform:translateY(0)}}
-
     @media (max-width:600px){header{padding:40px 20px 16px} main{grid-template-columns:1fr;padding:16px} .card{border-radius:14px}}
+    @media(min-width:768px){.menu-toggle{display:none}.topbar-inner{display:grid;grid-template-columns:auto 1fr;align-items:center}nav.primary{justify-self:end}nav.primary .menu{display:flex!important;flex-direction:row;align-items:center;gap:8px;margin-top:0}nav.primary .menu a{padding:8px 10px}}
 
     .faq h3{font-size:1.1rem;color:var(--ink);margin-bottom:6px}
     .accordion{border-top:1px solid var(--border)}
@@ -222,9 +214,8 @@ footer p {
   </style>
 </head>
 <body>
-  <a class="skip-link" href="#main-content">Skip to content</a>
-     <section class="hero">
-      <div class="hero-inner">
+<a class="skip-link" href="#main-content">Skip to content</a>
+  <section class="hero"><div class="hero-inner">
  <div class="hero-header">
  <a href="index.html"><div class="logos"><img src="figure/eurocontrol-boxed-slogan-right-rgb.png"><img src="figure/easa.svg"></div></a>
   <button class="menu-toggle" id="menuToggle">
@@ -238,7 +229,6 @@ footer p {
       <a href="faq.html" aria-current="page">FAQ</a>
       <a href="downloads.html">Downloads</a></nav></div>
     </section>
-
 
   <header id="main-content" role="heading" aria-level="1">
     <h1 id="main-content">FAQ</h1>
@@ -396,6 +386,8 @@ const mainNav = document.getElementById("mainNav");
 menuToggle.addEventListener("click", () => {
     mainNav.classList.toggle("show");
 });
+
+
 
     // FAQ accordion behavior
     document.querySelectorAll('.acc-item').forEach(item => {
