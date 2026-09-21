@@ -252,7 +252,7 @@ footer {
         #005f6b 55%,
         #006b34 100%
     );
-    height: 100px;
+    min-height: 100px;
     color: #fff;
     font-size: .8rem;
 
@@ -261,11 +261,135 @@ footer {
     justify-content: center;
     align-items: center;
     gap: .5rem;
-    padding: .5rem 1rem;
+    padding: 1rem;
 }
 
 footer p {
     margin: 0;
+}
+
+/* Footer disclaimer links + hover tooltips */
+.footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    margin-top: 2px;
+}
+.footer-links .sep {
+    color: rgba(255,255,255,0.5);
+}
+.footer-tooltip {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+}
+.footer-tooltip::before {
+    content: "";
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 280px;
+    max-width: 80vw;
+    height: 14px;
+}
+@media (max-width: 600px) {
+    .footer-tooltip::before {
+        left: auto;
+        right: -10px;
+        transform: none;
+        width: 240px;
+    }
+}
+.footer-tooltip > button,
+.footer-link-plain {
+    background: none;
+    border: none;
+    padding: 0;
+    color: #fff;
+    font-size: .8rem;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    cursor: pointer;
+    font-family: inherit;
+}
+.footer-tooltip > button:hover,
+.footer-tooltip > button:focus-visible,
+.footer-link-plain:hover,
+.footer-link-plain:focus-visible {
+    color: #9effdc;
+}
+.footer-tooltip .tooltip-box {
+    position: absolute;
+    bottom: calc(100% + 10px);
+    left: 50%;
+    transform: translateX(-50%) translateY(4px);
+    width: 280px;
+    max-width: 80vw;
+    background: #fff;
+    color: var(--text-primary);
+    text-align: left;
+    font-size: .8rem;
+    line-height: 1.5;
+    border-radius: 10px;
+    box-shadow: 0 12px 28px rgba(0,0,0,0.25);
+    padding: 14px 16px;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity .18s ease, transform .18s ease;
+    z-index: 20;
+}
+.footer-tooltip .tooltip-box::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 7px solid transparent;
+    border-top-color: #fff;
+}
+.footer-tooltip .tooltip-box strong {
+    display: block;
+    margin-bottom: 6px;
+    color: var(--primary-dark);
+    font-size: .85rem;
+}
+.footer-tooltip .tooltip-box a {
+    color: var(--primary-dark);
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+.footer-tooltip .tooltip-box a:hover,
+.footer-tooltip .tooltip-box a:focus-visible {
+    color: var(--primary);
+}
+.footer-tooltip:hover .tooltip-box,
+.footer-tooltip:focus-within .tooltip-box {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+    pointer-events: auto;
+}
+@media (max-width: 600px) {
+    .footer-tooltip .tooltip-box {
+        left: auto;
+        right: -10px;
+        transform: translateY(4px);
+        width: 240px;
+    }
+    .footer-tooltip .tooltip-box::after {
+        left: auto;
+        right: 16px;
+        transform: none;
+    }
+    .footer-tooltip:hover .tooltip-box,
+    .footer-tooltip:focus-within .tooltip-box {
+        transform: translateY(0);
+    }
 }
 .skip-link { position: absolute; left: -999px; top: 0; background: var(--paper); color: var(--ink); padding: 8px 12px; border-radius: 4px; }
 .skip-link:focus { left: 8px; outline: 2px solid var(--focus); }
@@ -335,10 +459,26 @@ footer p {
 
 <!-- Footer block -->
 <footer>
-<p> The AVENIR Catalogue is developed under the EUROCONTROL–EASA AVENIR initiative and is maintained with contributions from aviation stakeholders and subject-matter experts.</p>
-<p></p>
-<p>© 2026 EUROCONTROL. All rights reserved.
-</p>
+<p>© 2026 EUROCONTROL and European Union Aviation Safety Agency (EASA)</p>
+<div class="footer-links">
+<a class="footer-link-plain" href="https://www.eurocontrol.int/info/disclaimers">EUROCONTROL Disclaimer</a>
+<span class="sep">·</span>
+<div class="footer-tooltip">
+<button type="button" aria-describedby="tt-catalogue">Catalogue disclaimer</button>
+<div class="tooltip-box" id="tt-catalogue" role="tooltip">
+<strong>Catalogue Disclaimer</strong>
+The AVENIR Environmental Catalogue is provided for information purposes. It describes tools, dashboards, methodologies and other resources relevant to aviation environmental assessment. Inclusion of, or a link to, a third-party resource does not constitute an endorsement or recommendation by EUROCONTROL or EASA. Third-party content is maintained by its respective provider; EUROCONTROL and EASA cannot guarantee its accuracy, currency or continued availability. Users should consult the provider’s documentation and assess whether a resource is suitable for their intended use.
+</div>
+</div>
+<span class="sep">·</span>
+<div class="footer-tooltip">
+<button type="button" aria-describedby="tt-privacy">Privacy information</button>
+<div class="tooltip-box" id="tt-privacy" role="tooltip">
+<strong>Privacy Information</strong>
+The AVENIR Environmental Catalogue is hosted externally through GitHub Pages, including when accessed through a EUROCONTROL domain. The catalogue does not require registration or ask visitors to submit personal information. GitHub Pages logs and stores visitors’ IP addresses for security purposes. Further information is available in the <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement?utm_source=chatgpt.com">GitHub Privacy Statement</a>.
+</div>
+</div>
+</div>
 </footer>
 
   <script>
@@ -349,6 +489,17 @@ const mainNav = document.getElementById("mainNav");
 
 menuToggle.addEventListener("click", () => {
     mainNav.classList.toggle("show");
+});
+
+// Footer disclaimer tooltips: open on hover only.
+// Clicking the trigger would otherwise leave it focused, which keeps the
+// tooltip pinned open via :focus-within even after the mouse moves away.
+// Blurring right after a mouse click removes that "pinned" state, while
+// keyboard (Tab) focus is left untouched so the tooltip stays accessible.
+document.querySelectorAll('.footer-tooltip > button').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+        e.currentTarget.blur();
+    });
 });
 
     // Menu toggle
