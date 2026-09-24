@@ -483,11 +483,11 @@ footer p {
   <div class="chips">
     <span class="badge-chip">
       <span class="chip-icon" aria-hidden="true">🎯</span>
-      <span class="chip-text">Focus: CO₂, Non‑CO₂</span>
+      <span class="chip-text">Focus: CO₂</span>
     </span>
     <span class="badge-chip">
       <span class="chip-icon" aria-hidden="true">🛫</span>
-      <span class="chip-text">Phases: Taxi‑out, Departure/Climb, Cruise, Descent/Arrival, Taxi‑in, Wheels‑up/‑down, Gate‑to‑Gate</span>
+      <span class="chip-text">Phases: Taxi‑out, Departure/Climb, Cruise, Descent/Arrival, Taxi‑in</span>
     </span>
     <span class="badge-chip">
       <span class="chip-icon" aria-hidden="true">📊</span>
@@ -498,14 +498,10 @@ footer p {
 
 <section>
 <h2>Overview</h2>
-<p><strong>FlyingGreen</strong>&nbsp;is a comprehensive sustainability initiative launched by EUROCONTROL and managed by the Aviation Sustainability Unit. It provides a one-stop shop platform to support States, ANSPs, airports and other aviation stakeholders in reducing their environmental impact. FlyingGreen is structured around four strategic pillars, with the NetZero pillar focusing on reducing emissions and tracking fuel burn at various operational levels &mdash; from the Network down to individual states, ANSPs or airports.</p>
-<p>The <strong>NetZero pillar</strong>&nbsp;offers a user-friendly dashboard that enables monitoring and forecasting of emissions based on operational improvements, fleet renewal and traffic growth scenarios. This centralised platform integrates operational radar data (Correlated Position reports for a Flight &ndash; CPF) and forecast data (STATFOR) to provide accurate estimations of fuel burn and CO₂ emissions. The use of EUROCONTROL's AEM tool further strengthens the reliability of these calculations.</p>
-<p>The FlyingGreen platform provides a dashboard to monitor fuel burn and emissions, and to forecast future emissions based on different growth scenarios&nbsp;with the following features:</p>
-<ul>
-<li><strong>Comprehensive Information:&nbsp;</strong>Centralised platform where stakeholders can access detailed information on fuel burn and emissions, impact of operational improvements, and in the other FlyingGreen pillars detailed information on fuel requirements and pathways, climate impact, adaptation and mitigation measures and financing options for sustainable developments.</li>
-<li><strong>User-Friendly Interface:&nbsp;</strong>An intuitive interface that allows users to easily navigate and find relevant data and tools.</li>
-<li><strong>Customisable Views:&nbsp;</strong>Options to view data at different levels (network, state, FAB, ANSP, airport) and customise the analysis based on specific needs.</li>
-</ul>
+<p><strong data-olk-copy-source="MailCompose">FlyingGreen</strong>&nbsp;is a comprehensive sustainability initiative launched by EUROCONTROL and managed by the Aviation Sustainability Unit. It provides a one-stop shop platform to support States, ANSPs, airports and other aviation stakeholders in reducing their environmental impact. FlyingGreen is structured around four strategic pillars, with the NetZero pillar focusing on reducing emissions and tracking fuel burn at various operational levels &mdash; from the Network down to individual states, ANSPs or airports.</p>
+<p>&nbsp;</p>
+<p>The <strong>NetZero pillar</strong>&nbsp;offers a user-friendly dashboard that enables monitoring and forecasting of emissions based on operational improvements, fleet renewal and traffic growth scenarios. This centralised platform integrates operational radar data (Correlated Position reports for a Flight &ndash; CPF), forecast data (STATFOR) and EUROCONTROL&rsquo;s AEM tool to provide accurate estimations of fuel burn and CO₂ emissions. NetZero provide options to view data at different levels (network, state, FAB, ANSP, airport) and customise the analysis based on specific stakeholder requirements.</p>
+<p>&nbsp;</p>
 <p>FlyingGreen/NetZero addresses several critical challenges in the aviation sector, including:</p>
 <ul>
 <li><strong>Emission Reduction: </strong>The need to reduce CO<sub>2</sub> emissions to meet net-zero targets.</li>
@@ -513,22 +509,26 @@ footer p {
 <li><strong>Operational Efficiency: </strong>Improving operational efficiency to reduce fuel burn and emissions.</li>
 <li><strong>Data Utilisation: </strong>Leveraging comprehensive data for accurate emission tracking and forecasting.</li>
 </ul>
+<p>&nbsp;</p>
 <p>Concerning Data Processing, NetZero includes:</p>
 <ul>
 <li><strong>Trajectories: </strong>Using actual radar tracks (CPF) to create detailed trajectory segments. CPF is an airspace profile following as much as possible the actual flown trajectory derived from ATC surveillance systems (CPR).</li>
 <li><strong>Forecasting: </strong>Incorporating medium and long-term forecasts to predict future emissions and fuel burn.</li>
-<li><strong>Aircraft Allocation Tool: </strong>Replacing older aircraft with newer, and options to introduce more efficient models such as hydrogen and electric aircraft in the forecasts via What-If functionality.</li>
+<li><strong>Aircraft Evolution and Revolution Tool: </strong>Replacing older aircraft with improved fuel efficiency, and options to introduce zero-emission models such as hydrogen and electric aircraft in the forecasts via What-If functionality. This is complemented by AZIP, which evaluates the ground infrastructure, electrical grid impact, physical land requirements, and capital investment needed at airports to support these new electric and hydrogen aircraft.</li>
 <li><strong>Advanced Emission Modelling: </strong>Utilising the EUROCONTROL AEM tool to calculate fuel burn and emissions accurately.</li>
 </ul>
+<p>&nbsp;</p>
 <p style="text-align: center;"><img src="figure/fg_1.png" alt="" width="500" height="300" /></p>
 <p style="text-align: center;font-size: 0.7rem;"><em><span style="color: #999999;">FlyingGreen - NetZero page (from webpage)</span></em></p>
+<p>&nbsp;</p>
 <p>NetZero can be seen as a comprehensive toolkit for decarbonisation efforts that includes:</p>
 <ul>
 <li><strong>Fuel Burn and Emission: </strong>Detailed graphs and charts showing current and forecasted emissions and fuel consumption.</li>
+<li><strong>Filter options</strong>: Selection of flight types (departures, arrivals, internal and overflights), specific flight phases, or market segment.</li>
 <li><strong>What-If Scenarios: </strong>Tools to model the impact of different operational improvements per flight phase together with fleet renewals and evolutions on emissions.</li>
 <li><strong>Cost Analysis: </strong>Simplified cost analysis for additional environmental costs related to fuel, ETS and CORSIA.</li>
+<li><strong>Airport Infrastructure Planning (AZIP):</strong> Indicative modelling of airport energy and infrastructure requirements for future electric and hydrogen aircraft, including capital and operating costs.</li>
 </ul>
-
 </section>
 <section>
 <h2>Provider</h2>
@@ -536,17 +536,15 @@ footer p {
 </section>
 <section>
 <h2>Limitations</h2>
-<p>There are no assumptions made about missing traffic or trajectory information (e.g., taxi phase missing, therefore emission values in certain phases (especially on the ground) can be slightly lower than official reported traffic numbers.</p>
-<p>Economic related indicators are at the moment calculated based on very basic business models, e.g., operational margins fixed, elasticity values fixed across market segments and routes, etc.</p>
+<p>Where traffic or trajectory data are incomplete, for example for some ground movements, NetZero’s estimated fuel burn and emissions may omit part of the activity. Results should be interpreted with this data coverage in mind.</p>
+<p>Economic indicators are indicative and depend on simplified modelling assumptions. Users can adjust some cost inputs, but the results should not be treated as airline-specific financial forecasts.</p>
 </section>
 <section>
 <h2>Future Developments</h2>
 <p>Further releases of NetZero will contain the following changes:</p>
 <ul>
-<li>Detailed emission and fuel burn presentations for ANSPs (based on major CTAs, TMAs).</li>
-<li>More detailed options for operational improvements, allowing users to tailor these improvements based on flight phases or operational concepts.</li>
-<li>Management dashboard: Development of a management dashboard with key indicators is underway. This dashboard will provide a high-level overview of important metrics and performance indicators.</li>
-<li>The environmental cost analysis feature will be enhanced to provide more specific information on additional environmental costs and the impact on ticket prices and demand. This will include a more detailed breakdown of costs per market segment and other relevant categories.</li>
+<li>Further refinements to the existing operational what-if options, allowing users to tailor these improvements based on flight phases or operational concepts.</li>
+<li>Planned enhancements to environmental-cost analysis may provide a more detailed breakdown by market segment and explore potential effects on ticket prices and demand.</li>
 </ul>
 <p>The team is actively working on incorporating user feedback to optimise the platform. This includes improving the performance and usability of the tool based on user experiences and suggestions.</p>
 </section>
